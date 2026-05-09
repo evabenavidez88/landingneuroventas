@@ -1,6 +1,16 @@
 import { Pool } from 'pg';
 
-const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+let pool = null;
+
+function getPool() {
+  if (!process.env.DATABASE_URL) {
+    throw new Error('DATABASE_URL environment variable is not configured');
+  }
+  if (!pool) {
+    pool = new Pool({ connectionString: process.env.DATABASE_URL });
+  }
+  return pool;
+}
 
 function checkAuth(request) {
   const key = request.headers.get('x-admin-key');
@@ -13,7 +23,8 @@ export async function POST(request) {
     if (!nombre?.trim() || !email?.trim()) {
       return Response.json({ error: 'Datos incompletos' }, { status: 400 });
     }
-    const result = await pool.query(
+    const db = getPool();
+    const result = await db.query(
       'INSERT INTO "Leads" (nombre, email) VALUES ($1, $2) RETURNING *',
       [nombre.trim(), email.trim().toLowerCase()]
     );
@@ -32,7 +43,8 @@ export async function GET(request) {
     return Response.json({ error: 'No autorizado' }, { status: 401 });
   }
   try {
-    const result = await pool.query('SELECT * FROM "Leads" ORDER BY fecha DESC');
+    const db = getPool();
+    const result = await db.query('SELECT * FROM "Leads" ORDER BY fecha DESC');
     return Response.json(result.rows);
   } catch (e) {
     console.error('DB error:', e);
