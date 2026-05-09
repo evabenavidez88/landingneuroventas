@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import * as XLSX from 'xlsx';
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip,
   ResponsiveContainer, CartesianGrid,
@@ -13,6 +14,18 @@ export default function AdminPage() {
   const [leads, setLeads] = useState([]);
   const [cargando, setCargando] = useState(false);
   const [busqueda, setBusqueda] = useState('');
+  const keyRef = useRef('');
+
+  const fetchLeads = useCallback(async (adminKey) => {
+    const res = await fetch('/api/leads', { headers: { 'x-admin-key': adminKey } });
+    if (res.ok) setLeads(await res.json());
+  }, []);
+
+  useEffect(() => {
+    if (!autenticado) return;
+    const interval = setInterval(() => fetchLeads(keyRef.current), 30000);
+    return () => clearInterval(interval);
+  }, [autenticado, fetchLeads]);
 
   async function login() {
     setCargando(true);
@@ -21,6 +34,7 @@ export default function AdminPage() {
       const res = await fetch('/api/leads', { headers: { 'x-admin-key': key } });
       if (res.ok) {
         setLeads(await res.json());
+        keyRef.current = key;
         setAutenticado(true);
       } else {
         const data = await res.json().catch(() => ({}));
@@ -32,23 +46,18 @@ export default function AdminPage() {
     setCargando(false);
   }
 
-  function exportarCSV() {
-    const bom = '﻿';
-    const headers = ['ID', 'Nombre', 'Email', 'Fecha'];
-    const filas = leads.map(l => [
-      l.id,
-      `"${l.nombre}"`,
-      l.email,
-      new Date(l.fecha).toLocaleString('es-AR'),
-    ]);
-    const csv = bom + [headers, ...filas].map(r => r.join(',')).join('\n');
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `leads-${new Date().toISOString().slice(0, 10)}.csv`;
-    a.click();
-    URL.revokeObjectURL(url);
+  function exportarExcel() {
+    const filas = leads.map(l => ({
+      ID: l.id,
+      Nombre: l.nombre,
+      Email: l.email,
+      Fecha: new Date(l.fecha).toLocaleString('es-AR'),
+    }));
+    const ws = XLSX.utils.json_to_sheet(filas);
+    ws['!cols'] = [{ wch: 6 }, { wch: 25 }, { wch: 35 }, { wch: 20 }];
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Leads');
+    XLSX.writeFile(wb, `leads-${new Date().toISOString().slice(0, 10)}.xlsx`);
   }
 
   const hoy = leads.filter(l => {
@@ -112,7 +121,7 @@ export default function AdminPage() {
           <h1 style={s.titulo}>Panel de Leads</h1>
           <p style={s.subtitulo}>NeuroCienciaEva</p>
         </div>
-        <button onClick={exportarCSV} style={s.btnExport}>⬇ Exportar Excel</button>
+        <button onClick={exportarExcel} style={s.btnExport}>⬇ Exportar Excel</button>
       </header>
 
       <div style={s.statsRow}>
