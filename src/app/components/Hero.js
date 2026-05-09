@@ -3,8 +3,6 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
-const SCRIPT_URL =
-  'https://script.google.com/macros/s/AKfycbxUKPKwXPiENZrLz1L5kDZeJzI2reHdQidfyFTObi-zMZlmt8gTpON3DEtopo5V8dzM/exec';
 
 function validarEmail(e) {
   return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(e);
@@ -55,14 +53,10 @@ export default function Hero() {
 
     setEnviando(true);
     try {
-      const p = new URLSearchParams({
-        nombre,
-        email,
-        fecha: new Date().toLocaleString('es-AR'),
-      });
-      await fetch(SCRIPT_URL + '?' + p.toString(), {
-        method: 'GET',
-        mode: 'no-cors',
+      await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, email }),
       });
     } catch (e) {
       console.log(e);
