@@ -23,7 +23,8 @@ export default function AdminPage() {
         setLeads(await res.json());
         setAutenticado(true);
       } else {
-        setErrorAuth('Contraseña incorrecta');
+        const data = await res.json().catch(() => ({}));
+      setErrorAuth(res.status === 401 ? 'Contraseña incorrecta' : `Error ${res.status}: ${data.error || 'Error de servidor'}`);
       }
     } catch {
       setErrorAuth('Error de conexión');

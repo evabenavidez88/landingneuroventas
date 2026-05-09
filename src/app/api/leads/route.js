@@ -7,7 +7,12 @@ function getPool() {
     throw new Error('DATABASE_URL environment variable is not configured');
   }
   if (!pool) {
-    pool = new Pool({ connectionString: process.env.DATABASE_URL });
+    pool = new Pool({
+      connectionString: process.env.DATABASE_URL,
+      ssl: process.env.DATABASE_URL?.includes('railway.internal')
+        ? false
+        : { rejectUnauthorized: false },
+    });
   }
   return pool;
 }
