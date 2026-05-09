@@ -53,6 +53,6 @@ export async function GET(request) {
     return Response.json(result.rows);
   } catch (e) {
     console.error('DB error:', e);
-    return Response.json({ error: 'Error interno' }, { status: 500 });
+    return Response.json({ error: e.message }, { status: 500 });
   }
 }
