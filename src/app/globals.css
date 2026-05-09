@@ -268,8 +268,9 @@ nav img { height: 56px; width: auto; }
   text-align: center;
 }
 .eje-card img {
-  height: 64px;
-  width: auto;
+  height: 68px;
+  width: 68px;
+  object-fit: contain;
   margin-bottom: 18px;
   display: block;
   margin-left: auto;

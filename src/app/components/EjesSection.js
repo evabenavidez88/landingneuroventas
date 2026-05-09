@@ -34,9 +34,9 @@ export default function EjesSection() {
               <Image
                 src={eje.icon}
                 alt={eje.title}
-                width={64}
-                height={64}
-                style={{ height: '64px', width: 'auto' }}
+                width={68}
+                height={68}
+                style={{ height: '68px', width: '68px', objectFit: 'contain' }}
               />
               <div className="eje-card-title">{eje.title}</div>
               <div className="eje-card-desc">{eje.desc}</div>
