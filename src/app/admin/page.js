@@ -51,7 +51,7 @@ export default function AdminPage() {
       ID: l.id,
       Nombre: l.nombre,
       Email: l.email,
-      Fecha: new Date(l.fecha).toLocaleString('es-AR'),
+      Fecha: new Date(l.fecha).toLocaleString('es-AR', { hour12: false }),
     }));
     const ws = XLSX.utils.json_to_sheet(filas);
     ws['!cols'] = [{ wch: 6 }, { wch: 25 }, { wch: 35 }, { wch: 20 }];
@@ -182,7 +182,7 @@ export default function AdminPage() {
                   <td style={s.tdMuted}>{l.id}</td>
                   <td style={s.td}>{l.nombre}</td>
                   <td style={s.tdEmail}>{l.email}</td>
-                  <td style={s.tdMuted}>{new Date(l.fecha).toLocaleString('es-AR')}</td>
+                  <td style={s.tdMuted}>{new Date(l.fecha).toLocaleString('es-AR', { hour12: false })}</td>
                 </tr>
               ))}
               {leadsFiltrados.length === 0 && (
