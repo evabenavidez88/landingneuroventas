@@ -58,6 +58,9 @@ export default function Hero() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nombre, email }),
       });
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'Lead');
+      }
     } catch (e) {
       console.log(e);
     }
