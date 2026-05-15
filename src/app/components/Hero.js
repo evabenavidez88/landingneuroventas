@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 
 function validarEmail(e) {
@@ -12,6 +13,7 @@ function validarNombre(n) {
 }
 
 export default function Hero() {
+  const router = useRouter();
   const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
   const [errNombre, setErrNombre] = useState(false);
@@ -65,14 +67,7 @@ export default function Hero() {
       console.log(e);
     }
 
-    setPrimerNombre(nombre.split(' ')[0]);
-    setEnviado(true);
-    setTimeout(() => {
-      window.open(
-        'https://drive.google.com/file/d/14crpYNXqK4-G4aLPEDPzbhJn8SNWeP-N/view',
-        '_blank'
-      );
-    }, 800);
+    router.push('/gracias');
   }
 
   return (
