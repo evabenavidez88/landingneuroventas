@@ -14,18 +14,25 @@ export default function AdminPage() {
   const [leads, setLeads] = useState([]);
   const [cargando, setCargando] = useState(false);
   const [busqueda, setBusqueda] = useState('');
+  const [source, setSource] = useState('checklist');
   const keyRef = useRef('');
 
-  const fetchLeads = useCallback(async (adminKey) => {
-    const res = await fetch('/api/leads', { headers: { 'x-admin-key': adminKey } });
+  const fetchLeads = useCallback(async (adminKey, src) => {
+    const param = src === 'webinar' ? '?source=webinar' : '';
+    const res = await fetch(`/api/leads${param}`, { headers: { 'x-admin-key': adminKey } });
     if (res.ok) setLeads(await res.json());
   }, []);
 
   useEffect(() => {
     if (!autenticado) return;
-    const interval = setInterval(() => fetchLeads(keyRef.current), 30000);
+    fetchLeads(keyRef.current, source);
+  }, [source, autenticado, fetchLeads]);
+
+  useEffect(() => {
+    if (!autenticado) return;
+    const interval = setInterval(() => fetchLeads(keyRef.current, source), 30000);
     return () => clearInterval(interval);
-  }, [autenticado, fetchLeads]);
+  }, [autenticado, source, fetchLeads]);
 
   async function login() {
     setCargando(true);
@@ -38,7 +45,7 @@ export default function AdminPage() {
         setAutenticado(true);
       } else {
         const data = await res.json().catch(() => ({}));
-      setErrorAuth(res.status === 401 ? 'Contraseña incorrecta' : `Error ${res.status}: ${data.error || 'Error de servidor'}`);
+        setErrorAuth(res.status === 401 ? 'Contraseña incorrecta' : `Error ${res.status}: ${data.error || 'Error de servidor'}`);
       }
     } catch {
       setErrorAuth('Error de conexión');
@@ -47,6 +54,7 @@ export default function AdminPage() {
   }
 
   function exportarExcel() {
+    const nombre = source === 'webinar' ? 'leads-webinar' : 'leads-checklist';
     const filas = leads.map(l => ({
       ID: l.id,
       Nombre: l.nombre,
@@ -57,7 +65,7 @@ export default function AdminPage() {
     ws['!cols'] = [{ wch: 6 }, { wch: 25 }, { wch: 35 }, { wch: 20 }];
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Leads');
-    XLSX.writeFile(wb, `leads-${new Date().toISOString().slice(0, 10)}.xlsx`);
+    XLSX.writeFile(wb, `${nombre}-${new Date().toISOString().slice(0, 10)}.xlsx`);
   }
 
   const hoy = leads.filter(l => {
@@ -121,7 +129,23 @@ export default function AdminPage() {
           <h1 style={s.titulo}>Panel de Leads</h1>
           <p style={s.subtitulo}>NeuroCienciaEva</p>
         </div>
-        <button onClick={exportarExcel} style={s.btnExport}>⬇ Exportar Excel</button>
+        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
+          <div style={s.selector}>
+            <button
+              onClick={() => setSource('checklist')}
+              style={{ ...s.selectorBtn, ...(source === 'checklist' ? s.selectorActive : {}) }}
+            >
+              📋 Checklist
+            </button>
+            <button
+              onClick={() => setSource('webinar')}
+              style={{ ...s.selectorBtn, ...(source === 'webinar' ? s.selectorActive : {}) }}
+            >
+              🎓 Webinar
+            </button>
+          </div>
+          <button onClick={exportarExcel} style={s.btnExport}>⬇ Exportar Excel</button>
+        </div>
       </header>
 
       <div style={s.statsRow}>
@@ -214,6 +238,9 @@ const s = {
   titulo: { fontSize: '1.75rem', fontWeight: 700, margin: 0 },
   subtitulo: { color: '#666', fontSize: '0.85rem', margin: '0.25rem 0 0' },
   btnExport: { background: 'rgba(74,222,128,0.1)', color: '#4ade80', border: '1px solid #4ade80', padding: '0.5rem 1.25rem', borderRadius: '8px', cursor: 'pointer', fontSize: '0.9rem', fontWeight: 500 },
+  selector: { display: 'flex', background: '#13132a', border: '1px solid #2a2a4a', borderRadius: '8px', overflow: 'hidden' },
+  selectorBtn: { padding: '0.5rem 1.1rem', background: 'transparent', color: '#666', border: 'none', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 500 },
+  selectorActive: { background: '#6c3ce1', color: '#fff' },
   statsRow: { display: 'flex', gap: '1rem', marginBottom: '1.5rem' },
   statCard: { flex: 1, background: '#13132a', borderRadius: '12px', padding: '1.5rem', textAlign: 'center', border: '1px solid #2a2a4a' },
   statNum: { display: 'block', fontSize: '2.5rem', fontWeight: 700, color: '#fff' },

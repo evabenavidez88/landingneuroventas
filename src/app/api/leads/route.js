@@ -48,8 +48,11 @@ export async function GET(request) {
     return Response.json({ error: 'No autorizado' }, { status: 401 });
   }
   try {
+    const { searchParams } = new URL(request.url);
+    const source = searchParams.get('source');
+    const table = source === 'webinar' ? 'leads_webinar' : '"Leads"';
     const db = getPool();
-    const result = await db.query('SELECT * FROM "Leads" ORDER BY fecha DESC');
+    const result = await db.query(`SELECT * FROM ${table} ORDER BY fecha DESC`);
     return Response.json(result.rows);
   } catch (e) {
     console.error('DB error:', e);
