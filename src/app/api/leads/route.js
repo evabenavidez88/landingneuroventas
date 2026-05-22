@@ -50,7 +50,7 @@ export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
     const source = searchParams.get('source');
-    const table = source === 'webinar' ? 'leads_webinar' : '"Leads"';
+    const table = source === 'webinar' ? 'leads_webinar' : source === 'formacion' ? 'leads_formacion' : '"Leads"';
     const db = getPool();
     const result = await db.query(`SELECT * FROM ${table} ORDER BY fecha DESC`);
     return Response.json(result.rows);

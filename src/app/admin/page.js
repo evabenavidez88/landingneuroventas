@@ -18,7 +18,7 @@ export default function AdminPage() {
   const keyRef = useRef('');
 
   const fetchLeads = useCallback(async (adminKey, src) => {
-    const param = src === 'webinar' ? '?source=webinar' : '';
+    const param = src === 'checklist' ? '' : `?source=${src}`;
     const res = await fetch(`/api/leads${param}`, { headers: { 'x-admin-key': adminKey } });
     if (res.ok) setLeads(await res.json());
   }, []);
@@ -54,15 +54,15 @@ export default function AdminPage() {
   }
 
   function exportarExcel() {
-    const nombre = source === 'webinar' ? 'leads-webinar' : 'leads-checklist';
-    const filas = leads.map(l => ({
-      ID: l.id,
-      Nombre: l.nombre,
-      Email: l.email,
-      Fecha: new Date(l.fecha).toLocaleString('es-AR', { hour12: false }),
-    }));
+    const nombre = source === 'webinar' ? 'leads-webinar' : source === 'formacion' ? 'leads-formacion' : 'leads-checklist';
+    const filas = leads.map(l => source === 'formacion'
+      ? { ID: l.id, Nombre: l.nombre, Apellido: l.apellido || '', Email: l.email, Fecha: new Date(l.fecha).toLocaleString('es-AR', { hour12: false }) }
+      : { ID: l.id, Nombre: l.nombre, Email: l.email, Fecha: new Date(l.fecha).toLocaleString('es-AR', { hour12: false }) }
+    );
     const ws = XLSX.utils.json_to_sheet(filas);
-    ws['!cols'] = [{ wch: 6 }, { wch: 25 }, { wch: 35 }, { wch: 20 }];
+    ws['!cols'] = source === 'formacion'
+      ? [{ wch: 6 }, { wch: 20 }, { wch: 20 }, { wch: 35 }, { wch: 20 }]
+      : [{ wch: 6 }, { wch: 25 }, { wch: 35 }, { wch: 20 }];
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Leads');
     XLSX.writeFile(wb, `${nombre}-${new Date().toISOString().slice(0, 10)}.xlsx`);
@@ -143,6 +143,12 @@ export default function AdminPage() {
             >
               🎓 Webinar
             </button>
+            <button
+              onClick={() => setSource('formacion')}
+              style={{ ...s.selectorBtn, ...(source === 'formacion' ? s.selectorActive : {}) }}
+            >
+              💰 Formación
+            </button>
           </div>
           <button onClick={exportarExcel} style={s.btnExport}>⬇ Exportar Excel</button>
         </div>
@@ -196,6 +202,7 @@ export default function AdminPage() {
               <tr>
                 <th style={s.th}>#</th>
                 <th style={s.th}>Nombre</th>
+                {source === 'formacion' && <th style={s.th}>Apellido</th>}
                 <th style={s.th}>Email</th>
                 <th style={s.th}>Fecha</th>
               </tr>
@@ -205,13 +212,14 @@ export default function AdminPage() {
                 <tr key={l.id} style={i % 2 === 0 ? s.trEven : s.trOdd}>
                   <td style={s.tdMuted}>{l.id}</td>
                   <td style={s.td}>{l.nombre}</td>
+                  {source === 'formacion' && <td style={s.td}>{l.apellido}</td>}
                   <td style={s.tdEmail}>{l.email}</td>
                   <td style={s.tdMuted}>{new Date(l.fecha).toLocaleString('es-AR', { hour12: false })}</td>
                 </tr>
               ))}
               {leadsFiltrados.length === 0 && (
                 <tr>
-                  <td colSpan={4} style={{ ...s.td, textAlign: 'center', color: '#555', padding: '2rem' }}>
+                  <td colSpan={source === 'formacion' ? 5 : 4} style={{ ...s.td, textAlign: 'center', color: '#555', padding: '2rem' }}>
                     Sin resultados
                   </td>
                 </tr>
