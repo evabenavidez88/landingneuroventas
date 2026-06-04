@@ -56,12 +56,12 @@ export default function AdminPage() {
   function exportarExcel() {
     const nombre = source === 'webinar' ? 'leads-webinar' : source === 'formacion' ? 'leads-formacion' : 'leads-checklist';
     const filas = leads.map(l => source === 'formacion'
-      ? { ID: l.id, Nombre: l.nombre, Apellido: l.apellido || '', Email: l.email, Fecha: new Date(l.fecha).toLocaleString('es-AR', { hour12: false }) }
+      ? { ID: l.id, Nombre: l.nombre, Apellido: l.apellido || '', Email: l.email, WhatsApp: l.whatsapp || '', Fecha: new Date(l.fecha).toLocaleString('es-AR', { hour12: false }) }
       : { ID: l.id, Nombre: l.nombre, Email: l.email, Fecha: new Date(l.fecha).toLocaleString('es-AR', { hour12: false }) }
     );
     const ws = XLSX.utils.json_to_sheet(filas);
     ws['!cols'] = source === 'formacion'
-      ? [{ wch: 6 }, { wch: 20 }, { wch: 20 }, { wch: 35 }, { wch: 20 }]
+      ? [{ wch: 6 }, { wch: 20 }, { wch: 20 }, { wch: 35 }, { wch: 18 }, { wch: 20 }]
       : [{ wch: 6 }, { wch: 25 }, { wch: 35 }, { wch: 20 }];
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Leads');
@@ -204,6 +204,7 @@ export default function AdminPage() {
                 <th style={s.th}>Nombre</th>
                 {source === 'formacion' && <th style={s.th}>Apellido</th>}
                 <th style={s.th}>Email</th>
+                {source === 'formacion' && <th style={s.th}>WhatsApp</th>}
                 <th style={s.th}>Fecha</th>
               </tr>
             </thead>
@@ -214,12 +215,13 @@ export default function AdminPage() {
                   <td style={s.td}>{l.nombre}</td>
                   {source === 'formacion' && <td style={s.td}>{l.apellido}</td>}
                   <td style={s.tdEmail}>{l.email}</td>
+                  {source === 'formacion' && <td style={s.td}>{l.whatsapp || <span style={{ color: '#444' }}>—</span>}</td>}
                   <td style={s.tdMuted}>{new Date(l.fecha).toLocaleString('es-AR', { hour12: false })}</td>
                 </tr>
               ))}
               {leadsFiltrados.length === 0 && (
                 <tr>
-                  <td colSpan={source === 'formacion' ? 5 : 4} style={{ ...s.td, textAlign: 'center', color: '#555', padding: '2rem' }}>
+                  <td colSpan={source === 'formacion' ? 6 : 4} style={{ ...s.td, textAlign: 'center', color: '#555', padding: '2rem' }}>
                     Sin resultados
                   </td>
                 </tr>
