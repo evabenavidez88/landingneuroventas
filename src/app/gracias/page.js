@@ -42,7 +42,7 @@ export default function GraciasPage() {
             Descargalo ahora y empezá tu diagnóstico hoy.
           </p>
           <a
-            href="https://drive.google.com/file/d/14crpYNXqK4-G4aLPEDPzbhJn8SNWeP-N/view"
+            href="https://drive.google.com/file/d/1yUxCDVe2rmhHDC3GkYfxPl9lw1rhj_bA/view"
             target="_blank"
             rel="noopener noreferrer"
             className="gracias-btn"
