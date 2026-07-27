@@ -1,4 +1,6 @@
 import { Pool } from 'pg';
+import { Resend } from 'resend';
+import { buildEmailHtml } from './emailTemplate';
 
 let pool = null;
 
@@ -22,6 +24,21 @@ function checkAuth(request) {
   return key && key === process.env.ADMIN_KEY;
 }
 
+let resend = null;
+function getResend() {
+  if (!resend) resend = new Resend(process.env.RESEND_API_KEY);
+  return resend;
+}
+
+async function sendBienvenidaEmail(to, nombre) {
+  return getResend().emails.send({
+    from: 'Eva Benavidez <info@evabenavidez.com>',
+    to,
+    subject: 'Tu diagnóstico ya está listo — y esto recién empieza ✍️',
+    html: buildEmailHtml(nombre),
+  });
+}
+
 export async function POST(request) {
   try {
     const { nombre, email } = await request.json();
@@ -33,6 +50,11 @@ export async function POST(request) {
       'INSERT INTO "Leads" (nombre, email) VALUES ($1, $2) RETURNING *',
       [nombre.trim(), email.trim().toLowerCase()]
     );
+    try {
+      await sendBienvenidaEmail(result.rows[0].email, result.rows[0].nombre);
+    } catch (mailErr) {
+      console.error('Error enviando mail de bienvenida:', mailErr);
+    }
     return Response.json(result.rows[0], { status: 201 });
   } catch (e) {
     if (e.code === '23505') {
