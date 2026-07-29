@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reset de Negocios · 12 y 13 de septiembre 2026 · Villa Carlos Paz</title>
+<link rel="icon" type="image/png" href="/images/img-1.png">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+
+:root{--green:#7ed957;--blue:#4026cf;--yellow:#f3d519;--red:#ff5757;--dark:#1a1a2e;--gray:#555;--lg:#f5f5f5;
+  --pastel-blue:#e9f6f4;--pastel-yellow:#fefbe6;
+  --btn-blue:#7E71E2;
+  --pw-blue:#7E71E2;--pw-yellow:#F5E267;--pw-green:#59D89E;--pw-red:#FD7276;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Nunito',sans-serif;background:#fff;color:var(--dark);overflow-x:hidden;}
+h1,h2,h3,h4{font-family:'Sora',sans-serif;}
+.cnt{max-width:1140px;margin:0 auto;padding:0 40px;}
+.sec{padding:96px 0;}
+.tag{font-family:'Sora',sans-serif;font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;}
+.btn{display:inline-block;font-family:'Sora',sans-serif;font-weight:700;font-size:14px;
+  letter-spacing:1px;text-transform:uppercase;padding:15px 32px;border-radius:50px;
+  text-decoration:none;cursor:pointer;transition:transform .2s,box-shadow .2s;border:none;}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.2);}
+.btn-blue{background:var(--btn-blue);color:#fff;}
+.btn-cream{background:var(--pastel-yellow);color:var(--btn-blue);}
+.btn-cream:hover{background:#fff;}
+.btn-yellow{background:var(--yellow);color:var(--dark);}
+.btn-green{background:var(--green);color:#fff;}
+.btn-wsp{background:transparent;border:2px solid rgba(26,26,46,.35);color:var(--dark);}
+.btn-wsp:hover{background:rgba(26,26,46,.08);border-color:var(--dark);}
+.sec-cta{text-align:center;margin-top:52px;}
+.ico{width:1em;height:1em;display:inline-block;vertical-align:-0.15em;}
+
+/* ═══ NAV ═══ */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.97);
+  backdrop-filter:blur(12px);padding:10px 40px;display:flex;align-items:center;
+  justify-content:space-between;box-shadow:0 2px 20px rgba(0,0,0,.06);
+  border-bottom:3px solid transparent;
+  border-image:linear-gradient(90deg,var(--blue),var(--green),var(--yellow),var(--red)) 1;}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo{height:44px;width:auto;}
+.nav-brandname{font-family:'Sora',sans-serif;font-weight:800;font-size:15px;color:var(--dark);letter-spacing:-0.3px;}
+.nav-links a{font-family:'Sora',sans-serif;font-size:13px;font-weight:600;
+  color:var(--dark);text-decoration:none;margin-left:28px;transition:color .2s;}
+.nav-links a:hover{color:var(--blue);}
+.nav-cta{background:var(--btn-blue);color:#fff!important;padding:10px 22px;border-radius:50px;
+  font-family:'Sora',sans-serif;font-size:13px;font-weight:700;text-decoration:none;margin-left:18px;}
+.nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.nav-ham span{height:2px;width:24px;background:var(--dark);border-radius:2px;display:block;}
+
+/* ═══ HERO ═══ */
+#hero{margin-top:66px;display:grid;grid-template-columns:44% 56%;min-height:600px;overflow:hidden;}
+.hero-left{overflow:hidden;background:#fff;}
+.hero-left img{width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block;}
+.hero-right{background:var(--btn-blue);
+  display:flex;align-items:center;
+  padding:56px 56px;position:relative;}
+.hero-content{}
+.hero-et{color:rgba(255,255,255,.6);font-family:'Sora',sans-serif;font-size:10px;
+  font-weight:700;letter-spacing:5px;text-transform:uppercase;margin-bottom:14px;}
+.hero-title{color:#fff;font-size:clamp(2.1rem,3.8vw,4.3rem);font-weight:800;
+  line-height:.95;margin-bottom:18px;text-transform:uppercase;letter-spacing:-1.5px;}
+.hero-sub{color:#fff;font-size:clamp(1.9rem,2.8vw,2.55rem);font-weight:400;
+  line-height:1.35;margin-bottom:20px;max-width:520px;}
+.hero-event{color:var(--yellow);font-family:'Sora',sans-serif;font-size:.88rem;
+  font-weight:700;letter-spacing:2px;margin-bottom:30px;text-transform:uppercase;}
+.hero-meta{margin-bottom:34px;}
+.hero-mr{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;}
+.hero-mi{width:34px;height:34px;flex-shrink:0;margin-top:0;}
+.hero-mi svg{width:100%;height:100%;}
+.hero-ml{color:rgba(255,255,255,.5);font-size:10px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;display:block;margin-bottom:3px;}
+.hero-mv{color:#fff;font-size:1.12rem;font-weight:700;display:block;line-height:1.3;}
+.hero-ctas{display:flex;flex-direction:column;gap:14px;}
+.hero-ctas .btn{text-align:center;width:100%;max-width:320px;font-size:13px;padding:15px 24px;}
+.hero-brain{display:flex;align-items:center;justify-content:center;}
+.hero-brain img{width:110px;filter:drop-shadow(0 0 28px rgba(126,217,87,.35));}
+
+/* ═══ QUOTE BAND (crema) ═══ */
+#quote-band{background:var(--pastel-yellow);padding:44px 0;}
+.quote-inner{max-width:760px;margin:0 auto;text-align:center;}
+.quote-text{font-family:'Sora',sans-serif;font-style:italic;font-weight:600;
+  color:var(--dark);font-size:clamp(1.2rem,2vw,1.55rem);line-height:1.55;}
+.quote-text span{color:var(--blue);}
+.quote-author{margin-top:12px;font-size:.85rem;color:var(--gray);letter-spacing:1px;text-transform:uppercase;font-weight:700;font-family:'Sora',sans-serif;}
+.quote-divider{width:60px;height:3px;background:var(--btn-blue);border-radius:2px;margin:26px auto 0;}
+
+/* ═══ PROBLEMA (con foto) ═══ */
+#problema{background:#fff;padding:0;}
+.probl-grid{display:grid;grid-template-columns:62% 38%;align-items:stretch;}
+.probl-text{padding:80px 60px;display:flex;flex-direction:column;justify-content:center;}
+.probl-tag{color:var(--blue);margin-bottom:18px;}
+.probl-title{font-size:clamp(2.4rem,4.3vw,3.4rem);font-weight:800;line-height:1.15;margin-bottom:30px;color:var(--dark);}
+.probl-body p{font-size:1.22rem;line-height:1.85;color:var(--gray);margin-bottom:18px;}
+.probl-hl{color:var(--blue)!important;font-weight:700;}
+.probl-closing{font-family:'Sora',sans-serif;font-size:1.45rem;font-weight:800;
+  color:var(--blue);margin-top:10px;text-transform:uppercase;letter-spacing:1px;}
+.probl-photo{overflow:hidden;min-height:480px;}
+.probl-photo img{width:100%;height:100%;object-fit:cover;object-position:center 18%;display:block;}
+
+/* ═══ TE PASA ESTO ═══ */
+#tepasa{background:var(--pastel-yellow);}
+.tp-title{text-align:center;font-size:clamp(2rem,3.3vw,2.65rem);font-weight:800;margin-bottom:44px;}
+.tp-list{max-width:760px;margin:0 auto;}
+.tp-item{display:flex;gap:18px;align-items:flex-start;background:#fff;border-radius:16px;
+  padding:22px 26px;margin-bottom:14px;box-shadow:0 2px 14px rgba(0,0,0,.04);}
+.tp-num{font-family:'Sora',sans-serif;font-weight:800;font-size:1.1rem;color:var(--btn-blue);
+  flex-shrink:0;width:30px;}
+
+.tp-item p{font-size:1.18rem;line-height:1.6;color:var(--dark);}
+.tp-foot{max-width:700px;margin:36px auto 0;text-align:center;color:var(--gray);font-size:1.1rem;line-height:1.7;}
+
+/* ═══ PARA QUIÉN ═══ */
+#pq{background:var(--pastel-blue);}
+.pq-title{text-align:center;font-size:clamp(2rem,3.3vw,2.65rem);font-weight:800;margin-bottom:12px;}
+.pq-sub{text-align:center;color:var(--gray);margin-bottom:52px;font-size:1.12rem;}
+.pq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.pq-card{background:#fff;border:2px solid var(--btn-blue);border-radius:16px;padding:26px 22px;text-align:center;}
+.pq-ico{width:40px;height:40px;margin:0 auto 14px;}
+.pq-ico img{width:100%;height:100%;object-fit:contain;}
+.pq-card p{font-size:1.12rem;color:var(--dark);line-height:1.5;}
+.pq-hl{font-weight:800;color:var(--btn-blue);}
+
+/* ═══ FOCOS ═══ */
+#focos{background:#fff;}
+.focos-hd{text-align:center;margin-bottom:52px;}
+.focos-tag{color:var(--blue);margin-bottom:12px;}
+.focos-title{font-size:clamp(2rem,3.3vw,2.65rem);font-weight:800;}
+.focos-sub{color:var(--blue);font-family:'Sora',sans-serif;font-size:13px;font-weight:700;
+  letter-spacing:4px;text-transform:uppercase;margin-top:14px;}
+.foco-item{display:grid;grid-template-columns:80px 1fr;gap:28px;align-items:flex-start;
+  background:var(--lg);border-radius:18px;padding:36px;margin-bottom:20px;}
+.foco-num{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-family:'Sora',sans-serif;font-weight:800;font-size:1.3rem;flex-shrink:0;}
+.fn1{background:var(--pw-blue);color:#fff;} .fn2{background:var(--pw-green);color:#fff;}
+.fn3{background:var(--pw-yellow);color:var(--dark);}
+.foco-content h3{font-size:1.28rem;font-weight:700;margin-bottom:12px;color:var(--dark);}
+.foco-list{list-style:none;}
+.foco-list li{padding:8px 0 8px 14px;position:relative;font-size:1.18rem;color:var(--gray);
+  border-bottom:1px solid #e8e8e8;line-height:1.5;}
+.foco-list li::before{content:'';position:absolute;left:0;top:18px;
+  width:6px;height:6px;border-radius:50%;background:var(--blue);}
+.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;}
+.cat-d{background:#fff;border-radius:10px;padding:14px 18px;border:1px solid #e0e0e0;}
+.cat-d strong{font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  display:block;margin-bottom:8px;color:var(--dark);}
+.cat-d span{font-size:.85rem;color:var(--gray);line-height:1.5;}
+
+/* ═══ 4 PODERES ═══ */
+#poderes{background:var(--pastel-yellow);}
+.pod-hd{text-align:center;margin-bottom:52px;}
+.pod-tag{color:var(--blue);margin-bottom:12px;}
+.pod-title{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;margin-bottom:14px;}
+.pod-desc{color:var(--gray);max-width:580px;margin:0 auto;font-size:1.12rem;line-height:1.65;}
+.pod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.pod-card{border-radius:18px;padding:32px 24px;position:relative;overflow:hidden;}
+.c1{background:var(--pw-red);color:#fff;} .c2{background:var(--pw-yellow);color:var(--dark);}
+.c3{background:var(--pw-green);color:#fff;} .c4{background:var(--pw-blue);color:#fff;}
+.pod-num{font-family:'Sora',sans-serif;font-size:3.5rem;font-weight:800;opacity:.15;
+  position:absolute;top:12px;right:16px;}
+.pod-icon{width:46px;height:46px;margin-bottom:16px;filter:brightness(0) invert(1);}
+.c2 .pod-icon{filter:none;}
+.pod-icon img{width:100%;height:100%;object-fit:contain;}
+.pod-card h3{font-size:1.14rem;font-weight:700;margin-bottom:8px;line-height:1.3;}
+.pod-card p{font-size:1.08rem;line-height:1.55;opacity:.92;}
+
+/* ═══ CARRUSEL GENÉRICO ═══ */
+.carousel-wrap{position:relative;margin-top:36px;}
+.carousel-track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;padding:4px 4px 16px;-webkit-overflow-scrolling:touch;}
+.carousel-track::-webkit-scrollbar{height:6px;}
+.carousel-track::-webkit-scrollbar-thumb{background:#ddd;border-radius:10px;}
+.carousel-arrows{display:flex;justify-content:center;gap:14px;margin-top:10px;}
+.carousel-arrow{width:42px;height:42px;border-radius:50%;border:2px solid var(--blue);
+  background:#fff;color:var(--blue);display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .2s;flex-shrink:0;}
+.carousel-arrow:hover{background:var(--blue);color:#fff;}
+.carousel-arrow svg{width:16px;height:16px;}
+
+.posada-slide{flex:0 0 300px;scroll-snap-align:start;border-radius:16px;overflow:hidden;height:230px;}
+.posada-slide img{width:100%;height:100%;object-fit:cover;display:block;}
+
+.testi-slide{flex:0 0 320px;scroll-snap-align:start;}
+.testi-slide .pq-card{border-color:var(--btn-blue);height:100%;text-align:left;padding:30px 26px;}
+.testi-slide .pq-ico{margin:0 0 16px;}
+.testi-slide .testi-who{font-family:'Sora',sans-serif;font-size:.9rem;font-weight:700;
+  color:var(--gray);margin-top:14px;display:block;}
+.testi-slide p{font-size:1.16rem;color:var(--dark);line-height:1.65;font-style:italic;}
+#llevas{background:var(--pastel-blue);}
+.llevas-hd{text-align:center;margin-bottom:48px;}
+.llevas-title{font-size:clamp(2rem,3.3vw,2.65rem);font-weight:800;}
+.llevas-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.ll-item{display:flex;align-items:center;gap:16px;background:var(--lg);
+  border-radius:14px;padding:18px 22px;}
+.ll-icon{width:60px;height:60px;flex-shrink:0;margin-top:0;}
+.ll-icon img{width:100%;height:100%;object-fit:contain;}
+.ll-text strong{display:block;font-family:'Sora',sans-serif;font-size:1.08rem;color:var(--dark);margin-bottom:3px;}
+.ll-text span{font-size:1.12rem;color:var(--gray);line-height:1.5;}
+
+/* ═══ FACILITADORAS ═══ */
+#faci{background:#fff;}
+.faci-hd{text-align:center;margin-bottom:56px;}
+.faci-tag{color:var(--blue);margin-bottom:12px;}
+.faci-title{font-size:clamp(2rem,3.3vw,2.65rem);font-weight:800;}
+.faci-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:start;}
+.faci-card{background:#fff;border-radius:20px;overflow:hidden;
+  box-shadow:0 4px 24px rgba(0,0,0,.07);}
+.faci-photo{width:100%;height:360px;object-fit:cover;object-position:center 15%;display:block;}
+.faci-body{padding:24px 24px 32px;}
+.faci-ctag{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:5px;}
+.f1 .faci-ctag{color:var(--red);} .f2 .faci-ctag{color:var(--green);} .f3 .faci-ctag{color:var(--blue);}
+.faci-name{font-family:'Sora',sans-serif;font-size:1.35rem;font-weight:800;color:var(--dark);margin-bottom:3px;}
+.faci-role{color:var(--gray);font-size:.94rem;font-style:italic;margin-bottom:14px;}
+.faci-border{height:3px;border-radius:2px;margin:0 0 16px;width:36px;}
+.f1 .faci-border{background:var(--red);} .f2 .faci-border{background:var(--green);}
+.f3 .faci-border{background:var(--blue);}
+.faci-bio{font-size:1.12rem;color:var(--gray);line-height:1.68;}
+.faci-word{font-family:'Sora',sans-serif;font-size:1.03rem;font-weight:700;color:var(--dark);
+  margin-bottom:10px;letter-spacing:.5px;}
+.faci-hl{color:var(--blue);text-transform:uppercase;}
+.f2 .faci-hl{color:var(--green);}
+.f3 .faci-hl{color:var(--red);}
+.faci-photo-pair{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.faci-photo-pair img{width:100%;height:100%;object-fit:cover;}
+.faci-pair-cap{text-align:center;color:var(--gray);font-size:.85rem;margin-top:14px;font-style:italic;}
+
+/* ═══ LUGAR ═══ */
+#lugar{background:var(--pastel-yellow);}
+.lugar-hd{text-align:center;margin-bottom:40px;}
+.lugar-tag{color:var(--blue);margin-bottom:12px;}
+.lugar-title{font-size:clamp(2rem,3.3vw,2.65rem);font-weight:800;margin-bottom:14px;}
+.lugar-desc{color:var(--gray);max-width:740px;margin:0 auto;font-size:1.2rem;line-height:1.82;}
+.lugar-addr{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--blue);
+  font-weight:700;font-size:1.08rem;margin-top:18px;}
+.lugar-addr .ico{width:18px;height:18px;}
+.lugar-carousel .posada-slide{flex:0 0 340px;height:260px;}
+
+/* ═══ TESTIMONIOS ═══ */
+#testi{background:var(--pastel-blue);}
+.testi-hd{text-align:center;margin-bottom:8px;}
+.testi-title{font-size:clamp(2rem,3.3vw,2.65rem);font-weight:800;}
+
+/* ═══ PRECIOS ═══ */
+#precios{background:#fff;}
+.precios-hd{text-align:center;margin-bottom:40px;}
+.precios-tag{color:var(--btn-blue);margin-bottom:12px;}
+.precios-title{color:var(--dark);font-size:clamp(2rem,3.3vw,2.65rem);font-weight:800;}
+.eb-wrap{max-width:900px;margin:0 auto;}
+.eb-badge{display:flex;align-items:center;justify-content:center;gap:10px;
+  background:var(--btn-blue);color:#fff;font-family:'Sora',sans-serif;
+  font-size:14px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+  padding:13px 28px;border-radius:50px;margin:0 auto 24px;width:fit-content;
+  box-shadow:0 4px 16px rgba(126,113,226,.3);}
+.eb-badge .ico{width:18px;height:18px;filter:brightness(0) invert(1);}
+.eb-until{color:var(--dark);text-align:center;font-size:1.02rem;margin-bottom:36px;}
+.eb-opts{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.eb-opt{background:var(--pastel-blue);border:2px solid rgba(26,26,46,.08);
+  border-radius:20px;padding:36px 28px;}
+.eb-opt.feat{border-color:var(--btn-blue);background:#fff;box-shadow:0 6px 24px rgba(126,113,226,.18);}
+.eb-opt-head{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:8px;}
+.eb-opt-head .ico{width:22px;height:22px;}
+.eb-opt-name{color:var(--dark);font-family:'Sora',sans-serif;font-size:1.33rem;font-weight:700;text-align:center;}
+.eb-note{color:var(--dark);font-size:.97rem;margin-bottom:20px;text-align:center;
+  padding:8px 14px;background:var(--pastel-yellow);border-radius:8px;font-weight:600;}
+.eb-price-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;
+  border-bottom:1px solid rgba(26,26,46,.1);}
+.eb-price-row:last-of-type{border-bottom:none;}
+.eb-price-lbl{display:flex;align-items:center;gap:8px;color:var(--dark);font-size:.98rem;font-weight:600;}
+.eb-price-lbl .ico{width:16px;height:16px;}
+.eb-price-val{color:var(--dark);font-family:'Sora',sans-serif;font-weight:800;font-size:1.12rem;text-align:right;}
+.eb-price-val small{display:block;font-weight:600;font-size:.72rem;color:rgba(26,26,46,.65);}
+.eb-reserva{text-align:center;color:var(--dark);font-size:.94rem;
+  margin-top:32px;font-style:italic;max-width:600px;margin-left:auto;margin-right:auto;}
+
+/* CTA BAND */
+.cta-band{background:var(--yellow);padding:52px 40px;text-align:center;}
+.cta-band h2{color:var(--dark);font-size:2rem;font-weight:800;margin-bottom:8px;}
+.cta-band p{color:rgba(26,26,46,.7);margin-bottom:28px;font-size:1rem;}
+
+/* ═══ FAQ ═══ */
+#faq{background:var(--pastel-yellow);}
+.faq-hd{text-align:center;margin-bottom:52px;}
+.faq-title{font-size:clamp(2rem,3.3vw,2.65rem);font-weight:800;}
+.faq-wrap{max-width:760px;margin:0 auto;}
+.faq-item{background:#fff;border-radius:14px;padding:22px 28px;margin-bottom:12px;border-left:4px solid var(--btn-blue);box-shadow:0 2px 10px rgba(0,0,0,.05);}
+.faq-q{font-family:'Sora',sans-serif;font-weight:700;color:var(--dark);margin-bottom:10px;font-size:1.1rem;}
+.faq-a{color:var(--gray);font-size:1.16rem;line-height:1.7;}
+
+/* ═══ GARANTÍA / CANCELACIÓN ═══ */
+#garantia{background:var(--pastel-blue);}
+.gar-hd{text-align:center;margin-bottom:48px;}
+.gar-title{font-size:clamp(2rem,3.3vw,2.65rem);font-weight:800;}
+.gar-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+.gar-card{border-radius:18px;padding:36px;}
+.gc1{background:#fff;border:2px solid #e0e0e0;} .gc2{background:var(--btn-blue);color:#fff;}
+.gar-icon{width:38px;height:38px;margin-bottom:14px;}
+.gar-icon img{width:100%;height:100%;object-fit:contain;}
+.gc2 .gar-icon img{filter:brightness(0) invert(1);}
+.gar-card h3{font-size:1.24rem;font-weight:700;margin-bottom:18px;}
+.gc2 h3{color:#fff;}
+.gar-list{list-style:none;}
+.gar-list li{padding:8px 0 8px 18px;position:relative;font-size:1.16rem;color:var(--gray);border-bottom:1px solid #e8e8e8;}
+.gar-list li::before{content:'—';position:absolute;left:0;color:var(--blue);}
+.gc2 p{color:rgba(255,255,255,.85);font-size:1.16rem;line-height:1.7;margin-bottom:10px;}
+.gar-strong{color:var(--yellow)!important;font-weight:700;}
+
+/* ═══ CIERRE ═══ */
+#cierre{background:var(--pastel-yellow);padding:96px 0;text-align:center;}
+.cierre-tag{color:var(--btn-blue);margin-bottom:16px;}
+.cierre-title{color:var(--dark);font-size:clamp(2.2rem,4.4vw,3.4rem);font-weight:800;margin-bottom:14px;line-height:1.1;}
+.cierre-sub{display:flex;align-items:center;justify-content:center;gap:10px;color:rgba(26,26,46,.65);margin-bottom:40px;font-size:1.12rem;}
+.cierre-sub .ico{width:16px;height:16px;opacity:.75;}
+.cierre-logo{height:170px;width:auto;margin:0 auto 44px;display:block;
+  filter:drop-shadow(0 0 30px rgba(126,217,87,.25));}
+.cta-arrow{width:16px;height:16px;filter:brightness(0) invert(1);margin-left:6px;vertical-align:-2px;}
+.btn-yellow .cta-arrow{filter:none;}
+.btn-wsp .cta-arrow{filter:none;}
+
+footer{background:#0d0d1a;padding:24px 40px;text-align:center;}
+footer p{color:rgba(255,255,255,.3);font-size:12px;letter-spacing:1px;}
+
+/* ════════════════════════
+   RESPONSIVE
+════════════════════════ */
+@media(max-width:960px){
+  .cnt{padding:0 24px;}
+  .sec{padding:64px 0;}
+  nav{padding:10px 24px;}
+  .nav-links{display:none;position:absolute;top:66px;left:0;right:0;
+    background:#fff;flex-direction:column;padding:20px 24px;gap:16px;
+    box-shadow:0 8px 24px rgba(0,0,0,.1);z-index:200;}
+  .nav-links.open{display:flex;}
+  .nav-ham{display:flex;}
+
+  .testi-slide{flex-basis:270px;}
+  .posada-slide{flex-basis:240px;height:190px;}
+  .lugar-carousel .posada-slide{flex-basis:260px;height:200px;}
+
+  #hero{grid-template-columns:1fr;min-height:auto;}
+  .hero-left{height:300px;}
+  .hero-right{grid-template-columns:1fr;padding:36px 26px;gap:0;}
+  .hero-brain{display:none;}
+  .hero-title{font-size:2.1rem;}
+  .hero-sub{font-size:1.05rem;}
+  .hero-ctas .btn{max-width:100%;}
+
+  .probl-grid{grid-template-columns:1fr;}
+  .probl-photo{min-height:280px;height:280px;order:-1;}
+  .probl-text{padding:40px 26px;}
+
+  .pq-grid{grid-template-columns:1fr 1fr;}
+  .pod-grid{grid-template-columns:1fr 1fr;gap:14px;}
+  .faci-grid{grid-template-columns:1fr;}
+  .faci-photo{height:300px;}
+  .faci-photo-pair{height:280px;}
+  .cat-grid{grid-template-columns:1fr;}
+  .llevas-grid{grid-template-columns:1fr;}
+  .testi-grid{grid-template-columns:1fr;}
+  .eb-opts{grid-template-columns:1fr;gap:20px;}
+  .gar-grid{grid-template-columns:1fr;}
+  #cierre{padding:72px 24px;}
+  .cta-band{padding:48px 24px;}
+}
+
+@media(max-width:540px){
+  .hero-bg{grid-template-columns:38% 62%;}
+  .hero-content{padding-left:5%;}
+  .hero-title{font-size:1.9rem;letter-spacing:-1px;}
+  .hero-meta{gap:16px;}
+  .pq-grid{grid-template-columns:1fr 1fr;}
+  .pod-grid{grid-template-columns:1fr;}
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-brand">
+    <img class="nav-logo" src="/images/img-2.png" alt="Reset de Negocios">
+    <span class="nav-brandname">Reset de Negocios</span>
+  </a>
+  <div class="nav-links" id="navlinks">
+    <a href="#problema">El Reset</a>
+    <a href="#faci">El Equipo</a>
+    <a href="#lugar">El Lugar</a>
+    <a href="#precios">Precios</a>
+    <a href="#precios" class="nav-cta">RESERVAR</a>
+  </div>
+  <div class="nav-ham" onclick="document.getElementById('navlinks').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-left"><img src="/images/img-3.png" alt="Eva, Juli y Palo — Reset de Negocios"></div>
+  <div class="hero-right">
+    <div class="hero-content">
+      <div class="hero-et">Experiencia transformadora</div>
+      <h1 class="hero-title">Reset de Negocios</h1>
+      <p class="hero-sub">Desactivá el piloto automático. Reseteá la mentalidad de tu negocio y convertí la incertidumbre en acción de alto impacto.</p>
+      <div class="hero-event">Mente · Energía · Emoción · Acción</div>
+      <div class="hero-meta">
+        <div class="hero-mr">
+          <div class="hero-mi"><span class="ico" style="display:inline-flex"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<rect x="30" y="40" width="140" height="130" rx="14" fill="none" stroke="#000" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="30" y1="78" x2="170" y2="78" stroke="#000" stroke-width="9" stroke-linecap="round"/>
+<line x1="65" y1="25" x2="65" y2="55" stroke="#000" stroke-width="9" stroke-linecap="round"/>
+<line x1="135" y1="25" x2="135" y2="55" stroke="#000" stroke-width="9" stroke-linecap="round"/>
+<circle cx="70" cy="110" r="9" fill="#f3d519"/>
+<circle cx="100" cy="110" r="9" fill="#f3d519"/>
+<circle cx="130" cy="110" r="9" fill="#f3d519"/>
+<circle cx="70" cy="140" r="9" fill="#f3d519"/>
+<circle cx="100" cy="140" r="9" fill="#f3d519"/>
+</svg>
+</span></div>
+          <div><span class="hero-ml">Fecha</span><span class="hero-mv">12 y 13 de septiembre · 2026</span></div>
+        </div>
+        <div class="hero-mr">
+          <div class="hero-mi"><span class="ico" style="display:inline-flex"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<path d="M100 25 C60 25 32 55 32 92 C32 140 100 178 100 178 C100 178 168 140 168 92 C168 55 140 25 100 25 Z" fill="none" stroke="#000" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="100" cy="90" r="30" fill="#7ed957" stroke="#000" stroke-width="9"/>
+</svg>
+</span></div>
+          <div><span class="hero-ml">Lugar</span><span class="hero-mv">Juliette Posada Boutique · Villa Carlos Paz · Cba</span></div>
+        </div>
+      </div>
+      <div class="hero-ctas">
+        <a href="https://wa.me/message/X2BA2P356X5DG1?text=Hola%20Eva%2C%20quiero%20m%C3%A1s%20info%20del%20Reset" target="_blank" class="btn btn-cream">Quiero mi lugar en el Reset</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="quote-band">
+  <div class="cnt">
+    <div class="quote-inner">
+      <p class="quote-text">"Quien mira hacia afuera <span>sueña</span>, quien mira hacia adentro <span>despierta</span>."</p>
+      <p class="quote-author">— Carl Jung</p>
+      <div class="quote-divider"></div>
+    </div>
+  </div>
+</section>
+
+<section id="tepasa" class="sec">
+  <div class="cnt">
+    <h2 class="tp-title">¿Te pasa esto?</h2>
+    <div class="tp-list">
+      <div class="tp-item"><div class="tp-num">01</div><p>Tenés el negocio funcionando, pero hacés de todo — y las horas no te alcanzan.</p></div>
+      <div class="tp-item"><div class="tp-num">02</div><p>Facturás lo justo para cubrir costos, aunque las ideas te sobran.</p></div>
+      <div class="tp-item"><div class="tp-num">03</div><p>Sentís que llegó el momento de parar y repensar, pero no encontrás el espacio — y hay días en que el cansancio te hace dudar con dejar todo y empezar de cero con otra cosa.</p></div>
+      <div class="tp-item"><div class="tp-num">04</div><p>Ya hiciste capacitaciones, leíste, escuchaste podcasts — y la ejecución no llega.</p></div>
+      <div class="tp-item"><div class="tp-num">05</div><p>Te falta rodearte de otros profesionales que también estén eligiendo evolucionar.</p></div>
+    </div>
+    <p class="tp-foot">Si te identificás, no es que te falte esfuerzo. Te falta el espacio y la estructura para que ese esfuerzo se traduzca en resultado.</p>
+    <div class="sec-cta"><a href="https://wa.me/message/X2BA2P356X5DG1?text=Hola%20Eva%2C%20quiero%20m%C3%A1s%20info%20del%20Reset" target="_blank" class="btn btn-blue">Quiero ese espacio</a></div>
+  </div>
+</section>
+
+<section id="problema">
+  <div class="cnt">
+    <div class="probl-grid">
+      <div class="probl-text">
+        <h2 class="probl-title">¿Dónde está el verdadero problema?</h2>
+        <div class="probl-body">
+          <p>El problema con la mayoría de las capacitaciones de negocio es que se olvidan de un pequeño detalle: <span class="pq-hl">la persona que lidera</span> el negocio.</p>
+          <p>Tu negocio no progresa solo incorporando más tácticas o herramientas. Se transforma cuando vos evolucionás primero.</p>
+          <p class="probl-hl">En este Reset de Negocios vas a descubrir los 4 poderes que tenés en tu mente para expandir tu proyecto con claridad, tranquilidad y certeza — y a convertir esa claridad mental en acción estratégica dentro de tu estructura comercial.</p>
+          <p>A veces no necesitás cambiar de rumbo. Necesitás volver a tu centro. Ahí, en esa pausa consciente, aparece la claridad que ninguna estrategia enlatada te puede dar.</p>
+        </div>
+        <div class="probl-closing">Es tiempo de crecer.</div>
+      </div>
+      <div class="probl-photo">
+        <img src="/images/img-4.png" alt="Eva y Juli">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pq" class="sec">
+  <div class="cnt">
+    <h2 class="pq-title">¿Para quién es este Reset?</h2>
+    <p class="pq-sub">Esta experiencia es para vos si:</p>
+    <div class="pq-grid"><div class="pq-card"><div class="pq-ico"><img src="/images/img-5.png" alt="" class=""></div><p>Sos <span class="pq-hl">profesional independiente o dueño/a de un negocio o proyecto</span> que ya está en marcha y monetiza.</p></div><div class="pq-card"><div class="pq-ico"><img src="/images/img-6.png" alt="" class=""></div><p>Tenés el <span class="pq-hl">negocio funcionando</span> pero no lográs monetizar para vivir de él: hacés de todo, las horas no te alcanzan y llegás justa a cubrir los costos.</p></div><div class="pq-card"><div class="pq-ico"><img src="/images/img-7.png" alt="" class=""></div><p>Sentís que <span class="pq-hl">llegó el momento de parar, repensar y ordenar</span> hacia dónde vas.</p></div><div class="pq-card"><div class="pq-ico"><img src="/images/img-8.png" alt="" class=""></div><p>Las ideas sobran pero <span class="pq-hl">la claridad y la acción escasean</span>.</p></div><div class="pq-card"><div class="pq-ico"><img src="/images/img-9.png" alt="" class=""></div><p>Querés <span class="pq-hl">integrar estrategia y bienestar</span>, para crecer siendo libre y no esclavo/a de tu negocio.</p></div><div class="pq-card"><div class="pq-ico"><img src="/images/img-10.png" alt="" class=""></div><p>Querés <span class="pq-hl">rodearte de otros profesionales</span> que también eligen evolucionar.</p></div></div>
+    <div class="sec-cta"><a href="https://wa.me/message/X2BA2P356X5DG1?text=Hola%20Eva%2C%20quiero%20m%C3%A1s%20info%20del%20Reset" target="_blank" class="btn btn-blue">Identifiqué mi perfil, quiero sumarme</a></div>
+  </div>
+</section>
+
+<section id="poderes" class="sec">
+  <div class="cnt">
+    <div class="pod-hd">
+      <div class="tag pod-tag">El poder está en tu cerebro</div>
+      <h2 class="pod-title">Los 4 Poderes de tu Mente de Negocio</h2>
+    </div>
+    <div class="pod-grid">
+      <div class="pod-card c1">
+        <div class="pod-num">01</div>
+        <div class="pod-icon"><img src="/images/img-11.png" alt="" class=""></div>
+        <h3>Propósito &amp; Comunicación</h3>
+        <p>Reconectá con tu para qué y aprendé a comunicarlo con claridad e impacto real.</p>
+      </div>
+      <div class="pod-card c2">
+        <div class="pod-num">02</div>
+        <div class="pod-icon"><img src="/images/img-12.png" alt="" class=""></div>
+        <h3>Visión &amp; Estrategia</h3>
+        <p>Definí hacia dónde va tu negocio y cómo llegar con foco y pensamiento disruptivo.</p>
+      </div>
+      <div class="pod-card c3">
+        <div class="pod-num">03</div>
+        <div class="pod-icon"><img src="/images/img-13.png" alt="" class=""></div>
+        <h3>Orden &amp; Organización</h3>
+        <p>Estructurá tu operación para que el negocio funcione sin que todo dependa de vos.</p>
+      </div>
+      <div class="pod-card c4">
+        <div class="pod-num">04</div>
+        <div class="pod-icon"><img src="/images/img-14.png" alt="" class=""></div>
+        <h3>Finanzas &amp; Monetización</h3>
+        <p>Auditá tus números e identificá tus llaves de monetización para ganar lo que merecés.</p>
+      </div></div>
+  </div>
+</section>
+
+<section id="focos" class="sec">
+  <div class="cnt">
+    <div class="focos-hd">
+      <div class="tag focos-tag">La Experiencia</div>
+      <h2 class="focos-title">¿Cómo vas a pasar estos dos días?</h2>
+      <p class="focos-sub">Los 3 focos del Reset</p>
+    </div>
+
+    <div class="foco-item">
+      <div class="foco-num fn1">1</div>
+      <div class="foco-content">
+        <h3>Dinámicas de Activación Cerebral</h3>
+        <p style="color:var(--gray);font-size:.94rem;margin-bottom:14px;">Un recorrido vivencial por los 4 poderes de tu mente de negocio:</p>
+        <ul class="foco-list">
+          <li><strong>Propósito &amp; Comunicación:</strong> Reconectá con tu "para qué" y aprendé a comunicarlo al mercado con absoluta claridad e impacto.</li>
+          <li><strong>Visión &amp; Estrategia:</strong> Definí hacia dónde va tu negocio y cómo llegar a la meta con foco y creatividad.</li>
+          <li><strong>Orden &amp; Organización:</strong> Estructurá tu operación diaria para que el negocio funcione sin que dependas absolutamente de todo.</li>
+          <li><strong>Finanzas Conscientes &amp; Monetización:</strong> Auditá tus números reales, identificá tus llaves de monetización y empezá a ganar lo que verdaderamente merecés.</li>
+        </ul>
+        <p style="color:var(--gray);font-size:.9rem;margin-top:14px;font-style:italic;">Desde cada poder activado, modelamos tu proyecto. Te vas con una hoja de ruta concreta para poner en marcha de inmediato.</p>
+      </div>
+    </div>
+
+    <div class="foco-item">
+      <div class="foco-num fn2">2</div>
+      <div class="foco-content">
+        <h3>Pausa Activa &amp; Conexión Energética</h3>
+        <ul class="foco-list">
+          <li>Movimiento consciente para soltar las tensiones del cuerpo.</li>
+          <li>Integración de Pausas Activas (movimientos simples y prácticos) a tu rutina laboral.</li>
+          <li>Anclaje de confianza y herramientas de liberación de miedos.</li>
+          <li>Cierre estratégico con dinámicas de introspección al final de cada jornada.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foco-item">
+      <div class="foco-num fn3">3</div>
+      <div class="foco-content">
+        <h3>Break &amp; Catering</h3>
+        <div class="cat-grid">
+          <div class="cat-d"><strong>Sábado</strong><span>Desayuno campestre, almuerzo de networking, coffee break de la tarde y espacios de vinculación profesional.</span></div>
+          <div class="cat-d"><strong>Domingo</strong><span>Desayuno campestre y espacios de networking estratégico.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-cta"><a href="https://wa.me/message/X2BA2P356X5DG1?text=Hola%20Eva%2C%20quiero%20m%C3%A1s%20info%20del%20Reset" target="_blank" class="btn btn-blue">Quiero conocer la hoja de ruta completa</a></div>
+  </div>
+</section>
+
+<section id="llevas" class="sec">
+  <div class="cnt">
+    <div class="llevas-hd"><h2 class="llevas-title">¿Qué te vas a llevar?</h2></div>
+    <div class="llevas-grid"><div class="ll-item"><div class="ll-icon"><img src="/images/img-15.png" alt="" class=""></div><div class="ll-text"><strong>Diagnóstico real</strong><span>Un análisis del estado actual de tu negocio.</span></div></div><div class="ll-item"><div class="ll-icon"><img src="/images/img-16.png" alt="" class=""></div><div class="ll-text"><strong>Test de los 4 Poderes</strong><span>Para conocer con precisión cómo piensa tu cerebro emprendedor.</span></div></div><div class="ll-item"><div class="ll-icon"><img src="/images/img-17.png" alt="" class=""></div><div class="ll-text"><strong>Hoja de ruta</strong><span>Un plan de acción detallado y a medida para poner en evolución tu proyecto.</span></div></div><div class="ll-item"><div class="ll-icon"><img src="/images/img-18.png" alt="" class=""></div><div class="ll-text"><strong>Herramientas aplicables</strong><span>Metodologías ágiles listas para usar desde el día uno.</span></div></div><div class="ll-item"><div class="ll-icon"><img src="/images/img-19.png" alt="" class=""></div><div class="ll-text"><strong>Foco estratégico</strong><span>Claridad absoluta sobre qué soltar y qué activar en tu día a día.</span></div></div><div class="ll-item"><div class="ll-icon"><img src="/images/img-20.png" alt="" class=""></div><div class="ll-text"><strong>Comunidad y Alianzas</strong><span>Conexiones genuinas y sinergia comercial con otros profesionales del sector.</span></div></div><div class="ll-item"><div class="ll-icon"><img src="/images/img-21.png" alt="" class=""></div><div class="ll-text"><strong>Pitch afinado</strong><span>Tu presentación de negocios optimizada, validada y testeada en grupo.</span></div></div><div class="ll-item"><div class="ll-icon"><img src="/images/img-22.png" alt="" class=""></div><div class="ll-text"><strong>Energía renovada</strong><span>Movimiento, reconexión con tu cuerpo y claridad mental para el próximo ciclo.</span></div></div></div>
+  </div>
+</section>
+
+<section id="faci" class="sec">
+  <div class="cnt">
+    <div class="faci-hd">
+      <div class="tag faci-tag">Quiénes somos</div>
+      <h2 class="faci-title">El equipo detrás del Reset</h2>
+    </div>
+    <div class="faci-grid">
+      <div class="faci-card f1">
+        <img class="faci-photo" src="/images/img-23.png" alt="Eva Benavidez">
+        <div class="faci-body">
+          <div class="faci-ctag">Consultora y mentora de negocios</div>
+          <div class="faci-name">Eva Benavidez</div>
+          <div class="faci-role">Neurocoach y comunicadora</div>
+          <div class="faci-border"></div>
+          <div class="faci-word">"Si tuviera que definirme en una palabra, sería <span class="faci-hl">impulso</span>."</div>
+          <p class="faci-bio">Con más de 20 años acompañando empresas y profesionales independientes, ayudo a desbloquear su potencial comercial con estrategias que realmente se ejecutan. Mi trayectoria me enseñó algo clave: la visión no alcanza — lo que transforma resultados es la ejecución con agilidad y propósito. El Reset nace de eso: un espacio para volver a conectar con la mente que construye tu negocio. <span class="pq-hl">Te invito a vivirlo.</span></p>
+        </div>
+      </div>
+      <div class="faci-card f2">
+        <img class="faci-photo" src="/images/img-24.png" alt="Julieta Fernández">
+        <div class="faci-body">
+          <div class="faci-ctag">Anfitriona &amp; creadora de experiencias</div>
+          <div class="faci-name">Julieta Fernández</div>
+          <div class="faci-role">Contadora y Lic. en Administración</div>
+          <div class="faci-border"></div>
+          <div class="faci-word">"Si tuviera que definirme en una palabra, sería <span class="faci-hl">evolución</span>."</div>
+          <p class="faci-bio">Guiada por mi instinto, elegí ir más allá de los números tradicionales y emprender con lo que más me mueve: conectar, potenciar y compartir. Así nacieron Posada Juliette y mi faceta como creadora de experiencias inmersivas. Comprendo el desafío de equilibrar rentabilidad y propósito. <span class="pq-hl">Hoy abro las puertas de mi espacio</span> para vivir, en comunidad, este Reset de Negocios. Vení, conocé y viví — el resto lo hace la experiencia.</p>
+        </div>
+      </div>
+      <div class="faci-card f3">
+        <img class="faci-photo" src="/images/img-25.png" alt="Paloma Frette">
+        <div class="faci-body">
+          <div class="faci-ctag">Movilidad Vital</div>
+          <div class="faci-name">Paloma Frette</div>
+          <div class="faci-role">Bailarina profesional e instructora de stretching</div>
+          <div class="faci-border"></div>
+          <div class="faci-word">"Si tuviera que definirme en una palabra, sería <span class="faci-hl">coraje</span>."</div>
+          <p class="faci-bio">Me dedico al movimiento hace más de 15 años y soy creadora de Movilidad Vital, mi primer centro de flexibilidad y movimiento consciente. Creo que mover el cuerpo es una forma de cuidar la salud, generar confianza en una misma y ganar consciencia y atención plena. <span class="pq-hl">Mi deseo es que el movimiento sea un canal hacia tu verdad</span> — con herramientas que te ayuden a volver al cuerpo y a escuchar lo que tiene para decirte.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="lugar" class="sec">
+  <div class="cnt">
+    <div class="lugar-hd">
+      <div class="tag lugar-tag">El Lugar</div>
+      <h2 class="lugar-title">¿Dónde se realiza el Reset?</h2>
+      <p class="lugar-desc">En Juliette Posada Boutique, una casona de 1940 ubicada en la loma de Villa el Lago, con vistas panorámicas al lago San Roque y las sierras.</p>
+      <p class="lugar-desc" style="margin-top:14px;">Un espacio con encanto, historia y una energía particular. Se dice que entre sus paredes pasaron las vacaciones de verano de Libertad Lamarque y numerosas familias reconocidas de Carlos Paz. Hoy, esa magia sigue intacta. La casona conserva toda la esencia de época y la convierte en el escenario perfecto para vivir experiencias únicas: alojarte, celebrar o, en este caso, resetear tu negocio con todo lo que ese entorno te da.</p>
+      <div class="lugar-addr"><span class="ico" style="display:inline-flex"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<path d="M100 25 C60 25 32 55 32 92 C32 140 100 178 100 178 C100 178 168 140 168 92 C168 55 140 25 100 25 Z" fill="none" stroke="#000" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="100" cy="90" r="30" fill="#7ed957" stroke="#000" stroke-width="9"/>
+</svg>
+</span> Bv. Sarmiento 1000, Villa Carlos Paz, Córdoba</div>
+    </div>
+    <div class="carousel-wrap lugar-carousel">
+      <div class="carousel-track" id="track-posada">
+        <div class="posada-slide"><img src="/images/img-26.png" alt="Eva, Juli y Palo en la Posada"></div>
+        <div class="posada-slide"><img src="/images/img-27.png" alt="Vista panorámica desde la Posada"></div>
+        <div class="posada-slide"><img src="/images/img-28.png" alt="Eva, Juli y Palo en la escalera de la Posada"></div>
+        <div class="posada-slide"><img src="/images/img-29.png" alt="Habitación Juliette Posada Boutique"></div>
+        <div class="posada-slide"><img src="/images/img-30.png" alt="Escalera interior de la casona"></div>
+        <div class="posada-slide"><img src="/images/img-31.png" alt="Fachada de Juliette Posada Boutique"></div>
+      </div>
+      <div class="carousel-arrows">
+        <div class="carousel-arrow" onclick="scrollCarousel('track-posada',-1)"><span class="ico" style="display:inline-flex"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<line x1="20" y1="100" x2="155" y2="100" stroke="#000" stroke-width="10" stroke-linecap="round"/>
+<path d="M120 60 L165 100 L120 140" fill="none" stroke="#000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</span></div>
+        <div class="carousel-arrow" onclick="scrollCarousel('track-posada',1)" style="transform:scaleX(-1)"><span class="ico" style="display:inline-flex"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<line x1="20" y1="100" x2="155" y2="100" stroke="#000" stroke-width="10" stroke-linecap="round"/>
+<path d="M120 60 L165 100 L120 140" fill="none" stroke="#000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testi" class="sec">
+  <div class="cnt">
+    <div class="testi-hd"><h2 class="testi-title">Lo que dicen quienes ya vivieron el proceso</h2></div>
+    <div class="carousel-wrap">
+      <div class="carousel-track" id="track-testi">
+        <div class="testi-slide">
+          <div class="pq-card"><div class="pq-ico"><img src="/images/img-32.png" alt="" class=""></div><p>"Eva te invita al cambio y te acompaña de verdad. Pude enfocar mi servicio, monetizarlo y planificarlo."</p><span class="testi-who">— Virginia, Gastronomía</span></div>
+        </div>
+        <div class="testi-slide">
+          <div class="pq-card"><div class="pq-ico"><img src="/images/img-33.png" alt="" class=""></div><p>"Con Eva pude atravesar decisiones difíciles de manera tranquila y organizada. Me ayudó a pasar a la acción y a salir de los pensamientos excesivos."</p><span class="testi-who">— Guadalupe, Servicios de salud</span></div>
+        </div>
+        <div class="testi-slide">
+          <div class="pq-card"><div class="pq-ico"><img src="/images/img-34.png" alt="" class=""></div><p>"No tenía muchas expectativas, pero me ayudó a organizar mejor mis tiempos, reforzar mi autoconfianza y enfocarme en mis objetivos."</p><span class="testi-who">— Matías, Formación</span></div>
+        </div>
+        <div class="testi-slide">
+          <div class="pq-card"><div class="pq-ico"><img src="/images/img-35.png" alt="" class=""></div><p>"Fue un WOW. Me llevo la práctica de la observación, de aprender a reconocerme y de buscar siempre la acción."</p><span class="testi-who">— Romina, Marketing y comunicación</span></div>
+        </div>
+        <div class="testi-slide">
+          <div class="pq-card"><div class="pq-ico"><img src="/images/img-36.png" alt="" class=""></div><p>"Increíble experiencia, súper práctica y sencilla. Se hizo hincapié en los puntos a reforzar y en qué hacer con cada uno."</p><span class="testi-who">— Julieta, Turismo</span></div>
+        </div>
+      </div>
+      <div class="carousel-arrows">
+        <div class="carousel-arrow" onclick="scrollCarousel('track-testi',-1)"><span class="ico" style="display:inline-flex"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<line x1="20" y1="100" x2="155" y2="100" stroke="#000" stroke-width="10" stroke-linecap="round"/>
+<path d="M120 60 L165 100 L120 140" fill="none" stroke="#000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</span></div>
+        <div class="carousel-arrow" onclick="scrollCarousel('track-testi',1)" style="transform:scaleX(-1)"><span class="ico" style="display:inline-flex"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<line x1="20" y1="100" x2="155" y2="100" stroke="#000" stroke-width="10" stroke-linecap="round"/>
+<path d="M120 60 L165 100 L120 140" fill="none" stroke="#000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="precios" class="sec">
+  <div class="cnt">
+    <div class="precios-hd">
+      <div class="tag precios-tag">Valores y cómo sumarte</div>
+      <h2 class="precios-title">Valores Early Bird</h2>
+    </div>
+    <div class="eb-wrap">
+      <div class="eb-badge"><span class="ico" style="display:inline-flex"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<circle cx="100" cy="105" r="70" fill="none" stroke="#000" stroke-width="9"/>
+<line x1="100" y1="105" x2="100" y2="60" stroke="#000" stroke-width="8" stroke-linecap="round"/>
+<line x1="100" y1="105" x2="132" y2="122" stroke="#000" stroke-width="8" stroke-linecap="round"/>
+<line x1="80" y1="26" x2="120" y2="26" stroke="#000" stroke-width="9" stroke-linecap="round"/>
+<circle cx="100" cy="105" r="7" fill="#ff5757"/>
+</svg>
+</span> Disponibles hasta el 16 de agosto</div>
+      <p class="eb-until">Beneficio exclusivo para quienes toman decisiones con agilidad. Tarifas vigentes hasta el 16/08 de manera improrrogable.</p>
+      <div class="eb-opts">
+        <div class="eb-opt">
+          <div class="eb-opt-head"><span class="ico" style="display:inline-flex"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<path d="M25 75 C25 61 36 50 50 50 L150 50 C164 50 175 61 175 75 C160 75 160 95 175 95 C175 109 164 150 150 150 L50 150 C36 150 25 109 25 95 C40 95 40 75 25 75 Z" fill="none" stroke="#000" stroke-width="9" stroke-linejoin="round"/>
+<line x1="100" y1="55" x2="100" y2="145" stroke="#000" stroke-width="7" stroke-dasharray="1 16" stroke-linecap="round"/>
+</svg>
+</span><span class="eb-opt-name">Entrada Individual</span></div>
+          <div class="eb-note">Acceso a las dos jornadas completas + material + catering premium. No incluye alojamiento.</div>
+          <div class="eb-price-row"><span class="eb-price-lbl">Efectivo / Transferencia</span><span class="eb-price-val">$230.000</span></div>
+          <div class="eb-price-row"><span class="eb-price-lbl"><span class="ico" style="display:inline-flex"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<rect x="25" y="55" width="150" height="95" rx="14" fill="none" stroke="#000" stroke-width="9" stroke-linejoin="round"/>
+<rect x="25" y="80" width="150" height="22" fill="#000"/>
+<rect x="42" y="118" width="45" height="12" rx="4" fill="#f3d519"/>
+</svg>
+</span> Tarjeta de crédito</span><span class="eb-price-val">$250.000</span></div>
+          <div class="eb-price-row"><span class="eb-price-lbl">Financiación con tarjeta</span><span class="eb-price-val">3 x $95.000<small>cuotas fijas</small></span></div>
+        </div>
+        <div class="eb-opt feat">
+          <div class="eb-opt-head"><span class="ico" style="display:inline-flex"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<circle cx="72" cy="65" r="28" fill="none" stroke="#000" stroke-width="9"/>
+<path d="M25 165 C25 125 45 105 72 105 C99 105 119 125 119 165" fill="none" stroke="#000" stroke-width="9" stroke-linecap="round"/>
+<circle cx="135" cy="72" r="24" fill="#4026cf" stroke="#000" stroke-width="9"/>
+<path d="M100 165 C102 132 118 116 140 114 C165 112 182 132 183 160" fill="none" stroke="#000" stroke-width="9" stroke-linecap="round"/>
+</svg>
+</span><span class="eb-opt-name">Combo Socios</span></div>
+          <div class="eb-note fn">2 personas + 1 noche de alojamiento premium en base doble en Juliette Posada Boutique.</div>
+          <div class="eb-price-row"><span class="eb-price-lbl">Efectivo / Transferencia</span><span class="eb-price-val">$510.000</span></div>
+          <div class="eb-price-row"><span class="eb-price-lbl"><span class="ico" style="display:inline-flex"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<rect x="25" y="55" width="150" height="95" rx="14" fill="none" stroke="#000" stroke-width="9" stroke-linejoin="round"/>
+<rect x="25" y="80" width="150" height="22" fill="#000"/>
+<rect x="42" y="118" width="45" height="12" rx="4" fill="#f3d519"/>
+</svg>
+</span> Tarjeta de crédito</span><span class="eb-price-val">$540.000</span></div>
+          <div class="eb-price-row"><span class="eb-price-lbl">Financiación con tarjeta</span><span class="eb-price-val">3 x $205.000<small>cuotas fijas</small></span></div>
+        </div>
+      </div>
+      <p class="eb-reserva">Valores generales a partir del 17 de agosto: Entrada Individual $260.000 (transferencia) / $280.000 (tarjeta) · Combo Socios $590.000 (transferencia) / $620.000 (tarjeta). La reserva de la vacante se confirma con una seña del 20% de la modalidad de pago elegida.</p>
+    </div>
+    <div class="sec-cta"><a href="https://wa.me/message/X2BA2P356X5DG1?text=Hola%20Eva%2C%20quiero%20m%C3%A1s%20info%20del%20Reset" target="_blank" class="btn btn-blue">Quiero reservar mi lugar</a></div>
+  </div>
+</section>
+
+<section id="faq" class="sec">
+  <div class="cnt">
+    <div class="faq-hd"><h2 class="faq-title">Preguntas frecuentes</h2></div>
+    <div class="faq-wrap"><div class="faq-item"><div class="faq-q">¿Necesito tener un negocio consolidado para participar?</div><div class="faq-a">Sí, esta experiencia está pensada para profesionales independientes que ya tienen un negocio o proyecto que monetizan y está en marcha. Si estás en ese momento y sentís que algo no termina de fluir o que es hora de llevarlo al próximo nivel, este Reset es para vos.</div></div><div class="faq-item"><div class="faq-q">¿Puedo ir solo/a si no tengo con quién compartir el Combo Socios?</div><div class="faq-a">Sí, la Entrada Individual está pensada exactamente para eso. Y dentro del evento vas a conectar con otros profesionales desde el primer momento.</div></div><div class="faq-item"><div class="faq-q">¿Qué pasa si no puedo asistir uno de los dos días?</div><div class="faq-a">El Reset está diseñado como una experiencia completa de dos jornadas. Te recomendamos asistir los dos días para aprovechar al máximo el proceso. Ante cualquier imprevisto, escribinos y lo resolvemos juntas.</div></div><div class="faq-item"><div class="faq-q">¿El alojamiento del Combo Socios es solo para una noche?</div><div class="faq-a">Sí, incluye una noche en Juliette Posada Boutique para las dos personas. Si quieren extender la estadía, consulten disponibilidad — hay descuento especial para participantes del Reset.</div></div><div class="faq-item"><div class="faq-q">¿Qué necesito llevar?</div><div class="faq-a">Ganas, apertura y algo para escribir. El material de trabajo lo ponemos nosotras.</div></div><div class="faq-item"><div class="faq-q">¿Cómo confirmo mi lugar?</div><div class="faq-a">Escribime por WhatsApp, abonás el 20% de seña y listo — tu lugar está reservado.</div></div></div>
+  </div>
+</section>
+
+<section id="garantia" class="sec">
+  <div class="cnt">
+    <div class="gar-hd"><h2 class="gar-title">Política de cancelación y garantía</h2></div>
+    <div class="gar-grid">
+      <div class="gar-card gc1">
+        <div class="gar-icon"><img src="/images/img-37.png" alt="" class=""></div>
+        <h3>Cancelaciones</h3>
+        <ul class="gar-list">
+          <li>Hasta 15 días antes del evento: reintegro del 100% de la seña</li>
+          <li>Entre 14 y 7 días antes: reintegro del 50% de la seña</li>
+          <li>Con menos de 7 días: sin reintegro, pero el lugar puede transferirse a otra persona</li>
+          <li>Si por causas de fuerza mayor el evento debiera moverse de fecha, los cupos se respetan íntegramente para la nueva fecha</li>
+        </ul>
+      </div>
+      <div class="gar-card gc2">
+        <div class="gar-icon"><img src="/images/img-38.png" alt="" class=""></div>
+        <h3>Garantía</h3>
+        <p>Nuestro compromiso es real. Si participás activamente de las dos jornadas y sentís que la experiencia no fue lo que esperabas, te devolvemos el <span class="gar-strong">50% del valor abonado</span>.</p>
+        <p>El resto corresponde a los costos de la comunidad, el espacio y todo lo que hace posible este encuentro — eso ya es parte de la experiencia en sí misma.</p>
+        <p>Porque creemos en lo que hacemos y en el espacio que construimos juntas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cierre">
+  <div class="cnt">
+    <img class="cierre-logo" src="/images/img-39.png" alt="Reset de Negocios">
+    <div class="tag cierre-tag">¿Listo/a para resetear?</div>
+    <h2 class="cierre-title">Tu próximo nivel<br>empieza acá.</h2>
+    <p class="cierre-sub"><span class="ico" style="display:inline-flex"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<circle cx="100" cy="105" r="70" fill="none" stroke="#000" stroke-width="9"/>
+<line x1="100" y1="105" x2="100" y2="60" stroke="#000" stroke-width="8" stroke-linecap="round"/>
+<line x1="100" y1="105" x2="132" y2="122" stroke="#000" stroke-width="8" stroke-linecap="round"/>
+<line x1="80" y1="26" x2="120" y2="26" stroke="#000" stroke-width="9" stroke-linecap="round"/>
+<circle cx="100" cy="105" r="7" fill="#ff5757"/>
+</svg>
+</span> Los cupos son limitados · Early Bird cierra el 16 de agosto</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://wa.me/message/X2BA2P356X5DG1?text=Hola%20Eva%2C%20quiero%20m%C3%A1s%20info%20del%20Reset" target="_blank" class="btn btn-blue" style="font-size:15px;padding:18px 44px;">Quiero mi lugar <span class="cta-arrow" style="display:inline-flex"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<line x1="20" y1="100" x2="155" y2="100" stroke="#000" stroke-width="10" stroke-linecap="round"/>
+<path d="M120 60 L165 100 L120 140" fill="none" stroke="#000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</span></a>
+      
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Reset de Negocios &nbsp;·&nbsp; Villa Carlos Paz, Córdoba, Argentina &nbsp;·&nbsp; Todos los derechos reservados</p>
+</footer>
+</body></html>
+
+<script>
+function scrollCarousel(id, dir){
+  const track = document.getElementById(id);
+  const slide = track.querySelector('.posada-slide, .testi-slide');
+  const gap = 20;
+  const w = slide ? slide.offsetWidth + gap : 300;
+  track.scrollBy({left: dir * w, behavior: 'smooth'});
+}
+document.getElementById('navlinks')?.addEventListener('click',e=>{
+  if(e.target.tagName==='A'){document.getElementById('navlinks').classList.remove('open');}
+});
+</script>
