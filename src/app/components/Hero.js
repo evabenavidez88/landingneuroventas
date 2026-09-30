@@ -83,7 +83,7 @@ export default function Hero() {
 
         {/* Izquierda: texto + formulario */}
         <div className="hero-content">
-          <span className="hero-tag">Recurso Gratuito · Autodiagnóstico</span>
+          <span className="hero-tag">Recurso gratuito · Autodiagnóstico</span>
           <h1>
             ¿Te escriben por WhatsApp y redes, pero no te compran?
             <span className="h1-linea2">
