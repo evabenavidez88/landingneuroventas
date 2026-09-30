@@ -1,0 +1,102 @@
+{
+  "reglas": {
+    "_nota": "Perfil: gana la letra con más respuestas si llega a 'umbral_mayoria' y le saca 'diferencia_minima' a la segunda. Si no, el resultado es mixto. Ejes: A=1, B=2, C=3 puntos; se expresa en %. Nivel bajo < 40%, medio < 75%, alto desde 75%.",
+    "umbral_mayoria": 7,
+    "diferencia_minima": 2,
+    "puntos": { "A": 1, "B": 2, "C": 3 },
+    "corte_bajo": 40,
+    "corte_alto": 75
+  },
+  "perfiles": {
+    "A": {
+      "id": "reactivo",
+      "nombre": "Modo reactivo",
+      "etapa": "Etapa inicial",
+      "descripcion": "Tu canal tiene mucho por construir y definir. Hoy funciona por impulso, sin una estructura ni una estrategia clara. El 85% de tus clientes decide por emoción: es momento de empezar a activarlo.",
+      "proximo_paso": "Empezá por lo básico: ordenar tu canal. Con un proceso simple de atención vas a dejar de perder consultas que ya tenés."
+    },
+    "B": {
+      "id": "construccion",
+      "nombre": "En construcción",
+      "etapa": "En desarrollo",
+      "descripcion": "Tenés base, pero con fugas de oportunidades importantes. Tus prácticas están instaladas aunque incompletas, y comunicás más desde el 15% racional. Estás a pocos ajustes de dar un salto real en tus resultados digitales.",
+      "proximo_paso": "Tu salto está en la comunicación emocional y en el seguimiento: ahí se están escapando ventas que ya casi eran tuyas."
+    },
+    "C": {
+      "id": "activado",
+      "nombre": "Canal activado",
+      "etapa": "Nivel avanzado",
+      "descripcion": "Tu canal vende con intención, proceso y estrategia emocional, y está listo para el siguiente nivel. El desafío ahora es sistematizar y escalar lo que ya hacés bien.",
+      "proximo_paso": "Documentá lo que te funciona y convertilo en sistema: así podés crecer sin depender de estar en cada conversación."
+    },
+    "MIXTO": {
+      "id": "mixto",
+      "nombre": "Canal en transición",
+      "etapa": "Resultado mixto",
+      "descripcion": "Tenés fortalezas en algunos ejes y baches en otros. Tu diagnóstico por eje te muestra exactamente por dónde empezar.",
+      "proximo_paso": "No hace falta cambiar todo: enfocate primero en el eje más débil y vas a notar el impacto en todo el canal."
+    }
+  },
+  "ejes": [
+    {
+      "id": "orden",
+      "nombre": "Orden",
+      "subtitulo": "Estructura del canal",
+      "preguntas": [1, 3, 6, 13],
+      "niveles": {
+        "bajo": {
+          "texto": "Tu canal existe, pero funciona por impulso. Cada consulta empieza de cero porque no hay un proceso que te sostenga. El problema no es la cantidad de consultas: es que se pierden antes de convertirse en oportunidad.",
+          "accion": "Organizá tu canal: configurá WhatsApp Business, definí tiempos de respuesta y armá un flujo básico de atención."
+        },
+        "medio": {
+          "texto": "Tenés algo de estructura, pero todavía hay consultas que dependen de tu memoria o de tu tiempo libre. Ahí se escapan oportunidades.",
+          "accion": "Completá tu flujo de atención: respuestas rápidas, etiquetas y un paso a paso fijo desde el saludo hasta la oferta."
+        },
+        "alto": {
+          "texto": "Tu canal tiene una base operativa sólida: cada consulta encuentra un proceso claro que la ordena.",
+          "accion": "Revisá qué partes podés automatizar o delegar para ganar tiempo sin perder cercanía."
+        }
+      }
+    },
+    {
+      "id": "foco",
+      "nombre": "Foco",
+      "subtitulo": "Estrategia emocional",
+      "preguntas": [2, 4, 5, 7, 11, 12, 14],
+      "niveles": {
+        "bajo": {
+          "texto": "Comunicás desde el 15% racional: características, precio, argumentos. Pero el 85% de la decisión de compra pasa por otro lado. Tu cliente no compra lo que vendés: compra lo que siente cuando se imagina resolviendo su problema.",
+          "accion": "Dejá de describir lo que hacés. Comunicá la transformación que genera elegirte."
+        },
+        "medio": {
+          "texto": "A veces conectás con la emoción de tu cliente, pero sin una estructura. Cuando funciona, no siempre sabés por qué.",
+          "accion": "Identificá la motivación de compra de tu cliente ideal y armá tus mensajes a partir de ella, no del producto."
+        },
+        "alto": {
+          "texto": "Comunicás valor y transformación: tu cliente siente que lo entendés antes de que hables de precio.",
+          "accion": "Llevá esa misma comunicación a todos tus puntos de contacto para que la experiencia sea coherente."
+        }
+      }
+    },
+    {
+      "id": "seguimiento",
+      "nombre": "Seguimiento",
+      "subtitulo": "Conversión y presencia constante",
+      "preguntas": [8, 9, 10, 15],
+      "niveles": {
+        "bajo": {
+          "texto": "Las conversaciones existen, pero se enfrían. No es falta de interés del cliente: es falta de un protocolo que mantenga el vínculo vivo sin presionar.",
+          "accion": "Implementá una secuencia de seguimiento y una presencia semanal que genere confianza antes de que te consulten."
+        },
+        "medio": {
+          "texto": "Hacés seguimiento, pero sin un criterio fijo de cuándo y qué decir. Algunas ventas se cierran; otras quedan en el aire.",
+          "accion": "Definí tu protocolo: qué decir después de un 'lo pienso', cuándo volver a escribir y cómo reactivar a quien ya te compró."
+        },
+        "alto": {
+          "texto": "Sostenés el vínculo con intención: tus clientes vuelven y tus conversaciones llegan al cierre sin presión.",
+          "accion": "Medí tu tasa de conversión y de recompra para saber dónde seguir optimizando."
+        }
+      }
+    }
+  ]
+}

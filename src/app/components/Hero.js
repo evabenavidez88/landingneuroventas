@@ -69,8 +69,10 @@ export default function Hero() {
 
     try {
       sessionStorage.setItem('checklist_nombre', nombre.trim().split(' ')[0]);
+      sessionStorage.setItem('diag_lead', JSON.stringify({ nombre: nombre.trim(), email: email.trim() }));
     } catch (e) {}
-    router.push('/gracias');
+    // Después del formulario, la persona hace el diagnóstico online y ve su resultado al instante.
+    window.location.href = '/diagnostico';
   }
 
   return (

@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagnóstico Neuroventa Digital | Eva Benavidez</title>
+<meta name="description" content="15 preguntas para saber cómo está vendiendo hoy tu canal digital y qué ajustar para vender más sin improvisar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --turquesa:#57bdb6; --turquesa-osc:#2f8f89; --turquesa-suave:#57bdb61f; --turquesa-borde:#57bdb659;
+  --amarillo:#f3d519; --ciruela:#865273; --ciruela-suave:#8652731a;
+  --negro:#0a0a0a; --blanco:#fff; --fondo:#f8f8f6; --texto-suave:#555; --linea:#e7e5df;
+  --radio:8px; --radio-lg:16px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--fondo);color:var(--negro);font-family:Lato,system-ui,sans-serif;font-size:16px;line-height:1.55}
+h1,h2,h3,.m{font-family:Montserrat,system-ui,sans-serif;margin:0}
+button{font:inherit;cursor:pointer}
+a{color:inherit}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--ciruela);outline-offset:2px}
+
+.barra{background:var(--amarillo);text-align:center;font:700 12px/1.3 Montserrat,sans-serif;padding:9px 16px;letter-spacing:.02em}
+.marca{display:flex;justify-content:center;padding:14px 16px;background:#fff;border-bottom:1px solid var(--linea)}
+.marca img{height:58px;width:auto;display:block}
+
+main{padding:16px 16px 56px}
+main>.pantalla{max-width:600px;margin:0 auto}
+main>#p-datos{max-width:none;margin:-16px -16px 0}
+.pantalla{display:none;animation:entra .35s ease both}
+.pantalla.activa{display:block}
+@keyframes entra{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.pantalla{animation:none}}
+
+.hero{position:relative;background:#fff;overflow:hidden}
+.hero-barra-izq{position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--turquesa);z-index:2}
+.hero-barra-top{position:absolute;left:0;right:0;top:0;height:4px;background:var(--amarillo);z-index:2}
+.hero-inner{display:grid;grid-template-columns:minmax(0,1fr)}
+.hero-foto{position:relative;height:clamp(260px,62vw,380px);order:-1;background:#efece6}
+.hero-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%}
+.hero-badge{position:absolute;right:16px;bottom:16px;background:var(--amarillo);border-radius:4px;padding:8px 12px;font:800 10.5px/1.3 Montserrat,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.hero-content{padding:28px 20px 40px;display:flex;flex-direction:column;min-width:0}
+.hero-content .titulo{margin-top:14px}
+.hero-form{background:#fff;border:1px solid var(--linea);border-radius:12px;padding:22px 20px;box-shadow:0 10px 30px -18px #0a0a0a40}
+.form-titulo{font:800 15px Montserrat,sans-serif;margin:0 0 14px}
+@media (min-width:900px){
+  .hero-inner{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);min-height:640px}
+  .hero-foto{order:0;height:auto;min-height:100%}
+  .hero-foto img{object-position:50% 20%}
+  .hero-badge{right:28px;bottom:28px;font-size:12px}
+  .hero-content{padding:56px 56px 56px 48px;justify-content:center;width:100%;max-width:680px;justify-self:end}
+  .hero-content .titulo{font-size:44px}
+  .hero-form{max-width:460px}
+}
+.tarjeta{background:var(--blanco);border-radius:var(--radio-lg);padding:28px 22px;border:1px solid var(--linea)}
+.pildora{display:inline-block;border:1px solid var(--turquesa-borde);color:var(--turquesa-osc);background:var(--turquesa-suave);border-radius:999px;padding:6px 14px;font:700 10.5px Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.titulo{font-weight:900;font-size:clamp(26px,7vw,34px);line-height:1.15;margin:16px 0 12px;letter-spacing:-.01em}
+.titulo em{font-style:normal;color:var(--turquesa)}
+.bajada{color:var(--texto-suave);margin:0 0 22px}
+
+.campo{margin-bottom:14px}
+.campo label{display:block;font:700 13px Montserrat,sans-serif;margin-bottom:6px}
+.campo input{width:100%;height:48px;border:1px solid #d8d6cf;border-radius:var(--radio);padding:0 14px;font:16px Lato,sans-serif;background:#fff;color:var(--negro)}
+.campo input:focus{outline:none;border-color:var(--turquesa);box-shadow:0 0 0 3px var(--turquesa-suave)}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--texto-suave);margin:4px 0 18px;cursor:pointer}
+.check input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--ciruela);flex-shrink:0}
+.error{color:#b3261e;font-size:13px;margin:6px 0 0;min-height:0}
+.trampa{position:absolute;left:-9999px}
+
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:52px;border:0;border-radius:var(--radio);background:var(--turquesa);color:var(--negro);font:800 14px Montserrat,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:0 18px;text-decoration:none;transition:transform .12s,background .15s}
+.btn:hover{background:#4aaea7}
+.btn:active{transform:scale(.98)}
+.btn.sec{background:var(--blanco);border:1.5px solid var(--negro)}
+.btn.sec:hover{background:#f1f0ec}
+.btn.ciruela{background:var(--ciruela);color:#fff}
+.btn.ciruela:hover{background:#744563}
+.btn[aria-busy="true"]{opacity:.7;pointer-events:none}
+.confianza{text-align:center;font-size:13px;color:var(--texto-suave);margin:12px 0 0}
+
+.aviso-email{background:var(--turquesa-suave);border:1px solid var(--turquesa-borde);border-radius:12px;padding:12px 14px;font-size:14px;margin:0 0 20px}
+.cita{border-left:4px solid var(--amarillo);padding:4px 0 4px 16px;margin:0 0 24px}
+.cita p{margin:0 0 6px}
+.cita strong{color:var(--ciruela)}
+.ejes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 22px}
+.eje{text-align:center;background:var(--fondo);border-radius:12px;padding:16px 8px}
+.eje img{width:40px;height:40px;display:block;margin:0 auto}
+.eje b{display:block;font:800 11px Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;margin:8px 0 4px}
+.eje span{font-size:12.5px;color:var(--texto-suave);line-height:1.35;display:block}
+.datos{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 18px;font:700 13px Montserrat,sans-serif;color:var(--turquesa-osc);margin:0 0 20px}
+
+.progreso{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.pista{flex:1;height:8px;background:#e6e4de;border-radius:99px;overflow:hidden}
+.pista i{display:block;height:100%;width:0;background:var(--turquesa);border-radius:99px;transition:width .35s ease}
+.contador{font:700 12px Montserrat,sans-serif;color:var(--texto-suave);white-space:nowrap}
+.chip{display:inline-block;font:800 10px Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ciruela);background:var(--ciruela-suave);border-radius:99px;padding:5px 10px}
+.p-titulo{font:700 12px Montserrat,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--texto-suave);margin:14px 0 6px}
+.pregunta{font-weight:800;font-size:clamp(19px,5vw,23px);line-height:1.3;margin:0 0 20px}
+.opciones{display:grid;gap:10px;margin:0 0 22px}
+.opcion{display:flex;gap:14px;align-items:flex-start;text-align:left;width:100%;background:#fff;border:1.5px solid #dcdad3;border-radius:12px;padding:14px 14px;color:var(--negro);line-height:1.4;transition:border-color .15s,background .15s}
+.opcion:hover{border-color:var(--turquesa)}
+.opcion .letra{flex-shrink:0;width:28px;height:28px;border-radius:50%;border:1.5px solid #cfcdc6;display:flex;align-items:center;justify-content:center;font:800 12px Montserrat,sans-serif;color:var(--texto-suave)}
+.opcion[aria-checked="true"]{border-color:var(--turquesa);background:var(--turquesa-suave)}
+.opcion[aria-checked="true"] .letra{background:var(--turquesa);border-color:var(--turquesa);color:var(--negro)}
+.nav{display:grid;grid-template-columns:auto 1fr;gap:10px}
+.nav .btn.sec{width:auto;padding:0 18px}
+
+.cargando{text-align:center;padding:64px 16px}
+.pulso{width:72px;height:72px;margin:0 auto 20px;color:var(--ciruela);animation:pulso 1.2s ease-in-out infinite}
+@keyframes pulso{50%{transform:scale(1.08);opacity:.75}}
+
+.saludo{font:700 15px Montserrat,sans-serif;color:var(--texto-suave);margin:4px 0 10px;text-align:center}
+.perfil{background:var(--ciruela);color:#fff;border-radius:var(--radio-lg);padding:28px 22px;text-align:center}
+.perfil .etapa{display:inline-block;background:var(--amarillo);color:var(--negro);font:800 10.5px Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;border-radius:99px;padding:6px 12px}
+.perfil h1{font-weight:900;font-size:clamp(28px,8vw,38px);line-height:1.1;margin:14px 0 12px}
+.perfil p{margin:0;opacity:.95}
+.conteo{display:flex;justify-content:center;gap:8px;margin-top:18px;flex-wrap:wrap}
+.conteo span{background:#ffffff26;border-radius:99px;padding:5px 12px;font:700 12px Montserrat,sans-serif}
+.bloque{margin-top:28px}
+.bloque>h2{font-weight:800;font-size:20px;margin:0 0 14px}
+.fila{background:#fff;border:1px solid var(--linea);border-radius:12px;padding:16px;margin-bottom:10px}
+.fila.prio{border:2px solid var(--amarillo)}
+.fila-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.fila-top b{font:800 15px Montserrat,sans-serif}
+.fila-top small{display:block;font-size:12.5px;color:var(--texto-suave);font-family:Lato,sans-serif;font-weight:400}
+.pct{font:900 20px Montserrat,sans-serif}
+.barra-eje{height:8px;background:#ecebe6;border-radius:99px;margin:10px 0 12px;overflow:hidden}
+.barra-eje i{display:block;height:100%;border-radius:99px;background:var(--turquesa)}
+.nivel-bajo .barra-eje i{background:var(--ciruela)}
+.fila p{margin:0 0 8px;font-size:15px}
+.fila .accion{font-weight:700;color:var(--turquesa-osc);margin:0}
+.tag-prio{display:inline-block;background:var(--amarillo);font:800 10px Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;border-radius:99px;padding:4px 10px;margin-bottom:10px}
+.proximo{background:var(--turquesa-suave);border:1px solid var(--turquesa-borde);border-radius:12px;padding:18px}
+.proximo p{margin:0}
+.acciones{display:grid;gap:10px;margin-top:18px}
+
+.compartir{text-align:center}
+.pasos{display:flex;justify-content:center;gap:8px 16px;flex-wrap:wrap;font-size:14px;color:var(--texto-suave);margin:0 0 18px}
+.pasos b{color:var(--negro)}
+.historia{width:min(320px,86vw);aspect-ratio:9/16;margin:0 auto;background:var(--turquesa);border-radius:22px;padding:26px 20px;display:flex;flex-direction:column;align-items:center;justify-content:space-evenly;text-align:center;color:var(--negro);position:relative;overflow:hidden}
+.h-logo{height:62px;width:auto;display:block}
+.historia .h-marca{font:800 12px Montserrat,sans-serif;letter-spacing:.24em}
+.historia .h-marca small{display:block;font-size:8px;letter-spacing:.3em;margin-top:3px;font-weight:700}
+.h-card{background:var(--fondo);border-radius:16px;padding:20px 16px;width:100%}
+.h-card .k{font:700 11px Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--texto-suave)}
+.h-card .n{font:900 26px/1.1 Montserrat,sans-serif;color:var(--ciruela);margin:8px 0 14px}
+.h-ejes{display:grid;gap:8px;text-align:left}
+.h-ejes div{display:grid;grid-template-columns:86px 1fr 34px;gap:6px;align-items:center;font:700 11px Montserrat,sans-serif}
+.h-ejes em{height:6px;background:#e3e1db;border-radius:99px;overflow:hidden}
+.h-ejes em i{display:block;height:100%;background:var(--turquesa)}
+.h-ejes span{text-align:right}
+.h-pie b{display:block;font:900 20px Montserrat,sans-serif;margin-bottom:4px}
+.h-pie p{margin:0;font-size:12px}
+.h-arroba{display:inline-block;margin-top:10px;background:var(--amarillo);border-radius:99px;padding:6px 14px;font:800 13px Montserrat,sans-serif}
+.enlace{background:none;border:0;color:var(--turquesa-osc);font:700 14px Montserrat,sans-serif;text-decoration:underline;margin-top:14px;padding:8px}
+
+.cta{background:var(--negro);color:#fff;border-radius:var(--radio-lg);padding:26px 22px;text-align:center}
+.cta h2{font-weight:900;font-size:22px;line-height:1.25;margin:0 0 8px}
+.cta h2 em{font-style:normal;color:var(--turquesa)}
+.cta p{margin:0 0 18px;color:#d8d8d8}
+.cta p strong{color:#fff}
+.cta-tag{display:inline-block;background:var(--amarillo);color:var(--negro);font:800 10.5px Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;border-radius:99px;padding:6px 12px;margin-bottom:14px}
+.cta .cta-nota{margin:12px 0 0;font-size:13px;color:#bdbdbd}
+.frase{text-align:center;font:italic 15px Lato,sans-serif;color:var(--texto-suave);margin:32px 8px 0}
+.frase b{display:block;font:800 12px Montserrat,sans-serif;font-style:normal;letter-spacing:.1em;margin-top:8px;color:var(--negro)}
+footer{text-align:center;font-size:13px;color:var(--texto-suave);padding:20px 16px 32px}
+
+@media (max-width:420px){.ejes{grid-template-columns:1fr}.eje{display:grid;grid-template-columns:40px 1fr;text-align:left;gap:0 12px;align-items:center}.eje img{grid-row:span 2;margin:0}.eje b{margin:0}}
+</style>
+</head>
+<body>
+<div class="barra">Autodiagnóstico gratuito · Neuroventa Digital · Resultado al instante</div>
+<header class="marca"><img src="/diagnostico/img/logo.webp" alt="Eva Benavidez, Coach y Consultora" width="221" height="200"></header>
+
+<main>
+  <!-- 1. Portada + datos -->
+  <section class="pantalla activa" id="p-datos" aria-labelledby="t-datos">
+    <div class="hero">
+      <div class="hero-barra-izq"></div><div class="hero-barra-top"></div>
+      <div class="hero-inner">
+        <div class="hero-content">
+          <span class="pildora" style="align-self:flex-start">Recurso gratuito · Autodiagnóstico</span>
+          <h1 class="titulo" id="t-datos">Descubrí cómo está vendiendo hoy <em>tu cerebro</em></h1>
+          <p class="bajada">15 preguntas para saber exactamente qué ajustar en tu canal digital y vender más sin improvisar.</p>
+          <div class="hero-form">
+            <p class="form-titulo">Completá tus datos y empezá tu diagnóstico</p>
+            <form id="f-datos" novalidate>
+              <div class="campo"><label for="nombre" class="sr-only">Tu nombre</label><input id="nombre" name="nombre" autocomplete="given-name" maxlength="80" placeholder="Tu nombre"></div>
+              <div class="campo"><label for="email" class="sr-only">Tu email</label><input id="email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="120" placeholder="Tu email"></div>
+              <input class="trampa" id="sitio_web" name="sitio_web" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <label class="check"><input type="checkbox" id="acepta"> Acepto recibir mi resultado y contenido de Eva Benavidez por email.</label>
+              <p class="error" id="e-datos" role="alert"></p>
+              <button class="btn" type="submit">→ Quiero mi diagnóstico gratuito</button>
+            </form>
+            <p class="confianza"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Sin spam · Resultado inmediato · Es gratis</p>
+          </div>
+        </div>
+        <div class="hero-foto">
+          <img src="/diagnostico/img/eva-hero.webp" alt="Eva Benavidez, coach y consultora de negocios" width="720" height="720">
+          <div class="hero-badge">Autodiagnóstico<br>Neuroventa Digital</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Intro -->
+  <section class="pantalla" id="p-intro" aria-labelledby="t-intro">
+    <div class="tarjeta">
+      <span class="pildora">Anatomía de tu canal digital</span>
+      <h1 class="titulo" id="t-intro"><span class="js-nombre"></span>, <em>¿empezamos?</em></h1>
+      <p class="aviso-email" id="aviso-email" hidden><strong>Tu checklist ya está en tu email</strong> (revisá también spam o promociones). Mientras tanto, hacé tu diagnóstico acá y tené tu resultado al instante.</p>
+      <div class="cita">
+        <p>Si alguna vez alguien te preguntó por tu producto, respondiste todo bien… y nunca más apareció, <strong>este diagnóstico es para vos.</strong></p>
+        <p>No hay respuestas buenas ni malas. Solo información honesta para empezar a vender con más conciencia y menos esfuerzo.</p>
+      </div>
+      <div class="ejes">
+        <div class="eje"><img src="/diagnostico/img/icon-eje-orden.webp" alt="" width="64" height="64"><b>Orden</b><span>Base operativa de tu canal</span></div>
+        <div class="eje"><img src="/diagnostico/img/icon-eje-foco.webp" alt="" width="64" height="64"><b>Foco</b><span>Emoción y valor</span></div>
+        <div class="eje"><img src="/diagnostico/img/icon-eje-seguimiento.webp" alt="" width="64" height="64"><b>Seguimiento</b><span>Resiliencia y cierre</span></div>
+      </div>
+      <div class="datos"><span>15 preguntas</span><span>5 minutos</span><span>Resultado al instante</span></div>
+      <button class="btn" id="b-comenzar">→ Comenzar</button>
+    </div>
+  </section>
+
+  <!-- 3. Preguntas -->
+  <section class="pantalla" id="p-preguntas" aria-live="polite">
+    <div class="tarjeta">
+      <div class="progreso"><div class="pista" role="progressbar" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0" id="pista"><i></i></div><span class="contador" id="contador"></span></div>
+      <span class="chip" id="q-eje"></span>
+      <p class="p-titulo" id="q-titulo"></p>
+      <h2 class="pregunta" id="q-texto"></h2>
+      <div class="opciones" id="q-opciones" role="radiogroup" aria-labelledby="q-texto"></div>
+      <p class="error" id="e-pregunta" role="alert"></p>
+      <div class="nav">
+        <button class="btn sec" id="b-atras" type="button">←</button>
+        <button class="btn" id="b-siguiente" type="button">Siguiente →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Cargando -->
+  <section class="pantalla" id="p-cargando">
+    <div class="cargando">
+      <svg class="pulso" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M30 12c-6-4-15 0-15 8-6 2-7 11-2 15-3 6 2 13 9 12 2 5 8 6 11 2V12z"/><path d="M34 12c6-4 15 0 15 8 6 2 7 11 2 15 3 6-2 13-9 12-2 5-8 6-11 2"/><path d="M22 26c3 0 5 2 5 5M42 26c-3 0-5 2-5 5M24 40c2-2 5-2 7 0"/></svg>
+      <h2 class="m" style="font-weight:800;font-size:20px">Analizando tus respuestas…</h2>
+      <p class="bajada" style="margin-top:8px">Estamos armando tu diagnóstico personalizado.</p>
+    </div>
+  </section>
+
+  <!-- 5. Resultado -->
+  <section class="pantalla" id="p-resultado" aria-labelledby="r-perfil">
+    <p class="saludo"><span class="js-nombre"></span>, tu canal digital está en</p>
+    <div class="perfil">
+      <span class="etapa" id="r-etapa"></span>
+      <h1 id="r-perfil"></h1>
+      <p id="r-desc"></p>
+      <div class="conteo" id="r-conteo"></div>
+    </div>
+
+    <div class="bloque">
+      <h2>Tu diagnóstico por eje</h2>
+      <div id="r-ejes"></div>
+    </div>
+
+    <div class="bloque">
+      <h2>Tu próximo paso</h2>
+      <div class="proximo"><p id="r-proximo"></p></div>
+      <div class="acciones">
+        <button class="btn ciruela" id="b-pdf" type="button">↓ Descargar mi resultado</button>
+      </div>
+      <p class="error" id="e-pdf" role="alert"></p>
+    </div>
+
+    <div class="bloque compartir">
+      <h2>Compartilo en tus historias</h2>
+      <p class="pasos"><span><b>1.</b> Hacé captura de esta tarjeta</span><span><b>2.</b> Subila a tus historias</span><span><b>3.</b> Arrobame</span></p>
+      <div class="historia" id="historia" aria-label="Tarjeta para compartir en historias">
+        <img class="h-logo" src="/diagnostico/img/logo.webp" alt="Eva Benavidez, Coach y Consultora">
+        <div class="h-card">
+          <div class="k">Mi diagnóstico de Neuroventa Digital</div>
+          <div class="n" id="h-perfil"></div>
+          <div class="h-ejes" id="h-ejes"></div>
+        </div>
+        <div class="h-pie">
+          <b>¿Y el tuyo?</b>
+          <p>Hacelo gratis en neuroventas.evabenavidez.com</p>
+          <span class="h-arroba">@evabenavidez.negocios</span>
+        </div>
+      </div>
+      <button class="enlace" id="b-imagen" type="button">¿No podés hacer captura? Guardala como imagen</button>
+    </div>
+
+    <div class="bloque cta">
+      <span class="cta-tag">Masterclass gratuita · En vivo</span>
+      <h2>El diagnóstico te mostró dónde estás. <em>El próximo paso es en vivo.</em></h2>
+      <p><strong>Masterclass Neuroventa + IA:</strong> jueves 22 o martes 27 de octubre. Vas a ver por qué tu cliente duda aunque le interese, y cómo usar la IA para responderle mejor sin perder lo humano.</p>
+      <a class="btn" id="b-masterclass" href="#" target="_blank" rel="noopener">→ Sumate gratis</a>
+      <p class="cta-nota">Gratuita y en vivo. Cupos limitados.</p>
+    </div>
+
+    <p class="frase">“Tu cerebro ya sabe cómo vender. Solo necesita que vos le des el orden, el foco y la dirección.”<b>EVA BENAVIDEZ</b></p>
+  </section>
+</main>
+
+<footer>evabenavidez.com · @evabenavidez.negocios · 351 609-8988</footer>
+
+
+<script>
+/*__CONFIG__*/
+const CONFIG = window.DIAG_CONFIG || {
+  api: '/api/diagnostico',
+  preguntas: '/diagnostico/preguntas.json',
+  // Link de invitación al grupo de la masterclass (WhatsApp, Telegram, etc.)
+  masterclass: 'https://neurowebinar.evabenavidez.com/'
+};
+const $ = s => document.querySelector(s);
+const estado = { nombre:'', email:'', acepta:false, origen:'directo', preguntas:[], respuestas:[], actual:0, resultado:null };
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const primerNombre = n => { const p = n.trim().split(' ')[0]; return p.charAt(0).toUpperCase() + p.slice(1); };
+
+function mostrar(id){
+  document.querySelectorAll('.pantalla').forEach(p => p.classList.toggle('activa', p.id === id));
+  window.scrollTo({top:0, behavior:'smooth'});
+  const foco = document.querySelector('#'+id+' h1, #'+id+' h2');
+  if (foco){ foco.setAttribute('tabindex','-1'); foco.focus({preventScroll:true}); }
+}
+
+async function cargarPreguntas(){
+  if (window.DIAG_PREGUNTAS) return window.DIAG_PREGUNTAS;
+  const r = await fetch(CONFIG.preguntas, {cache:'no-cache'});
+  if (!r.ok) throw new Error('preguntas');
+  return r.json();
+}
+
+/* 1. Datos */
+$('#f-datos').addEventListener('submit', e => {
+  e.preventDefault();
+  const nombre = $('#nombre').value.trim(), email = $('#email').value.trim(), acepta = $('#acepta').checked;
+  const err = $('#e-datos');
+  if (!nombre){ err.textContent = 'Escribí tu nombre.'; $('#nombre').focus(); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ err.textContent = 'Revisá tu email.'; $('#email').focus(); return; }
+  if (!acepta){ err.textContent = 'Marcá la casilla para recibir tu resultado.'; return; }
+  err.textContent = '';
+  Object.assign(estado, {nombre, email, acepta});
+  document.querySelectorAll('.js-nombre').forEach(el => el.textContent = primerNombre(nombre));
+  mostrar('p-intro');
+});
+['nombre','email','acepta'].forEach(id => $('#'+id).addEventListener('input', () => $('#e-datos').textContent = ''));
+
+/* Llegada desde la landing: ya tenemos nombre y email, se saltea el paso de datos */
+(function desdeLanding(){
+  try {
+    const d = JSON.parse(sessionStorage.getItem('diag_lead') || 'null');
+    if (!d || !d.nombre || !d.email) return;
+    Object.assign(estado, {nombre:d.nombre, email:d.email, acepta:true, origen:'landing'});
+    document.querySelectorAll('.js-nombre').forEach(el => el.textContent = primerNombre(d.nombre));
+    $('#aviso-email').hidden = false;
+    document.querySelectorAll('.pantalla').forEach(p => p.classList.toggle('activa', p.id === 'p-intro'));
+  } catch (e) {}
+})();
+
+/* 2. Intro */
+$('#b-comenzar').addEventListener('click', async () => {
+  const b = $('#b-comenzar'); b.setAttribute('aria-busy','true');
+  try {
+    if (!estado.preguntas.length) estado.preguntas = await cargarPreguntas();
+    estado.respuestas = new Array(estado.preguntas.length).fill(null);
+    estado.actual = 0; pintarPregunta(); mostrar('p-preguntas');
+  } catch { alert('No pudimos cargar las preguntas. Revisá tu conexión y probá de nuevo.'); }
+  b.removeAttribute('aria-busy');
+});
+
+/* 3. Preguntas */
+let avanceTimer;
+function pintarPregunta(){
+  const q = estado.preguntas[estado.actual], total = estado.preguntas.length, i = estado.actual;
+  $('#contador').textContent = `Pregunta ${i+1} de ${total}`;
+  $('#pista').setAttribute('aria-valuenow', i); $('#pista i').style.width = (i/total*100)+'%';
+  $('#q-eje').textContent = q.eje; $('#q-titulo').textContent = q.titulo; $('#q-texto').textContent = q.pregunta;
+  $('#e-pregunta').textContent = '';
+  const cont = $('#q-opciones'); cont.innerHTML = '';
+  Object.entries(q.opciones).forEach(([letra, texto]) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'opcion'; b.setAttribute('role','radio');
+    b.setAttribute('aria-checked', estado.respuestas[i] === letra ? 'true' : 'false');
+    b.innerHTML = `<span class="letra">${letra}</span><span>${esc(texto)}</span>`;
+    b.addEventListener('click', () => elegir(letra));
+    cont.appendChild(b);
+  });
+  $('#b-atras').style.visibility = i === 0 ? 'hidden' : 'visible';
+  $('#b-atras').setAttribute('aria-label','Pregunta anterior');
+  $('#b-siguiente').textContent = i === total-1 ? 'Enviar →' : 'Siguiente →';
+}
+function elegir(letra){
+  estado.respuestas[estado.actual] = letra;
+  document.querySelectorAll('.opcion').forEach(o => o.setAttribute('aria-checked', o.querySelector('.letra').textContent === letra ? 'true' : 'false'));
+  $('#e-pregunta').textContent = '';
+  clearTimeout(avanceTimer);
+  if (estado.actual < estado.preguntas.length - 1) avanceTimer = setTimeout(siguiente, 320);
+}
+function siguiente(){
+  clearTimeout(avanceTimer);
+  if (!estado.respuestas[estado.actual]){ $('#e-pregunta').textContent = 'Elegí la opción que más te represente.'; return; }
+  if (estado.actual < estado.preguntas.length - 1){ estado.actual++; pintarPregunta(); $('#q-texto').focus?.(); return; }
+  enviar();
+}
+$('#b-siguiente').addEventListener('click', siguiente);
+$('#b-atras').addEventListener('click', () => { clearTimeout(avanceTimer); if (estado.actual > 0){ estado.actual--; pintarPregunta(); } });
+document.addEventListener('keydown', e => {
+  if (!$('#p-preguntas').classList.contains('activa') || e.target.tagName === 'INPUT') return;
+  const k = e.key.toUpperCase(), mapa = {'1':'A','2':'B','3':'C','A':'A','B':'B','C':'C'};
+  if (mapa[k]) elegir(mapa[k]);
+  if (e.key === 'Enter' && e.target.tagName !== 'BUTTON') siguiente();
+});
+
+/* 4. Envío */
+async function calcular(payload){
+  if (window.DIAG_CALCULAR) return window.DIAG_CALCULAR(payload);
+  const r = await fetch(CONFIG.api, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)});
+  const d = await r.json().catch(() => ({ok:false}));
+  if (!d.ok) throw new Error(d.error || 'No pudimos calcular tu resultado. Probá de nuevo.');
+  return d.resultado;
+}
+async function enviar(){
+  mostrar('p-cargando');
+  const inicio = Date.now();
+  try {
+    const res = await calcular({nombre:estado.nombre, email:estado.email, acepta:estado.acepta, respuestas:estado.respuestas, origen:estado.origen, sitio_web:$('#sitio_web').value});
+    await new Promise(r => setTimeout(r, Math.max(0, 1400 - (Date.now()-inicio))));
+    estado.resultado = res; pintarResultado(res); mostrar('p-resultado');
+  } catch (err) {
+    mostrar('p-preguntas');
+    $('#e-pregunta').textContent = err.message || 'No pudimos calcular tu resultado. Probá de nuevo.';
+  }
+}
+
+/* 5. Resultado */
+const NIVEL = {bajo:'A trabajar', medio:'En desarrollo', alto:'Fortaleza'};
+function pintarResultado(r){
+  $('#r-etapa').textContent = r.perfil.etapa;
+  $('#r-perfil').textContent = r.perfil.nombre;
+  $('#r-desc').textContent = r.perfil.descripcion;
+  $('#r-conteo').innerHTML = ['A','B','C'].map(l => `<span>${r.conteo[l]} respuestas ${l}</span>`).join('');
+  $('#r-ejes').innerHTML = r.ejes.map(e => `
+    <div class="fila nivel-${e.nivel} ${e.id === r.prioritario ? 'prio' : ''}">
+      ${e.id === r.prioritario ? '<span class="tag-prio">Empezá por acá</span>' : ''}
+      <div class="fila-top"><div><b>${esc(e.nombre)}</b><small>${esc(e.subtitulo)} · ${NIVEL[e.nivel]}</small></div><span class="pct">${e.porcentaje}%</span></div>
+      <div class="barra-eje"><i style="width:${Math.max(4,e.porcentaje)}%"></i></div>
+      <p>${esc(e.texto)}</p>
+      <p class="accion">→ ${esc(e.accion)}</p>
+    </div>`).join('');
+  $('#r-proximo').textContent = r.perfil.proximo_paso;
+  $('#h-perfil').textContent = r.perfil.nombre;
+  $('#h-ejes').innerHTML = r.ejes.map(e => `<div>${esc(e.nombre)}<em><i style="width:${Math.max(4,e.porcentaje)}%"></i></em><span>${e.porcentaje}%</span></div>`).join('');
+  $('#b-masterclass').href = CONFIG.masterclass;
+}
+
+/* PDF e imagen (librerías cargadas solo cuando se usan) */
+function cargarScript(src){ return new Promise((ok, mal) => { if (document.querySelector(`script[src="${src}"]`)) return ok(); const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = mal; document.head.appendChild(s); }); }
+const LIB_PDF = window.DIAG_LIB_PDF || '/diagnostico/vendor/html2pdf.bundle.min.js';
+
+// Entrega un archivo generado: en la vista previa usa la descarga del visor; en tu servidor, la descarga normal.
+async function entregarArchivo(blob, nombre){
+  if (window.claude && typeof window.claude.use === 'function') {
+    const d = await window.claude.use('downloads');
+    if (d) {
+      try { await d.save({filename: nombre, data: blob}); } catch (e) { if (e && e.code !== 'declined') throw e; }
+      return;
+    }
+  }
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = nombre;
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+}
+
+function htmlReporte(r){
+  const fecha = new Date().toLocaleDateString('es-AR', {day:'numeric', month:'long', year:'numeric'});
+  return `
+  <div style="background:#865273;height:14px"></div><div style="background:#57bdb6;height:6px"></div>
+  <div style="padding:26px 50px 16px;font-family:Lato,sans-serif;color:#0a0a0a">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start">
+      <img src="/diagnostico/img/logo.webp" alt="" style="height:64px;width:auto;display:block">
+      <div style="text-align:right;font-size:12px;color:#555">Autodiagnóstico Neuroventa Digital<br>${esc(fecha)}</div>
+    </div>
+    <div style="font:900 28px Montserrat,sans-serif;margin:22px 0 4px">${esc(primerNombre(r.nombre))}, este es tu resultado</div>
+    <div style="color:#555;font-size:14px;margin-bottom:20px">Tus respuestas: ${r.conteo.A} A · ${r.conteo.B} B · ${r.conteo.C} C</div>
+    <div style="background:#865273;color:#fff;border-radius:14px;padding:20px 24px">
+      <span style="display:inline-block;background:#f3d519;color:#0a0a0a;font:800 10px Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;border-radius:99px;padding:5px 11px">${esc(r.perfil.etapa)}</span>
+      <div style="font:900 30px Montserrat,sans-serif;margin:10px 0 8px">${esc(r.perfil.nombre)}</div>
+      <div style="font-size:15px;line-height:1.55">${esc(r.perfil.descripcion)}</div>
+    </div>
+    <div style="font:800 18px Montserrat,sans-serif;margin:18px 0 10px">Tu diagnóstico por eje</div>
+    ${r.ejes.map(e => `
+      <div style="border:${e.id===r.prioritario?'2px solid #f3d519':'1px solid #e7e5df'};border-radius:12px;padding:12px 16px;margin-bottom:8px;page-break-inside:avoid">
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font:800 15px Montserrat,sans-serif">${esc(e.nombre)} <span style="font:400 12px Lato,sans-serif;color:#555">· ${esc(e.subtitulo)} · ${NIVEL[e.nivel]}${e.id===r.prioritario?' · Empezá por acá':''}</span></div><div style="font:900 18px Montserrat,sans-serif">${e.porcentaje}%</div></div>
+        <div style="height:7px;background:#ecebe6;border-radius:99px;margin:8px 0 10px"><div style="height:7px;width:${Math.max(4,e.porcentaje)}%;background:${e.nivel==='bajo'?'#865273':'#57bdb6'};border-radius:99px"></div></div>
+        <div style="font-size:13.5px;line-height:1.5;margin-bottom:6px">${esc(e.texto)}</div>
+        <div style="font-size:13.5px;font-weight:700;color:#2f8f89">→ ${esc(e.accion)}</div>
+      </div>`).join('')}
+    <div style="background:#57bdb61f;border:1px solid #57bdb659;border-radius:12px;padding:14px 18px;margin-top:14px;page-break-inside:avoid">
+      <div style="font:800 14px Montserrat,sans-serif;margin-bottom:4px">Tu próximo paso</div>
+      <div style="font-size:14px">${esc(r.perfil.proximo_paso)}</div>
+    </div>
+    <div style="margin-top:14px;text-align:center;font:italic 14px Lato,sans-serif;color:#555;page-break-inside:avoid">“Tu cerebro ya sabe cómo vender. Solo necesita que vos le des el orden, el foco y la dirección.” — Eva Benavidez</div>
+    <div style="margin-top:8px;text-align:center;font-size:12px;color:#555">evabenavidez.com · @evabenavidez.negocios · WhatsApp 351 609-8988</div>
+  </div>`;
+}
+$('#b-pdf').addEventListener('click', async () => {
+  const b = $('#b-pdf'), err = $('#e-pdf'); err.textContent = ''; b.setAttribute('aria-busy','true');
+  try {
+    await cargarScript(LIB_PDF);
+    await document.fonts.ready;
+    const html = `<div style="width:794px;background:#fff">${htmlReporte(estado.resultado)}</div>`;
+    await html2pdf().set({ margin:0, filename:`Diagnostico-Neuroventa-${primerNombre(estado.nombre)}.pdf`, image:{type:'jpeg',quality:.95}, html2canvas:{scale:2, useCORS:true, windowWidth:794, scrollX:0, scrollY:0}, jsPDF:{unit:'px', format:[794,1123], orientation:'portrait', hotfixes:['px_scaling']}, pagebreak:{mode:['css','avoid-all']} }).from(html, 'string').outputPdf('blob').then(b => entregarArchivo(b, `Diagnostico-Neuroventa-${primerNombre(estado.nombre)}.pdf`));
+  } catch { err.textContent = 'No pudimos generar el PDF. Probá de nuevo o hacé una captura de pantalla.'; }
+  b.removeAttribute('aria-busy');
+});
+$('#b-imagen').addEventListener('click', async () => {
+  try {
+    await cargarScript(LIB_PDF);
+    await document.fonts.ready;
+    const canvas = await html2canvas($('#historia'), {scale:3, backgroundColor:null, scrollX:-window.scrollX, scrollY:-window.scrollY});
+    const blob = await new Promise(r => canvas.toBlob(r, 'image/png'));
+    const archivo = new File([blob], 'mi-diagnostico-neuroventa.png', {type:'image/png'});
+    const enVistaPrevia = !!(window.claude && typeof window.claude.use === 'function');
+    if (!enVistaPrevia && navigator.canShare && navigator.canShare({files:[archivo]})) { await navigator.share({files:[archivo]}); return; }
+    await entregarArchivo(blob, archivo.name);
+  } catch (e) { if (e && e.name !== 'AbortError') $('#e-pdf').textContent = 'No pudimos guardar la imagen. Hacé una captura de pantalla de la tarjeta.'; }
+});
+</script>
+</body>
+</html>
