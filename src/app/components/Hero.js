@@ -92,14 +92,11 @@ export default function Hero() {
             15 preguntas para diagnosticar tu canal digital en 3 ejes (Orden,
             Foco y Seguimiento) y saber qué ajustar primero, antes de sumar IA.
           </p>
-          <p className="hero-respaldo">
-            Creado por Eva Benavidez · +20 años · +1500 personas formadas
-          </p>
 
           {!enviado ? (
             <div className="hero-form">
               <p className="form-titulo">
-                Dejame tus datos y te llega al instante.
+                Completá tus datos y empezá ahora.
               </p>
               <div className="form-group">
                 <input

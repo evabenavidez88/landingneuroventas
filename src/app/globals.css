@@ -116,12 +116,12 @@ nav img { height: 56px; width: auto; }
   letter-spacing: 0.2px;
 }
 .hero-sub {
-  font-size: 16px;
+  font-size: 18px;
   color: var(--texto-suave);
   font-weight: 300;
   line-height: 1.6;
   margin-bottom: 32px;
-  max-width: 440px;
+  max-width: 480px;
 }
 
 /* Formulario */
@@ -470,7 +470,7 @@ html { scroll-behavior: smooth; }
     white-space: nowrap;
   }
   .hero-content h1 { font-size: 24px; }
-  .hero-sub { font-size: 15px; margin-bottom: 20px; }
+  .hero-sub { font-size: 17px; margin-bottom: 20px; }
   .hero-form {
     max-width: 100%;
     padding: 24px 20px 20px;
@@ -534,7 +534,7 @@ html { scroll-behavior: smooth; }
   .hero-tag { margin-bottom: 12px; font-size: 9px; }
   .hero-content h1 { font-size: 20px; margin-bottom: 10px; }
   .hero-content h1 .h1-linea2 { margin-top: 6px; }
-  .hero-sub { font-size: 14px; line-height: 1.5; margin-bottom: 18px; }
+  .hero-sub { font-size: 16px; line-height: 1.45; margin-bottom: 16px; }
   .hero-respaldo { font-size: 10.5px; letter-spacing: 0; margin: -10px 0 12px; }
   .hero-form { padding: 16px 16px 14px; }
   .hero-form p.form-titulo { font-size: 14px; margin-bottom: 12px; }

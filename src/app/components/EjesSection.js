@@ -11,7 +11,7 @@ const ejes = [
     icon: '/images/icon-eje-foco.png',
     title: 'Foco',
     desc: 'Emoción y valor. La activación del inconsciente.',
-    ia: 'La IA te ayuda a escribir; el valor lo definís vos.',
+    ia: 'La IA te ayuda con el mensaje; el sentido lo definís vos.',
   },
   {
     icon: '/images/icon-eje-seguimiento.png',
@@ -53,7 +53,7 @@ export default function EjesSection() {
             hay desorden, también.
           </p>
           <p>
-            <strong>Primero orden. Después, IA.</strong>
+            <strong>Primero tu método. Después, IA.</strong>
           </p>
         </div>
       </div>
