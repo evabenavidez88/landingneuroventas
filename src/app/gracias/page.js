@@ -52,7 +52,7 @@ export default function GraciasPage() {
               Mientras lo respondés, te hago una invitación:
             </p>
             <p className="gracias-invitacion-texto">
-              Hago la <strong>Masterclass Neuroventa + IA</strong>, gratuita y en
+              Hago la <strong>Masterclass Neuroventa Digital + IA</strong>, gratuita y en
               vivo, en dos fechas: <strong>jueves 22 de octubre</strong> o{' '}
               <strong>martes 27 de octubre de 2026</strong>, a las{' '}
               {HORA_MASTERCLASS} hs (ARG). Vamos a ver por qué tu cliente duda
