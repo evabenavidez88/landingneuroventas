@@ -53,8 +53,8 @@ export async function POST(request) {
     await db.query(
       `INSERT INTO leads_diagnostico
         (nombre, email, perfil, respuestas_a, respuestas_b, respuestas_c,
-         orden_pct, foco_pct, seguimiento_pct, eje_prioritario, respuestas, origen)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)`,
+         orden_pct, foco_pct, seguimiento_pct, eje_prioritario, respuestas, origen, total_pct)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)`,
       [
         nombre,
         email,
@@ -68,6 +68,7 @@ export async function POST(request) {
         resultado.ejes.find((e) => e.id === resultado.prioritario).nombre,
         respuestas.join(''),
         body?.origen === 'landing' ? 'landing' : 'directo',
+        resultado.total,
       ]
     );
   } catch (e) {

@@ -37,6 +37,7 @@ export async function asegurarTabla(db) {
     respuestas TEXT NOT NULL,
     origen TEXT
   )`);
+  await db.query('ALTER TABLE leads_diagnostico ADD COLUMN IF NOT EXISTS total_pct INT');
   tablaLista = true;
 }
 
@@ -45,30 +46,37 @@ export function calcularResultado(nombre, respuestas) {
   const conteo = { A: 0, B: 0, C: 0 };
   respuestas.forEach((r) => conteo[r]++);
 
-  const orden = Object.entries(conteo).sort((a, b) => b[1] - a[1]);
-  const clave =
-    orden[0][1] >= R.umbral_mayoria && orden[0][1] - orden[1][1] >= R.diferencia_minima
-      ? orden[0][0]
-      : 'MIXTO';
-
   const ejes = contenido.ejes.map((e) => {
-    const n = e.preguntas.length;
-    const suma = e.preguntas.reduce((acc, q) => acc + R.puntos[respuestas[q - 1]], 0);
-    const porcentaje = Math.round(((suma - n) / (2 * n)) * 100);
+    const puntos = e.preguntas.reduce((acc, q) => acc + R.puntos[respuestas[q - 1]], 0);
+    const maximo = e.preguntas.length * R.puntos.C;
+    const porcentaje = Math.round((puntos / maximo) * 100);
     const nivel = porcentaje < R.corte_bajo ? 'bajo' : porcentaje < R.corte_alto ? 'medio' : 'alto';
     return {
-      id: e.id,
-      nombre: e.nombre,
-      subtitulo: e.subtitulo,
-      porcentaje,
-      nivel,
-      texto: e.niveles[nivel].texto,
-      accion: e.niveles[nivel].accion,
+      id: e.id, nombre: e.nombre, subtitulo: e.subtitulo, puntos, maximo, porcentaje, nivel,
+      texto: e.niveles[nivel].texto, accion: e.niveles[nivel].accion,
     };
   });
+
+  const puntosTotal = ejes.reduce((a, e) => a + e.puntos, 0);
+  const maximoTotal = ejes.reduce((a, e) => a + e.maximo, 0);
+  const total = Math.round((puntosTotal / maximoTotal) * 100);
+
+  // Reparto: qué parte del puntaje total aporta cada eje (suma exactamente 100%).
+  if (puntosTotal > 0) {
+    const crudos = ejes.map((e) => (e.puntos / puntosTotal) * 100);
+    const base = crudos.map(Math.floor);
+    let resto = 100 - base.reduce((a, b) => a + b, 0);
+    crudos.map((v, i) => [v - base[i], i]).sort((x, y) => y[0] - x[0]).forEach(([, i]) => { if (resto > 0) { base[i]++; resto--; } });
+    ejes.forEach((e, i) => { e.reparto = base[i]; });
+  } else {
+    ejes.forEach((e) => { e.reparto = 0; });
+  }
+
+  // Perfil: bajo si el total no llega al mínimo; avanzado si TODOS los ejes superan el corte; si no, medio.
+  const clave = total < R.perfil_bajo ? 'A' : ejes.every((e) => e.porcentaje >= R.perfil_avanzado) ? 'C' : 'B';
+
   // Eje prioritario: el de menor porcentaje (en empate: Orden > Foco > Seguimiento).
   const prioritario = ejes.reduce((min, e) => (e.porcentaje < min.porcentaje ? e : min), ejes[0]);
 
-  return { nombre, perfil: contenido.perfiles[clave], conteo, ejes, prioritario: prioritario.id };
+  return { nombre, perfil: contenido.perfiles[clave], conteo, total, ejes, prioritario: prioritario.id };
 }
-

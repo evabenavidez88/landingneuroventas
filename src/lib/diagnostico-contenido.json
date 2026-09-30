@@ -1,11 +1,15 @@
 {
   "reglas": {
-    "_nota": "Perfil: gana la letra con más respuestas si llega a 'umbral_mayoria' y le saca 'diferencia_minima' a la segunda. Si no, el resultado es mixto. Ejes: A=1, B=2, C=3 puntos; se expresa en %. Nivel bajo < 40%, medio < 75%, alto desde 75%.",
-    "umbral_mayoria": 7,
-    "diferencia_minima": 2,
-    "puntos": { "A": 1, "B": 2, "C": 3 },
+    "_nota": "Cada respuesta suma: A=0, B=1, C=2 (5 preguntas por eje, máximo 10 puntos por eje y 30 en total). Perfil: 'Modo reactivo' si el puntaje total es menor a perfil_bajo; 'Canal activado' si TODOS los ejes llegan a perfil_avanzado; si no, 'En construcción'. Nivel de cada eje: bajo < corte_bajo, medio < corte_alto, alto desde corte_alto. Reparto: parte del puntaje total que aporta cada eje (suma 100%).",
+    "puntos": {
+      "A": 0,
+      "B": 1,
+      "C": 2
+    },
+    "perfil_bajo": 40,
+    "perfil_avanzado": 70,
     "corte_bajo": 40,
-    "corte_alto": 75
+    "corte_alto": 70
   },
   "perfiles": {
     "A": {
@@ -42,7 +46,13 @@
       "id": "orden",
       "nombre": "Orden",
       "subtitulo": "Estructura del canal",
-      "preguntas": [1, 3, 6, 13],
+      "preguntas": [
+        1,
+        2,
+        6,
+        12,
+        13
+      ],
       "niveles": {
         "bajo": {
           "texto": "Tu canal existe, pero funciona por impulso. Cada consulta empieza de cero porque no hay un proceso que te sostenga. El problema no es la cantidad de consultas: es que se pierden antes de convertirse en oportunidad.",
@@ -62,7 +72,13 @@
       "id": "foco",
       "nombre": "Foco",
       "subtitulo": "Estrategia emocional",
-      "preguntas": [2, 4, 5, 7, 11, 12, 14],
+      "preguntas": [
+        4,
+        5,
+        7,
+        11,
+        14
+      ],
       "niveles": {
         "bajo": {
           "texto": "Comunicás desde el 15% racional: características, precio, argumentos. Pero el 85% de la decisión de compra pasa por otro lado. Tu cliente no compra lo que vendés: compra lo que siente cuando se imagina resolviendo su problema.",
@@ -82,7 +98,13 @@
       "id": "seguimiento",
       "nombre": "Seguimiento",
       "subtitulo": "Conversión y presencia constante",
-      "preguntas": [8, 9, 10, 15],
+      "preguntas": [
+        3,
+        8,
+        9,
+        10,
+        15
+      ],
       "niveles": {
         "bajo": {
           "texto": "Las conversaciones existen, pero se enfrían. No es falta de interés del cliente: es falta de un protocolo que mantenga el vínculo vivo sin presionar.",

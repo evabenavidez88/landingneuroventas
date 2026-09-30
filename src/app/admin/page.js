@@ -58,7 +58,7 @@ export default function AdminPage() {
     const filas = leads.map(l => source === 'formacion'
       ? { ID: l.id, Nombre: l.nombre, Apellido: l.apellido || '', Email: l.email, WhatsApp: l.whatsapp || '', Fecha: new Date(l.fecha).toLocaleString('es-AR', { hour12: false }) }
       : source === 'diagnostico'
-      ? { ID: l.id, Nombre: l.nombre, Email: l.email, Perfil: l.perfil, 'Respuestas A': l.respuestas_a, 'Respuestas B': l.respuestas_b, 'Respuestas C': l.respuestas_c, 'Orden %': l.orden_pct, 'Foco %': l.foco_pct, 'Seguimiento %': l.seguimiento_pct, 'Empezar por': l.eje_prioritario, Respuestas: l.respuestas, Origen: l.origen, Fecha: new Date(l.fecha).toLocaleString('es-AR', { hour12: false }) }
+      ? { ID: l.id, Nombre: l.nombre, Email: l.email, Perfil: l.perfil, 'Total %': l.total_pct, 'Respuestas A': l.respuestas_a, 'Respuestas B': l.respuestas_b, 'Respuestas C': l.respuestas_c, 'Orden %': l.orden_pct, 'Foco %': l.foco_pct, 'Seguimiento %': l.seguimiento_pct, 'Empezar por': l.eje_prioritario, Respuestas: l.respuestas, Origen: l.origen, Fecha: new Date(l.fecha).toLocaleString('es-AR', { hour12: false }) }
       : { ID: l.id, Nombre: l.nombre, Email: l.email, Fecha: new Date(l.fecha).toLocaleString('es-AR', { hour12: false }) }
     );
     const ws = XLSX.utils.json_to_sheet(filas);

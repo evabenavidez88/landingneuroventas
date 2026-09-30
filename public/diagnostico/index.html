@@ -118,7 +118,7 @@ main>#p-datos{max-width:none;margin:-16px -16px 0}
 .perfil h1{font-weight:900;font-size:clamp(28px,8vw,38px);line-height:1.1;margin:14px 0 12px}
 .perfil p{margin:0;opacity:.95}
 .conteo{display:flex;justify-content:center;gap:8px;margin-top:18px;flex-wrap:wrap}
-.conteo span{background:#ffffff26;border-radius:99px;padding:5px 12px;font:700 12px Montserrat,sans-serif}
+.conteo span{background:#ffffff26;border-radius:99px;padding:6px 14px;font:800 13px Montserrat,sans-serif}
 .bloque{margin-top:28px}
 .bloque>h2{font-weight:800;font-size:20px;margin:0 0 14px}
 .fila{background:#fff;border:1px solid var(--linea);border-radius:12px;padding:16px;margin-bottom:10px}
@@ -444,11 +444,11 @@ function pintarResultado(r){
   $('#r-etapa').textContent = r.perfil.etapa;
   $('#r-perfil').textContent = r.perfil.nombre;
   $('#r-desc').textContent = r.perfil.descripcion;
-  $('#r-conteo').innerHTML = ['A','B','C'].map(l => `<span>${r.conteo[l]} respuestas ${l}</span>`).join('');
+  $('#r-conteo').innerHTML = `<span>Puntaje total: ${r.total}%</span>`;
   $('#r-ejes').innerHTML = r.ejes.map(e => `
     <div class="fila nivel-${e.nivel} ${e.id === r.prioritario ? 'prio' : ''}">
       ${e.id === r.prioritario ? '<span class="tag-prio">Empezá por acá</span>' : ''}
-      <div class="fila-top"><div><b>${esc(e.nombre)}</b><small>${esc(e.subtitulo)} · ${NIVEL[e.nivel]}</small></div><span class="pct">${e.porcentaje}%</span></div>
+      <div class="fila-top"><div><b>${esc(e.nombre)}</b><small>${esc(e.subtitulo)} · ${NIVEL[e.nivel]} · aporta el ${e.reparto}% de tu puntaje</small></div><span class="pct">${e.porcentaje}%</span></div>
       <div class="barra-eje"><i style="width:${Math.max(4,e.porcentaje)}%"></i></div>
       <p>${esc(e.texto)}</p>
       <p class="accion">→ ${esc(e.accion)}</p>
@@ -486,7 +486,7 @@ function htmlReporte(r){
       <div style="text-align:right;font-size:12px;color:#555">Autodiagnóstico Neuroventa Digital<br>${esc(fecha)}</div>
     </div>
     <div style="font:900 28px Montserrat,sans-serif;margin:22px 0 4px">${esc(primerNombre(r.nombre))}, este es tu resultado</div>
-    <div style="color:#555;font-size:14px;margin-bottom:20px">Tus respuestas: ${r.conteo.A} A · ${r.conteo.B} B · ${r.conteo.C} C</div>
+    <div style="color:#555;font-size:14px;margin-bottom:20px">Puntaje total: ${r.total}% · Orden ${r.ejes[0].reparto}% · Foco ${r.ejes[1].reparto}% · Seguimiento ${r.ejes[2].reparto}% de tu puntaje</div>
     <div style="background:#865273;color:#fff;border-radius:14px;padding:20px 24px">
       <span style="display:inline-block;background:#f3d519;color:#0a0a0a;font:800 10px Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;border-radius:99px;padding:5px 11px">${esc(r.perfil.etapa)}</span>
       <div style="font:900 30px Montserrat,sans-serif;margin:10px 0 8px">${esc(r.perfil.nombre)}</div>
