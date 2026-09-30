@@ -65,7 +65,7 @@ export default function GraciasPage() {
               rel="noopener noreferrer"
               className="gracias-btn"
             >
-              Quiero mi lugar en la masterclass
+              Reservar mi lugar gratis
             </a>
           </div>
 
