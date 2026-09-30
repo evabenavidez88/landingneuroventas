@@ -81,7 +81,6 @@ main>#p-datos{max-width:none;margin:-16px -16px 0}
 .btn[aria-busy="true"]{opacity:.7;pointer-events:none}
 .confianza{text-align:center;font-size:13px;color:var(--texto-suave);margin:12px 0 0}
 
-.aviso-email{background:var(--turquesa-suave);border:1px solid var(--turquesa-borde);border-radius:12px;padding:12px 14px;font-size:14px;margin:0 0 20px}
 .cita{border-left:4px solid var(--amarillo);padding:4px 0 4px 16px;margin:0 0 24px}
 .cita p{margin:0 0 6px}
 .cita strong{color:var(--ciruela)}
@@ -211,7 +210,6 @@ footer{text-align:center;font-size:13px;color:var(--texto-suave);padding:20px 16
     <div class="tarjeta">
       <span class="pildora">Anatomía de tu canal digital</span>
       <h1 class="titulo" id="t-intro"><span class="js-nombre"></span>, <em>¿empezamos?</em></h1>
-      <p class="aviso-email" id="aviso-email" hidden><strong>Tu checklist ya está en tu email</strong> (revisá también spam o promociones). Mientras tanto, hacé tu diagnóstico acá y tené tu resultado al instante.</p>
       <div class="cita">
         <p>Si alguna vez alguien te preguntó por tu producto, respondiste todo bien… y nunca más apareció, <strong>este diagnóstico es para vos.</strong></p>
         <p>No hay respuestas buenas ni malas. Solo información honesta para empezar a vender con más conciencia y menos esfuerzo.</p>
@@ -315,7 +313,7 @@ const CONFIG = window.DIAG_CONFIG || {
   api: '/api/diagnostico',
   preguntas: '/diagnostico/preguntas.json',
   // Link de invitación al grupo de la masterclass (WhatsApp, Telegram, etc.)
-  masterclass: 'https://neurowebinar.evabenavidez.com/'
+  masterclass: 'https://chat.whatsapp.com/LSt6YbeNgli7BC4uvuDlYU'
 };
 const $ = s => document.querySelector(s);
 const estado = { nombre:'', email:'', acepta:false, origen:'directo', preguntas:[], respuestas:[], actual:0, resultado:null };
@@ -358,7 +356,6 @@ $('#f-datos').addEventListener('submit', e => {
     if (!d || !d.nombre || !d.email) return;
     Object.assign(estado, {nombre:d.nombre, email:d.email, acepta:true, origen:'landing'});
     document.querySelectorAll('.js-nombre').forEach(el => el.textContent = primerNombre(d.nombre));
-    $('#aviso-email').hidden = false;
     document.querySelectorAll('.pantalla').forEach(p => p.classList.toggle('activa', p.id === 'p-intro'));
   } catch (e) {}
 })();
@@ -461,7 +458,8 @@ function pintarResultado(r){
 
 /* PDF e imagen (librerías cargadas solo cuando se usan) */
 function cargarScript(src){ return new Promise((ok, mal) => { if (document.querySelector(`script[src="${src}"]`)) return ok(); const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = mal; document.head.appendChild(s); }); }
-const LIB_PDF = window.DIAG_LIB_PDF || '/diagnostico/vendor/html2pdf.bundle.min.js';
+const LIB_H2C = window.DIAG_LIB_H2C || '/diagnostico/vendor/html2canvas.min.js';
+const LIB_JSPDF = window.DIAG_LIB_JSPDF || '/diagnostico/vendor/jspdf.umd.min.js';
 
 // Entrega un archivo generado: en la vista previa usa la descarga del visor; en tu servidor, la descarga normal.
 async function entregarArchivo(blob, nombre){
@@ -486,7 +484,7 @@ function htmlReporte(r){
       <div style="text-align:right;font-size:12px;color:#555">Autodiagnóstico Neuroventa Digital<br>${esc(fecha)}</div>
     </div>
     <div style="font:900 28px Montserrat,sans-serif;margin:22px 0 4px">${esc(primerNombre(r.nombre))}, este es tu resultado</div>
-    <div style="color:#555;font-size:14px;margin-bottom:20px">Puntaje total: ${r.total}% · Orden ${r.ejes[0].reparto}% · Foco ${r.ejes[1].reparto}% · Seguimiento ${r.ejes[2].reparto}% de tu puntaje</div>
+    <div style="color:#555;font-size:14px;margin-bottom:20px">Puntaje total: ${r.total}% · Aporte de cada eje a tu puntaje: Orden ${r.ejes[0].reparto}%, Foco ${r.ejes[1].reparto}%, Seguimiento ${r.ejes[2].reparto}%</div>
     <div style="background:#865273;color:#fff;border-radius:14px;padding:20px 24px">
       <span style="display:inline-block;background:#f3d519;color:#0a0a0a;font:800 10px Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;border-radius:99px;padding:5px 11px">${esc(r.perfil.etapa)}</span>
       <div style="font:900 30px Montserrat,sans-serif;margin:10px 0 8px">${esc(r.perfil.nombre)}</div>
@@ -510,17 +508,37 @@ function htmlReporte(r){
 }
 $('#b-pdf').addEventListener('click', async () => {
   const b = $('#b-pdf'), err = $('#e-pdf'); err.textContent = ''; b.setAttribute('aria-busy','true');
+  const sy = window.scrollY;
+  let cont;
   try {
-    await cargarScript(LIB_PDF);
+    await cargarScript(LIB_H2C); await cargarScript(LIB_JSPDF);
     await document.fonts.ready;
-    const html = `<div style="width:794px;background:#fff">${htmlReporte(estado.resultado)}</div>`;
-    await html2pdf().set({ margin:0, filename:`Diagnostico-Neuroventa-${primerNombre(estado.nombre)}.pdf`, image:{type:'jpeg',quality:.95}, html2canvas:{scale:2, useCORS:true, windowWidth:794, scrollX:0, scrollY:0}, jsPDF:{unit:'px', format:[794,1123], orientation:'portrait', hotfixes:['px_scaling']}, pagebreak:{mode:['css','avoid-all']} }).from(html, 'string').outputPdf('blob').then(b => entregarArchivo(b, `Diagnostico-Neuroventa-${primerNombre(estado.nombre)}.pdf`));
-  } catch { err.textContent = 'No pudimos generar el PDF. Probá de nuevo o hacé una captura de pantalla.'; }
+    cont = document.createElement('div');
+    cont.id = 'reporte-pdf';
+    cont.style.cssText = 'position:absolute;left:0;top:0;width:794px;background:#fff;opacity:0;pointer-events:none;z-index:-1';
+    cont.innerHTML = htmlReporte(estado.resultado);
+    document.body.appendChild(cont);
+    await Promise.all([...cont.querySelectorAll('img')].map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; })));
+    window.scrollTo(0, 0);
+    const canvas = await html2canvas(cont, {
+      scale: 2, backgroundColor: '#ffffff', useCORS: true, width: 794, windowWidth: 794, scrollX: 0, scrollY: 0,
+      onclone: doc => { doc.getElementById('reporte-pdf').style.opacity = '1'; }
+    });
+    // Una sola hoja A4: se ajusta al ancho y, si hace falta, al alto.
+    const pdf = new window.jspdf.jsPDF({ unit: 'pt', format: 'a4', orientation: 'portrait' });
+    const pw = pdf.internal.pageSize.getWidth(), ph = pdf.internal.pageSize.getHeight();
+    let w = pw, h = canvas.height * pw / canvas.width;
+    if (h > ph) { w = w * ph / h; h = ph; }
+    pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', (pw - w) / 2, 0, w, h);
+    await entregarArchivo(pdf.output('blob'), `Diagnostico-Neuroventa-${primerNombre(estado.nombre)}.pdf`);
+  } catch (e) { err.textContent = 'No pudimos generar el PDF. Probá de nuevo o hacé una captura de pantalla.'; }
+  if (cont) cont.remove();
+  window.scrollTo(0, sy);
   b.removeAttribute('aria-busy');
 });
 $('#b-imagen').addEventListener('click', async () => {
   try {
-    await cargarScript(LIB_PDF);
+    await cargarScript(LIB_H2C);
     await document.fonts.ready;
     const canvas = await html2canvas($('#historia'), {scale:3, backgroundColor:null, scrollX:-window.scrollX, scrollY:-window.scrollY});
     const blob = await new Promise(r => canvas.toBlob(r, 'image/png'));

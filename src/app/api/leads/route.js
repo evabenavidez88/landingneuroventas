@@ -51,10 +51,14 @@ export async function POST(request) {
       'INSERT INTO "Leads" (nombre, email) VALUES ($1, $2) RETURNING *',
       [nombre.trim(), email.trim().toLowerCase()]
     );
-    try {
-      await sendBienvenidaEmail(result.rows[0].email, result.rows[0].nombre);
-    } catch (mailErr) {
-      console.error('Error enviando mail de bienvenida:', mailErr);
+    // Envío del email con el checklist pausado: después del formulario la persona hace el diagnóstico online.
+    // Para reactivarlo, poner ENVIAR_EMAIL_CHECKLIST=true en las variables de Railway.
+    if (process.env.ENVIAR_EMAIL_CHECKLIST === 'true') {
+      try {
+        await sendBienvenidaEmail(result.rows[0].email, result.rows[0].nombre);
+      } catch (mailErr) {
+        console.error('Error enviando mail de bienvenida:', mailErr);
+      }
     }
     return Response.json(result.rows[0], { status: 201 });
   } catch (e) {
