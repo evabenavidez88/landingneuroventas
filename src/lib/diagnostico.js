@@ -78,5 +78,13 @@ export function calcularResultado(nombre, respuestas) {
   // Eje prioritario: el de menor porcentaje (en empate: Orden > Foco > Seguimiento).
   const prioritario = ejes.reduce((min, e) => (e.porcentaje < min.porcentaje ? e : min), ejes[0]);
 
-  return { nombre, perfil: contenido.perfiles[clave], conteo, total, ejes, prioritario: prioritario.id };
+  // Próximo paso: según el eje prioritario; suma la fortaleza si el eje más fuerte lo es y es otro.
+  const pp = contenido.proximo_paso;
+  const fuerte = ejes.reduce((max, e) => (e.porcentaje > max.porcentaje ? e : max), ejes[0]);
+  let proximo_paso = pp[prioritario.id][clave === 'C' ? 'avanzado' : 'base'];
+  if (clave !== 'C' && fuerte.id !== prioritario.id && fuerte.porcentaje >= R.corte_alto) {
+    proximo_paso += ` Apoyate en tu fortaleza en ${fuerte.nombre}: ${pp[fuerte.id].fortaleza}`;
+  }
+
+  return { nombre, perfil: contenido.perfiles[clave], conteo, total, ejes, prioritario: prioritario.id, proximo_paso };
 }

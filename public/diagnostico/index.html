@@ -453,7 +453,7 @@ function pintarResultado(r){
       <p>${esc(e.texto)}</p>
       <p class="accion">→ ${esc(e.accion)}</p>
     </div>`).join('');
-  $('#r-proximo').textContent = r.perfil.proximo_paso;
+  $('#r-proximo').textContent = r.proximo_paso;
   $('#h-perfil').textContent = r.perfil.nombre;
   $('#h-ejes').innerHTML = r.ejes.map(e => `<div>${esc(e.nombre)}<em><i style="width:${Math.max(4,e.porcentaje)}%"></i></em><span>${e.porcentaje}%</span></div>`).join('');
   $('#b-masterclass').href = CONFIG.masterclass;
@@ -502,7 +502,7 @@ function htmlReporte(r){
       </div>`).join('')}
     <div style="background:#57bdb61f;border:1px solid #57bdb659;border-radius:12px;padding:14px 18px;margin-top:14px;page-break-inside:avoid">
       <div style="font:800 14px Montserrat,sans-serif;margin-bottom:4px">Tu próximo paso</div>
-      <div style="font-size:14px">${esc(r.perfil.proximo_paso)}</div>
+      <div style="font-size:14px">${esc(r.proximo_paso)}</div>
     </div>
     <div style="margin-top:14px;text-align:center;font:italic 14px Lato,sans-serif;color:#555;page-break-inside:avoid">“Tu cerebro ya sabe cómo vender. Solo necesita que vos le des el orden, el foco y la dirección.” — Eva Benavidez</div>
     <div style="margin-top:8px;text-align:center;font-size:12px;color:#555">evabenavidez.com · @evabenavidez.negocios · WhatsApp 351 609-8988</div>

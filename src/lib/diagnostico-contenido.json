@@ -16,29 +16,19 @@
       "id": "reactivo",
       "nombre": "Modo reactivo",
       "etapa": "Etapa inicial",
-      "descripcion": "Tu canal tiene mucho por construir y definir. Hoy funciona por impulso, sin una estructura ni una estrategia clara. El 85% de tus clientes decide por emoción: es momento de empezar a activarlo.",
-      "proximo_paso": "Empezá por lo básico: ordenar tu canal. Con un proceso simple de atención vas a dejar de perder consultas que ya tenés."
+      "descripcion": "Tu canal tiene mucho por construir. Hoy funciona por impulso, sin una estructura ni una estrategia definida. El 85% de tus clientes decide por emoción: es momento de empezar a activarlo con método."
     },
     "B": {
       "id": "construccion",
       "nombre": "En construcción",
       "etapa": "En desarrollo",
-      "descripcion": "Tenés base, pero con fugas de oportunidades importantes. Tus prácticas están instaladas aunque incompletas, y comunicás más desde el 15% racional. Estás a pocos ajustes de dar un salto real en tus resultados digitales.",
-      "proximo_paso": "Tu salto está en la comunicación emocional y en el seguimiento: ahí se están escapando ventas que ya casi eran tuyas."
+      "descripcion": "Tenés base, pero con fugas de oportunidades. Tus prácticas están instaladas aunque incompletas. Estás a pocos ajustes de dar un salto real en tus resultados digitales."
     },
     "C": {
       "id": "activado",
       "nombre": "Canal activado",
       "etapa": "Nivel avanzado",
-      "descripcion": "Tu canal vende con intención, proceso y estrategia emocional, y está listo para el siguiente nivel. El desafío ahora es sistematizar y escalar lo que ya hacés bien.",
-      "proximo_paso": "Documentá lo que te funciona y convertilo en sistema: así podés crecer sin depender de estar en cada conversación."
-    },
-    "MIXTO": {
-      "id": "mixto",
-      "nombre": "Canal en transición",
-      "etapa": "Resultado mixto",
-      "descripcion": "Tenés fortalezas en algunos ejes y baches en otros. Tu diagnóstico por eje te muestra exactamente por dónde empezar.",
-      "proximo_paso": "No hace falta cambiar todo: enfocate primero en el eje más débil y vas a notar el impacto en todo el canal."
+      "descripcion": "Tu canal vende con intención, proceso y estrategia. Está listo para el siguiente nivel: sistematizar y escalar lo que ya hacés bien."
     }
   },
   "ejes": [
@@ -120,5 +110,23 @@
         }
       }
     }
-  ]
+  ],
+  "proximo_paso": {
+    "_nota": "Se arma con el eje prioritario (el más bajo). 'base' para niveles bajo y medio; 'avanzado' si el perfil es Canal activado. Si el eje más fuerte es fortaleza (desde corte_alto) y no es el prioritario, se suma 'Apoyate en tu fortaleza en <eje>: <fortaleza>'.",
+    "orden": {
+      "base": "Tu salto está en el Orden: con un proceso claro de atención vas a dejar de perder consultas que ya tenés.",
+      "avanzado": "Tu próximo nivel está en el Orden: automatizá y delegá lo que ya funciona para crecer sin estar en cada conversación.",
+      "fortaleza": "ya tenés una base operativa que te sostiene."
+    },
+    "foco": {
+      "base": "Tu salto está en el Foco: cuando comunicás la transformación que generás, y no solo el producto, tu cliente decide más rápido.",
+      "avanzado": "Tu próximo nivel está en el Foco: llevá tu comunicación de valor a cada punto de contacto para que la experiencia sea coherente.",
+      "fortaleza": "ya conectás con lo que tu cliente siente."
+    },
+    "seguimiento": {
+      "base": "Tu salto está en el Seguimiento: con un protocolo simple vas a recuperar conversaciones que hoy se enfrían sin que te des cuenta.",
+      "avanzado": "Tu próximo nivel está en el Seguimiento: medí tu conversión y tu recompra para saber dónde seguir optimizando.",
+      "fortaleza": "ya sabés sostener el vínculo sin presionar."
+    }
+  }
 }
