@@ -17,26 +17,28 @@ export default function PresentacionEva() {
           <div className="pres-content">
             <span className="tag-label">Soy Eva Benavidez</span>
             <h2>
-              Tu cerebro ya sabe cómo vender.
+              El cerebro de tu cliente decide.
               <br />
-              <em>Solo necesita orden, foco y dirección.</em>
+              <em>Vos podés aprender a acompañar esa decisión.</em>
             </h2>
             <p>
               Hace más de 20 años acompaño a personas y equipos a entender cómo
-              funciona realmente la decisión de compra.
+              se toma una decisión de compra. Y casi siempre veo lo mismo:{' '}
+              <strong>el problema no es el producto, es la falta de estructura.</strong>
             </p>
             <p>
-              Y lo que más me sorprende siempre es esto:{' '}
-              <strong>el problema casi nunca es el producto.</strong>
+              Hoy la IA puede ayudarte a responder más rápido y a sostener más
+              conversaciones, pero solo si sabés qué decir y por qué.
             </p>
             <p>
-              Es la falta de estructura. Y eso —{' '}
-              <em>eso sí se puede transformar.</em>
+              Este checklist es el primer paso para dejar de improvisar y
+              empezar a vender con más conciencia y menos esfuerzo.
             </p>
-            <p>
-              Este checklist es el primer paso para que dejes de improvisar y
-              empieces a vender con más conciencia y menos esfuerzo.
-            </p>
+            <ul className="pres-cifras">
+              <li><strong>+20</strong> años de trayectoria</li>
+              <li><strong>+1500</strong> personas formadas</li>
+              <li><strong>+25</strong> empresas con casos de éxito</li>
+            </ul>
             <span className="pres-firma">— Eva Benavidez · Coach &amp; Consultora</span>
           </div>
         </div>

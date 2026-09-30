@@ -4,17 +4,20 @@ const ejes = [
   {
     icon: '/images/icon-eje-orden.png',
     title: 'Orden',
-    desc: 'Base operativa de tu canal digital',
+    desc: 'Base operativa de tu canal digital.',
+    ia: 'Sin proceso, la IA solo acelera la improvisación.',
   },
   {
     icon: '/images/icon-eje-foco.png',
     title: 'Foco',
     desc: 'Emoción y valor. La activación del inconsciente.',
+    ia: 'La IA te ayuda a escribir; el valor lo definís vos.',
   },
   {
     icon: '/images/icon-eje-seguimiento.png',
     title: 'Seguimiento',
     desc: 'Resiliencia y cierre. La inteligencia de dar seguimiento.',
+    ia: 'Con método, la IA te ayuda a no soltar ninguna conversación.',
   },
 ];
 
@@ -40,8 +43,18 @@ export default function EjesSection() {
               />
               <div className="eje-card-title">{eje.title}</div>
               <div className="eje-card-desc">{eje.desc}</div>
+              <div className="eje-card-ia">{eje.ia}</div>
             </div>
           ))}
+        </div>
+        <div className="ejes-ia">
+          <p>
+            La IA amplifica lo que ya existe. Si hay orden, lo multiplica. Si
+            hay desorden, también.
+          </p>
+          <p>
+            <strong>Primero orden. Después, IA.</strong>
+          </p>
         </div>
       </div>
     </section>

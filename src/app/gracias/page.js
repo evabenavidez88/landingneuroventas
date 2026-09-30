@@ -1,20 +1,27 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+// Completar antes de publicar: horario de la masterclass (ARG).
+const HORA_MASTERCLASS = '[HORA]';
+const URL_MASTERCLASS = 'https://neurowebinar.evabenavidez.com/';
+
 export default function GraciasPage() {
+  const [nombre, setNombre] = useState('');
+
+  // El evento Lead del píxel se registra al enviar el formulario (Hero.js).
   useEffect(() => {
-    if (typeof fbq !== 'undefined') {
-      fbq('track', 'Lead');
-    }
+    try {
+      setNombre(sessionStorage.getItem('checklist_nombre') || '');
+    } catch (e) {}
   }, []);
 
   return (
     <div className="gracias-wrap">
 
-      {/* Barra superior amarilla */}
+      {/* Barra superior */}
       <div className="barra-top-gracias" />
 
       {/* Logo */}
@@ -33,25 +40,35 @@ export default function GraciasPage() {
       {/* Contenido central */}
       <main className="gracias-main">
         <div className="gracias-card">
-          <div className="gracias-icono">🎉</div>
           <h1 className="gracias-titulo">
-            ¡Ya está todo listo!
+            Listo{nombre ? `, ${nombre}` : ''}. Tu checklist ya está en tu email.
           </h1>
           <p className="gracias-sub">
-            Tu <strong>Checklist Neuroventa</strong> está esperándote.<br />
-            Descargalo ahora y empezá tu diagnóstico hoy.
+            Revisá también spam o promociones, por las dudas.
           </p>
-          <a
-            href="https://drive.google.com/file/d/1yUxCDVe2rmhHDC3GkYfxPl9lw1rhj_bA/view"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="gracias-btn"
-          >
-            ⬇ Descargar mi Checklist Gratuito
-          </a>
-          <p className="gracias-nota">
-            🔒 Sin spam · Descarga inmediata · Es gratis
-          </p>
+
+          <div className="gracias-invitacion">
+            <p className="gracias-invitacion-titulo">
+              Mientras lo respondés, te hago una invitación:
+            </p>
+            <p className="gracias-invitacion-texto">
+              Hago la <strong>Masterclass Neuroventa + IA</strong>, gratuita y en
+              vivo, en dos fechas: <strong>jueves 22 de octubre</strong> o{' '}
+              <strong>martes 27 de octubre de 2026</strong>, a las{' '}
+              {HORA_MASTERCLASS} hs (ARG). Vamos a ver por qué tu cliente duda
+              aunque le interese, y cómo usar la IA para responderle mejor sin
+              perder lo humano.
+            </p>
+            <a
+              href={URL_MASTERCLASS}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="gracias-btn"
+            >
+              Quiero mi lugar en la masterclass
+            </a>
+          </div>
+
           <Link href="/" className="gracias-volver">
             ← Volver al inicio
           </Link>
@@ -97,13 +114,29 @@ export default function GraciasPage() {
           box-shadow: 0 4px 32px rgba(0,0,0,0.08);
           border-top: 5px solid #57BDB6;
         }
-        .gracias-icono {
-          font-size: 3.5rem;
-          margin-bottom: 1.25rem;
+        .gracias-invitacion {
+          border-top: 1px solid rgba(0,0,0,0.08);
+          padding-top: 1.75rem;
+          text-align: left;
         }
+        .gracias-invitacion-titulo {
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 800;
+          font-size: 1rem;
+          color: #0a0a0a;
+          margin-bottom: 0.6rem;
+        }
+        .gracias-invitacion-texto {
+          font-size: 0.98rem;
+          color: #555;
+          line-height: 1.65;
+          margin-bottom: 1.5rem;
+        }
+        .gracias-invitacion-texto strong { color: #0a0a0a; }
+        .gracias-invitacion .gracias-btn { display: block; text-align: center; }
         .gracias-titulo {
           font-family: 'Montserrat', sans-serif;
-          font-size: 2rem;
+          font-size: 1.75rem;
           font-weight: 800;
           color: #0a0a0a;
           margin-bottom: 1rem;
@@ -133,11 +166,6 @@ export default function GraciasPage() {
           transform: translateY(-2px);
           box-shadow: 0 6px 24px rgba(243,213,25,0.5);
         }
-        .gracias-nota {
-          font-size: 0.8rem;
-          color: #999;
-          margin-top: 1rem;
-        }
         .gracias-volver {
           display: block;
           margin-top: 1.75rem;
@@ -154,7 +182,7 @@ export default function GraciasPage() {
             padding: 2rem 1.5rem;
           }
           .gracias-titulo {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
           }
         }
       `}</style>

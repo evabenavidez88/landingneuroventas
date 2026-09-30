@@ -2,8 +2,8 @@ import './globals.css';
 import Script from 'next/script';
 
 export const metadata = {
-  title: 'Checklist Neuroventa Digital – Recurso Gratuito | Eva Benavidez',
-  description: '15 preguntas para saber exactamente qué ajustar en tu canal digital y vender más sin improvisar.',
+  title: 'Checklist Neuroventa Digital + IA gratis | Eva Benavidez',
+  description: '15 preguntas para diagnosticar cómo vendés hoy por WhatsApp y redes, y qué ordenar antes de sumar IA. Descargá gratis el checklist.',
 };
 
 export default function RootLayout({ children }) {

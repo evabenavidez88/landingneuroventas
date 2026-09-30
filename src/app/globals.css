@@ -72,7 +72,7 @@ nav img { height: 56px; width: auto; }
 
 /* Hero contenido izquierda */
 .hero-content {
-  padding: 52px 40px 52px 52px;
+  padding: 40px 40px 40px 52px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -90,7 +90,7 @@ nav img { height: 56px; width: auto; }
 }
 .hero-content h1 {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(28px, 3.8vw, 48px);
+  font-size: clamp(28px, 3.2vw, 42px);
   font-weight: 900;
   line-height: 1.1;
   color: var(--negro);
@@ -98,8 +98,22 @@ nav img { height: 56px; width: auto; }
   letter-spacing: -0.5px;
 }
 .hero-content h1 em {
-  font-style: normal;
+  font-style: italic;
   color: var(--turquesa);
+}
+.hero-content h1 .h1-linea2 {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.72em;
+  font-weight: 800;
+  line-height: 1.2;
+}
+.hero-respaldo {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px; font-weight: 700;
+  color: var(--negro);
+  margin: -18px 0 22px;
+  letter-spacing: 0.2px;
 }
 .hero-sub {
   font-size: 16px;
@@ -283,6 +297,20 @@ nav img { height: 56px; width: auto; }
 .eje-card-desc {
   font-size: 14px; color: #555; margin-top: 8px; line-height: 1.55;
 }
+.eje-card-ia {
+  font-size: 14px; color: var(--negro); font-weight: 700;
+  margin-top: 14px; padding-top: 14px; line-height: 1.5;
+  border-top: 1px dashed var(--turquesa-borde);
+}
+.ejes-ia {
+  text-align: center; max-width: 620px; margin: 36px auto 0;
+  font-size: 17px; line-height: 1.6; color: var(--texto-suave);
+}
+.ejes-ia strong {
+  display: inline-block; margin-top: 6px;
+  font-family: 'Montserrat', sans-serif; font-weight: 800;
+  font-size: 19px; color: var(--negro);
+}
 
 /* ── PRESENTACIÓN EVA ── */
 .presentacion {
@@ -326,12 +354,56 @@ nav img { height: 56px; width: auto; }
 }
 .pres-content p strong { color: var(--negro); }
 .pres-content p em { color: var(--turquesa); font-style: normal; font-weight: 700; }
+.pres-cifras {
+  list-style: none; display: flex; flex-wrap: wrap; gap: 10px 28px;
+  margin: 20px 0 18px;
+}
+.pres-cifras li {
+  font-size: 14px; color: var(--texto-suave); line-height: 1.3;
+}
+.pres-cifras strong {
+  display: block; font-family: 'Montserrat', sans-serif;
+  font-size: 26px; font-weight: 900; color: var(--turquesa);
+}
 .pres-firma {
   font-family: 'Montserrat', sans-serif;
   font-size: 14px; font-weight: 700;
   color: var(--turquesa); margin-top: 10px;
   display: block;
 }
+
+/* ── CIERRE ── */
+.cierre {
+  background: var(--fondo);
+  border-top: 1px solid rgba(0,0,0,0.06);
+  padding: 56px 0 64px;
+  text-align: center;
+}
+.cierre h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 900; color: var(--negro);
+  line-height: 1.2; max-width: 640px; margin: 0 auto 14px;
+}
+.cierre p {
+  font-size: 16px; color: var(--texto-suave); line-height: 1.6;
+  max-width: 520px; margin: 0 auto 26px;
+}
+.btn-cierre {
+  display: inline-block;
+  background: var(--turquesa); color: var(--negro);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800; font-size: 14px;
+  letter-spacing: 1px; text-transform: uppercase;
+  padding: 16px 36px; border-radius: 6px;
+  text-decoration: none; transition: all 0.25s;
+}
+.btn-cierre:hover {
+  background: #6eccc5; transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(87,189,182,0.4);
+}
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 /* ── FOOTER ── */
 .footer-wave { line-height: 0; margin-bottom: -2px; }
@@ -453,8 +525,25 @@ nav img { height: 56px; width: auto; }
 
 @media (max-width: 480px) {
   .topbar { font-size: 11px; padding: 8px 12px; }
-  .hero-content h1 { font-size: 22px; }
-  .hero-foto { height: 240px; }
+  nav { padding: 8px 20px; }
+  nav img { height: 38px; }
+  .hero-foto { height: 112px; }
+  .hero-foto img { object-position: center 18%; }
+  .hero-foto-badge { bottom: 12px; right: 12px; padding: 7px 11px; font-size: 9px; }
+  .hero-content { padding: 18px 18px 28px; }
+  .hero-tag { margin-bottom: 12px; font-size: 9px; }
+  .hero-content h1 { font-size: 20px; margin-bottom: 10px; }
+  .hero-content h1 .h1-linea2 { margin-top: 6px; }
+  .hero-sub { font-size: 14px; line-height: 1.5; margin-bottom: 18px; }
+  .hero-respaldo { font-size: 10.5px; letter-spacing: 0; margin: -10px 0 12px; }
+  .hero-form { padding: 16px 16px 14px; }
+  .hero-form p.form-titulo { font-size: 14px; margin-bottom: 12px; }
+  .form-group { margin-bottom: 10px; }
+  .form-group input { padding: 12px 14px; }
+  .btn-submit { padding: 15px; margin-top: 2px; }
+  .pres-cifras { gap: 10px; flex-wrap: nowrap; }
+  .pres-cifras li { flex: 1 1 0; min-width: 0; font-size: 12.5px; }
+  .pres-cifras strong { font-size: 22px; }
   .eje-card { padding: 24px 16px; }
   .footer-amarillo { padding: 32px 20px 40px; }
 }

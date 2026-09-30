@@ -67,11 +67,14 @@ export default function Hero() {
       console.log(e);
     }
 
+    try {
+      sessionStorage.setItem('checklist_nombre', nombre.trim().split(' ')[0]);
+    } catch (e) {}
     router.push('/gracias');
   }
 
   return (
-    <section className="hero">
+    <section className="hero" id="checklist">
       <div className="barra-izq" />
       <div className="barra-top" />
       <div className="hero-inner">
@@ -80,17 +83,23 @@ export default function Hero() {
         <div className="hero-content">
           <span className="hero-tag">Recurso Gratuito · Autodiagnóstico</span>
           <h1>
-            Descubrí cómo está vendiendo hoy <em>tu cerebro</em>
+            ¿Te escriben por WhatsApp y redes, pero no te compran?
+            <span className="h1-linea2">
+              Descubrí dónde <em>tu cerebro</em> pierde esas ventas.
+            </span>
           </h1>
           <p className="hero-sub">
-            15 preguntas para saber exactamente qué ajustar en tu canal
-            digital — y vender más sin improvisar.
+            15 preguntas para diagnosticar tu canal digital en 3 ejes (Orden,
+            Foco y Seguimiento) y saber qué ajustar primero, antes de sumar IA.
+          </p>
+          <p className="hero-respaldo">
+            Creado por Eva Benavidez · +20 años · +1500 personas formadas
           </p>
 
           {!enviado ? (
             <div className="hero-form">
               <p className="form-titulo">
-                Completá tus datos y descargalo ahora 👇
+                Dejame tus datos y te llega al instante.
               </p>
               <div className="form-group">
                 <input
@@ -151,10 +160,10 @@ export default function Hero() {
                 onClick={handleSubmit}
                 disabled={enviando}
               >
-                {enviando ? 'Enviando...' : '→ Quiero mi checklist gratuito'}
+                {enviando ? 'Enviando...' : 'Quiero mi checklist'}
               </button>
               <p className="form-privacidad">
-                🔒 Sin spam · Descarga inmediata · Es gratis
+                Gratis · Sin spam · Descarga inmediata
               </p>
             </div>
           ) : (
@@ -189,7 +198,7 @@ export default function Hero() {
           <div className="hero-foto-badge">
             Checklist
             <br />
-            Gratuito ✦
+            Gratuito
           </div>
         </div>
 

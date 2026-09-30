@@ -24,14 +24,14 @@ export default function Footer() {
           className="footer-logo"
           style={{ height: '70px', width: 'auto' }}
         />
-        <p className="footer-frase">¡Sí! Podemos lograrlo juntos</p>
+        <p className="footer-frase">Con orden y dirección, todo se logra.</p>
         <div className="footer-redes">
           <a
-            href="https://www.instagram.com/evabenavidez.coach"
+            href="https://www.instagram.com/evabenavidez.negocios/"
             target="_blank"
             rel="noopener noreferrer"
             className="red-btn"
-            aria-label="Instagram"
+            aria-label="Instagram de Eva Benavidez (@evabenavidez.negocios)"
           >
             <svg
               width="20"
@@ -53,7 +53,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className="red-btn"
-            aria-label="LinkedIn"
+            aria-label="LinkedIn de Eva Benavidez"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="#0a0a0a">
               <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
@@ -63,7 +63,7 @@ export default function Footer() {
           </a>
         </div>
         <p className="footer-copy">
-          © 2025 Eva Benavidez · Coach &amp; Consultora ·{' '}
+          © 2026 Eva Benavidez · Coach &amp; Consultora ·{' '}
           <a href="https://evabenavidez.com">evabenavidez.com</a>
         </p>
       </div>

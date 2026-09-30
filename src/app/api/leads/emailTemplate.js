@@ -94,7 +94,7 @@ export function buildEmailHtml(nombre) {
 <p style="margin:0 0 2px 0; font-size:16px; color:#222222; font-weight:700;">Eva Benavidez</p>
 <p style="margin:0 0 4px 0; font-size:14px; color:#888888;">Neurocoach · Consultora · Formadora</p>
 <p style="margin:0; font-size:11px;">
-<a href="https://www.instagram.com/evabenavidez.coach" style="color:#6d3a58; text-decoration:none; margin-right:10px;">📸 Instagram</a>
+<a href="https://www.instagram.com/evabenavidez.negocios/" style="color:#6d3a58; text-decoration:none; margin-right:10px;">📸 Instagram</a>
 <a href="https://www.linkedin.com/in/benavidezevangelina/" style="color:#6d3a58; text-decoration:none;">💼 LinkedIn</a>
 </p>
 </td>
