@@ -192,7 +192,7 @@ export default function Hero() {
             src="/images/hero-foto.jpg"
             alt="Eva Benavidez"
             fill
-            style={{ objectFit: 'cover', objectPosition: 'center top', filter: 'brightness(0.92)' }}
+            style={{ objectFit: 'cover', filter: 'brightness(0.92)' }}
             priority
           />
           <div className="hero-foto-badge">
