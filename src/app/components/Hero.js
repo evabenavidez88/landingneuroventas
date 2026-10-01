@@ -87,7 +87,7 @@ export default function Hero() {
           <h1>
             ¿Te escriben por WhatsApp y redes, pero no te compran?
             <span className="h1-linea2">
-              Descubrí dónde <em>tu cerebro</em> pierde esas ventas.
+              Descubrí dónde <em>estás perdiendo</em> esas ventas.
             </span>
           </h1>
           <p className="hero-sub">
