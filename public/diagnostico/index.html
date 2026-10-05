@@ -167,6 +167,7 @@ main>#p-datos{max-width:none;margin:-16px -16px 0}
 .cta p{margin:0 0 18px;color:#d8d8d8}
 .cta p strong{color:#fff}
 .cta-tag{display:inline-block;background:var(--amarillo);color:var(--negro);font:800 10.5px Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;border-radius:99px;padding:6px 12px;margin-bottom:14px}
+.cta[hidden],.cta-nota[hidden]{display:none!important}
 .cta .cta-nota{margin:12px 0 0;font-size:13px;color:#bdbdbd}
 .frase{text-align:center;font:italic 15px Lato,sans-serif;color:var(--texto-suave);margin:32px 8px 0}
 .frase b{display:block;font:800 12px Montserrat,sans-serif;font-style:normal;letter-spacing:.1em;margin-top:8px;color:var(--negro)}
@@ -256,7 +257,7 @@ footer{text-align:center;font-size:13px;color:var(--texto-suave);padding:20px 16
 
   <!-- 5. Resultado -->
   <section class="pantalla" id="p-resultado" aria-labelledby="r-perfil">
-    <p class="saludo"><span class="js-nombre"></span>, este es tu resultado</p>
+    <p class="saludo"><span class="js-nombre"></span>, gracias por darte este tiempo. Acá está tu diagnóstico.</p>
     <div class="perfil">
       <span class="etapa" id="r-etapa"></span>
       <h1 id="r-perfil"></h1>
@@ -273,7 +274,7 @@ footer{text-align:center;font-size:13px;color:var(--texto-suave);padding:20px 16
       <h2>Tu próximo paso</h2>
       <div class="proximo"><p id="r-proximo"></p></div>
       <div class="acciones">
-        <button class="btn ciruela" id="b-pdf" type="button">↓ Descargar mi resultado</button>
+        <button class="btn ciruela" id="b-pdf" type="button">↓ Descargar mi diagnóstico</button>
       </div>
       <p class="error" id="e-pdf" role="alert"></p>
     </div>
@@ -284,7 +285,7 @@ footer{text-align:center;font-size:13px;color:var(--texto-suave);padding:20px 16
       <div class="historia" id="historia" aria-label="Tarjeta para compartir en historias">
         <img class="h-logo" src="/diagnostico/img/logo.webp" alt="Eva Benavidez, Coach y Consultora">
         <div class="h-card">
-          <div class="k">Mi diagnóstico de Neuroventa Digital</div>
+          <div class="k">Mi diagnóstico Neuroventa Digital + IA</div>
           <div class="n" id="h-perfil"></div>
           <div class="h-ejes" id="h-ejes"></div>
         </div>
@@ -297,15 +298,23 @@ footer{text-align:center;font-size:13px;color:var(--texto-suave);padding:20px 16
       <button class="enlace" id="b-imagen" type="button">¿No podés hacer captura? Guardala como imagen</button>
     </div>
 
-    <div class="bloque cta">
-      <span class="cta-tag">Masterclass gratuita · En vivo</span>
-      <h2>El diagnóstico te mostró dónde estás. <em>El próximo paso es en vivo.</em></h2>
-      <p><strong>Masterclass Neuroventa + IA:</strong> jueves 22 o martes 27 de octubre. Vas a ver por qué tu cliente duda aunque le interese, y cómo usar la IA para responderle mejor sin perder lo humano.</p>
-      <a class="btn" id="b-masterclass" href="#" target="_blank" rel="noopener">→ Sumate gratis</a>
-      <p class="cta-nota">Gratuita y en vivo. Cupos limitados.</p>
+    <div class="bloque cta" id="cta-masterclass">
+      <span class="cta-tag">Masterclass gratuita · En vivo con Eva</span>
+      <h2>El diagnóstico te mostró dónde estás. <em>El próximo paso lo damos en vivo.</em></h2>
+      <p><strong>Masterclass Neuroventa Digital + IA:</strong> jueves 22 o martes 27 de octubre, 19 h (ARG). Vas a descubrir en qué momento del chat se te escapa la venta y cómo la IA te ayuda a ordenar tu proceso sin perder lo humano.</p>
+      <a class="btn" id="b-masterclass" href="#" target="_blank" rel="noopener">→ Reservar mi lugar gratis</a>
+      <p class="cta-nota">Te sumás al grupo de WhatsApp · No se graba.</p>
     </div>
 
-    <p class="frase">“Tu cerebro ya sabe cómo vender. Solo necesita que vos le des el orden, el foco y la dirección.”<b>EVA BENAVIDEZ</b></p>
+    <div class="bloque cta" id="cta-entrenamiento" hidden>
+      <span class="cta-tag">Entrenamiento Neuroventa Digital + IA · Online en vivo</span>
+      <h2>El diagnóstico te mostró dónde estás. <em>Ahora, el método para avanzar.</em></h2>
+      <p>En 3 encuentros en vivo trabajás Orden, Foco y Seguimiento sobre tu propio negocio, con la IA como aliada para ordenar tu proceso sin perder lo humano.</p>
+      <a class="btn" id="b-entrenamiento" href="https://neuroformacion.evabenavidez.com/" target="_blank" rel="noopener">→ Quiero inscribirme</a>
+      <p class="cta-nota" id="cta-precio" hidden>Precio de lanzamiento con 30% OFF hasta hoy, 28/10.</p>
+    </div>
+
+    <p class="frase">“Tu cerebro ya sabe cómo vender. Solo necesita orden, foco y dirección.”<b>EVA BENAVIDEZ</b></p>
   </section>
 </main>
 
@@ -318,7 +327,10 @@ const CONFIG = window.DIAG_CONFIG || {
   api: '/api/diagnostico',
   preguntas: '/diagnostico/preguntas.json',
   // Link de invitación al grupo de la masterclass (WhatsApp, Telegram, etc.)
-  masterclass: 'https://chat.whatsapp.com/LSt6YbeNgli7BC4uvuDlYU'
+  masterclass: 'https://chat.whatsapp.com/LSt6YbeNgli7BC4uvuDlYU',
+  // Desde el 28/10 00:00 (ARG) la invitación pasa al Entrenamiento; la línea de precio solo se ve el 28/10.
+  cambio_entrenamiento: '2026-10-28T03:00:00Z',
+  fin_promo: '2026-10-29T03:00:00Z'
 };
 const $ = s => document.querySelector(s);
 const estado = { nombre:'', email:'', acepta:false, origen:'directo', preguntas:[], respuestas:[], actual:0, resultado:null };
@@ -445,11 +457,11 @@ const NIVEL = {bajo:'A trabajar', medio:'En proceso', alto:'Fortaleza'};
 function totales(r){ const pt = r.ejes.reduce((a,e)=>a+e.puntos,0), mx = r.ejes.reduce((a,e)=>a+e.maximo,0); return {pt, mx, falta: mx-pt}; }
 function fraseTotal(r){ const t = totales(r);
   return t.falta > 0
-    ? `Sumaste <b>${t.pt} de ${t.mx} puntos (${r.total}%)</b>. Tenés ${t.falta} ${t.falta===1?'punto':'puntos'} de mejora para tener tu canal funcionando al máximo.`
-    : `Sumaste <b>${t.pt} de ${t.mx} puntos (100%)</b>. Tu canal funciona al máximo.`; }
+    ? `Tus canales digitales están al <b>${r.total}%</b>. Alcanzaste ${t.pt} de ${t.mx} puntos y estás a ${t.falta} ${t.falta===1?'punto':'puntos'} de tu mejor versión. La buena noticia: ya sabés por dónde empezar.`
+    : `Tus canales digitales están al <b>100%</b>. Alcanzaste ${t.pt} de ${t.mx} puntos: tu canal funciona con método en cada eje.`; }
 function fraseEje(e){ const f = e.maximo - e.puntos;
-  return f > 0 ? `<b>${e.puntos} de ${e.maximo} puntos.</b> Tenés ${f} ${f===1?'punto':'puntos'} de mejora en este eje.` : `<b>${e.puntos} de ${e.maximo} puntos.</b> Este eje ya es tu fortaleza.`; }
-const LEYENDA = 'Cómo leer tus ejes: menos de 40% = A trabajar · 40% a 69% = En proceso · 70% o más = Fortaleza. Cada eje suma 5 preguntas (máximo 10 puntos).';
+  return f > 0 ? `<b>${e.puntos} de ${e.maximo} puntos.</b> Te ${f===1?'queda 1':'quedan '+f} por ganar en este eje.` : `<b>${e.puntos} de ${e.maximo} puntos.</b> Este eje ya es tu fortaleza.`; }
+const LEYENDA = 'Cómo leer tus ejes: menos de 40% = A trabajar · 40% a 69% = En proceso · 70% o más = Fortaleza. Cada eje tiene 5 preguntas (máximo 10 puntos).';
 function pintarResultado(r){
   $('#r-etapa').textContent = r.perfil.etapa;
   $('#r-perfil').textContent = r.perfil.nombre;
@@ -468,6 +480,10 @@ function pintarResultado(r){
   $('#h-perfil').textContent = r.perfil.nombre;
   $('#h-ejes').innerHTML = r.ejes.map(e => `<div>${esc(e.nombre)}<em><i style="width:${Math.max(4,e.porcentaje)}%"></i></em><span>${e.porcentaje}%</span></div>`).join('');
   $('#b-masterclass').href = CONFIG.masterclass;
+  const ahora = Date.now(), entrenamiento = ahora >= Date.parse(CONFIG.cambio_entrenamiento);
+  $('#cta-masterclass').hidden = entrenamiento;
+  $('#cta-entrenamiento').hidden = !entrenamiento;
+  $('#cta-precio').hidden = !(entrenamiento && ahora < Date.parse(CONFIG.fin_promo));
 }
 
 /* PDF e imagen (librerías cargadas solo cuando se usan) */
@@ -497,7 +513,7 @@ function htmlReporte(r){
       <img src="/diagnostico/img/logo.webp" alt="" style="height:64px;width:auto;display:block">
       <div style="text-align:right;font-size:12px;color:#555">Autodiagnóstico Neuroventa Digital<br>${esc(fecha)}</div>
     </div>
-    <div style="font:900 28px Montserrat,sans-serif;margin:22px 0 4px">${esc(primerNombre(r.nombre))}, este es tu resultado</div>
+    <div style="font:900 24px Montserrat,sans-serif;margin:22px 0 6px;line-height:1.25">${esc(primerNombre(r.nombre))}, gracias por darte este tiempo. Acá está tu diagnóstico.</div>
     <div style="color:#333;font-size:14px;margin-bottom:18px">${fraseTotal(r)}</div>
     <div style="background:#865273;color:#fff;border-radius:14px;padding:20px 24px">
       <span style="display:inline-block;background:#f3d519;color:#0a0a0a;font:800 10px Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;border-radius:99px;padding:5px 11px">${esc(r.perfil.etapa)}</span>
@@ -518,7 +534,7 @@ function htmlReporte(r){
       <div style="font:800 14px Montserrat,sans-serif;margin-bottom:4px">Tu próximo paso</div>
       <div style="font-size:14px">${esc(r.proximo_paso)}</div>
     </div>
-    <div style="margin-top:14px;text-align:center;font:italic 14px Lato,sans-serif;color:#555;page-break-inside:avoid">“Tu cerebro ya sabe cómo vender. Solo necesita que vos le des el orden, el foco y la dirección.” — Eva Benavidez</div>
+    <div style="margin-top:14px;text-align:center;font:italic 14px Lato,sans-serif;color:#555;page-break-inside:avoid">“Tu cerebro ya sabe cómo vender. Solo necesita orden, foco y dirección.” — Eva Benavidez</div>
     <div style="margin-top:8px;text-align:center;font-size:12px;color:#555">evabenavidez.com · @evabenavidez.negocios · WhatsApp 351 609-8988</div>
   </div>`;
 }

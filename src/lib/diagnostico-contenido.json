@@ -17,25 +17,25 @@
       "id": "reactivo",
       "nombre": "Modo reactivo",
       "etapa": "Etapa inicial",
-      "descripcion": "Tu canal tiene mucho por construir. Hoy funciona por impulso, sin una estructura ni una estrategia definida. El 85% de tus clientes decide por emoción: es momento de empezar a activarlo con método."
+      "descripcion": "Hoy tu canal funciona más por impulso que por método, y eso tiene solución. La mayor parte de la decisión de tu cliente pasa por la emoción: es momento de empezar a acompañarla con orden."
     },
     "B": {
       "id": "construccion",
       "nombre": "En construcción",
       "etapa": "En desarrollo",
-      "descripcion": "Tenés base, pero con fugas de oportunidades. Tus prácticas están instaladas aunque incompletas. Estás a pocos ajustes de dar un salto real en tus resultados digitales."
+      "descripcion": "Tenés base. Hay cosas que ya hacés bien y otras que todavía se te escapan. Con pocos ajustes, tus resultados digitales pueden dar un salto real."
     },
     "C": {
       "id": "activado",
       "nombre": "Canal activado",
       "etapa": "Nivel avanzado",
-      "descripcion": "Tu canal vende con intención, proceso y estrategia. Está listo para el siguiente nivel: sistematizar y escalar lo que ya hacés bien."
+      "descripcion": "Tu canal vende con intención y con proceso. Tenés una base que funciona; el próximo paso es ordenar lo que ya hacés bien para que crezca sin depender de vos en cada conversación."
     },
     "D": {
       "id": "alto_rendimiento",
       "nombre": "Canal de alto rendimiento",
       "etapa": "Nivel máximo",
-      "descripcion": "Tu canal funciona con método en los tres ejes. Tu desafío ahora es sostenerlo y escalarlo: delegar, automatizar con IA y medir para seguir creciendo."
+      "descripcion": "Tu canal funciona con método en los tres ejes. Ahora el desafío es sostenerlo y seguir creciendo: delegar lo operativo, sumar la IA donde te ahorra tiempo y mirar tus números para decidir mejor."
     }
   },
   "ejes": [
@@ -53,15 +53,15 @@
       "niveles": {
         "bajo": {
           "texto": "Tu canal existe, pero funciona por impulso. Cada consulta empieza de cero porque no hay un proceso que te sostenga. El problema no es la cantidad de consultas: es que se pierden antes de convertirse en oportunidad.",
-          "accion": "Organizá tu canal: configurá WhatsApp Business, definí tiempos de respuesta y armá un flujo básico de atención."
+          "accion": "Empezá simple: configurá WhatsApp Business, definí en cuánto tiempo respondés y armá un primer paso a paso para atender cada consulta."
         },
         "medio": {
-          "texto": "Tenés algo de estructura, pero todavía hay consultas que dependen de tu memoria o de tu tiempo libre. Ahí se escapan oportunidades.",
-          "accion": "Completá tu flujo de atención: respuestas rápidas, etiquetas y un paso a paso fijo desde el saludo hasta la oferta."
+          "texto": "Ya tenés algo de estructura, pero todavía hay consultas que dependen de tu memoria o de tu tiempo libre. Ahí se te escapan oportunidades.",
+          "accion": "Completá tu forma de atender: respuestas rápidas, etiquetas y un paso a paso fijo, desde el saludo hasta la propuesta."
         },
         "alto": {
-          "texto": "Tu canal tiene una base operativa sólida: cada consulta encuentra un proceso claro que la ordena.",
-          "accion": "Revisá qué partes podés automatizar o delegar para ganar tiempo sin perder cercanía."
+          "texto": "Tu canal tiene una base sólida: cada consulta encuentra un camino claro.",
+          "accion": "Mirá qué partes podés automatizar o delegar para ganar tiempo, sin perder cercanía."
         }
       }
     },
@@ -78,16 +78,16 @@
       ],
       "niveles": {
         "bajo": {
-          "texto": "Comunicás desde el 15% racional: características, precio, argumentos. Pero el 85% de la decisión de compra pasa por otro lado. Tu cliente no compra lo que vendés: compra lo que siente cuando se imagina resolviendo su problema.",
-          "accion": "Dejá de describir lo que hacés. Comunicá la transformación que genera elegirte."
+          "texto": "Hoy comunicás desde lo racional: características, precio, argumentos. Pero la mayor parte de la decisión pasa por otro lado. Tu cliente no compra lo que vendés: compra lo que siente cuando se imagina resolviendo su problema.",
+          "accion": "Tu primer paso: dejá de describir lo que hacés y empezá a contar la transformación que genera elegirte."
         },
         "medio": {
-          "texto": "A veces conectás con la emoción de tu cliente, pero sin una estructura. Cuando funciona, no siempre sabés por qué.",
-          "accion": "Identificá la motivación de compra de tu cliente ideal y armá tus mensajes a partir de ella, no del producto."
+          "texto": "A veces conectás con la emoción de tu cliente, pero sin un método. Cuando funciona, no siempre sabés por qué.",
+          "accion": "Descubrí qué mueve a tu cliente ideal a comprar y armá tus mensajes desde ahí, no desde el producto."
         },
         "alto": {
-          "texto": "Comunicás valor y transformación: tu cliente siente que lo entendés antes de que hables de precio.",
-          "accion": "Llevá esa misma comunicación a todos tus puntos de contacto para que la experiencia sea coherente."
+          "texto": "Comunicás valor y transformación: tu cliente siente que lo entendés antes de hablar de precio.",
+          "accion": "Llevá esa misma forma de comunicar a cada lugar donde tu cliente te encuentra: WhatsApp, redes, web y en persona."
         }
       }
     },
@@ -104,16 +104,16 @@
       ],
       "niveles": {
         "bajo": {
-          "texto": "Las conversaciones existen, pero se enfrían. No es falta de interés del cliente: es falta de un protocolo que mantenga el vínculo vivo sin presionar.",
-          "accion": "Implementá una secuencia de seguimiento y una presencia semanal que genere confianza antes de que te consulten."
+          "texto": "Las conversaciones existen, pero se enfrían. No es falta de interés de tu cliente: falta una forma clara de mantener el vínculo vivo sin presionar.",
+          "accion": "Empezá simple: armá una secuencia de seguimiento y sostené una presencia semanal que genere confianza antes de que te consulten."
         },
         "medio": {
-          "texto": "Hacés seguimiento, pero sin un criterio fijo de cuándo y qué decir. Algunas ventas se cierran; otras quedan en el aire.",
-          "accion": "Definí tu protocolo: qué decir después de un “lo pienso”, cuándo volver a escribir y cómo reactivar a quien ya te compró."
+          "texto": "Hacés seguimiento, pero sin un criterio de cuándo y qué decir. Algunas ventas se cierran; otras quedan en el aire.",
+          "accion": "Definí tu forma de seguir: qué decir después de un “lo pienso”, cuándo volver a escribir y cómo reencontrarte con quien ya te compró."
         },
         "alto": {
           "texto": "Sostenés el vínculo con intención: tus clientes vuelven y tus conversaciones llegan al cierre sin presión.",
-          "accion": "Medí tu tasa de conversión y de recompra para saber dónde seguir optimizando."
+          "accion": "Mirá cuántas conversaciones llegan al cierre y cuántos clientes vuelven: ahí está tu próximo crecimiento."
         }
       }
     }
@@ -122,19 +122,19 @@
     "_nota": "Se arma con el eje prioritario (el más bajo). 'base' para niveles bajo y medio; 'avanzado' si el perfil es Canal activado; 'alto_rendimiento' si el perfil es Canal de alto rendimiento. Si el eje más fuerte es fortaleza (desde corte_alto) y no es el prioritario, se suma 'Apoyate en tu fortaleza en <eje>: <fortaleza>'.",
     "orden": {
       "base": "Tu salto está en el Orden: con un proceso claro de atención vas a dejar de perder consultas que ya tenés.",
-      "avanzado": "Tu próximo nivel está en el Orden: automatizá y delegá lo que ya funciona para crecer sin estar en cada conversación.",
-      "fortaleza": "ya tenés una base operativa que te sostiene."
+      "avanzado": "Tu próximo nivel está en el Orden: delegá y automatizá lo que ya funciona, para crecer sin estar en cada conversación.",
+      "fortaleza": "ya tenés una base que te sostiene."
     },
     "foco": {
       "base": "Tu salto está en el Foco: cuando comunicás la transformación que generás, y no solo el producto, tu cliente decide más rápido.",
-      "avanzado": "Tu próximo nivel está en el Foco: llevá tu comunicación de valor a cada punto de contacto para que la experiencia sea coherente.",
-      "fortaleza": "ya conectás con lo que tu cliente siente."
+      "avanzado": "Tu próximo nivel está en el Foco: que tu cliente sienta el mismo valor en cada lugar donde te encuentra.",
+      "fortaleza": "ya sabés conectar con lo que siente tu cliente."
     },
     "seguimiento": {
-      "base": "Tu salto está en el Seguimiento: con un protocolo simple vas a recuperar conversaciones que hoy se enfrían sin que te des cuenta.",
-      "avanzado": "Tu próximo nivel está en el Seguimiento: medí tu conversión y tu recompra para saber dónde seguir optimizando.",
+      "base": "Tu salto está en el Seguimiento: con una forma simple de seguir vas a recuperar conversaciones que hoy se enfrían sin que te des cuenta.",
+      "avanzado": "Tu próximo nivel está en el Seguimiento: mirá cuántas conversaciones cierran y cuántos clientes vuelven, para saber dónde seguir creciendo.",
       "fortaleza": "ya sabés sostener el vínculo sin presionar."
     },
-    "alto_rendimiento": "Tu próximo nivel es escalar: automatizá con IA lo que ya hacés bien, delegá lo operativo y medí tu conversión para seguir creciendo."
+    "alto_rendimiento": "Tu próximo nivel es crecer sin desbordarte: sumá la IA donde te ahorra tiempo, delegá lo operativo y mirá tus números para decidir mejor."
   }
 }
