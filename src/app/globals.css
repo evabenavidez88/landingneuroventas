@@ -527,8 +527,8 @@ html { scroll-behavior: smooth; }
   .topbar { font-size: 11px; padding: 8px 12px; }
   nav { padding: 8px 20px; }
   nav img { height: 38px; }
-  .hero-foto { height: 112px; }
-  .hero-foto img { object-position: center 30%; }
+  .hero-foto { height: 210px; }
+  .hero-foto img { object-position: center 10%; }
   .hero-foto-badge { bottom: 12px; right: 12px; padding: 7px 11px; font-size: 9px; }
   .hero-content { padding: 18px 18px 28px; }
   .hero-tag { margin-bottom: 12px; font-size: 9px; }
