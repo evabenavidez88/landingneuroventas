@@ -31,7 +31,7 @@ export default function PresentacionEva() {
               conversaciones, pero solo si sabés qué decir y por qué.
             </p>
             <p>
-              Este checklist es el primer paso para dejar de improvisar y
+              Este autodiagnóstico es el primer paso para dejar de improvisar y
               empezar a vender con más conciencia y menos esfuerzo.
             </p>
             <ul className="pres-cifras">

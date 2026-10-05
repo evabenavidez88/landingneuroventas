@@ -4,11 +4,11 @@ export default function Cierre() {
       <div className="container">
         <h2>¿Por dónde empezás a ordenar tus ventas digitales?</h2>
         <p>
-          Empezá ahora a responder tu checklist, pensando en tu negocio, y vas a
+          Empezá ahora tu autodiagnóstico, pensando en tu negocio, y vas a
           saber qué ajustar primero.
         </p>
         <a href="#checklist" className="btn-cierre">
-          Quiero mi checklist
+          Empezar mi autodiagnóstico
         </a>
       </div>
     </section>

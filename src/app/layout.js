@@ -2,8 +2,8 @@ import './globals.css';
 import Script from 'next/script';
 
 export const metadata = {
-  title: 'Checklist Neuroventa Digital + IA gratis | Eva Benavidez',
-  description: '15 preguntas para diagnosticar cómo vendés hoy por WhatsApp y redes, y qué ordenar antes de sumar IA. Descargá gratis el checklist.',
+  title: 'Autodiagnóstico gratis Neuroventa Digital + IA | Eva Benavidez',
+  description: '15 preguntas para diagnosticar cómo vendés hoy por WhatsApp y redes, y qué ordenar antes de sumar IA. Hacé gratis el autodiagnóstico y recibí tu resultado al instante.',
 };
 
 export default function RootLayout({ children }) {

@@ -159,10 +159,10 @@ export default function Hero() {
                 onClick={handleSubmit}
                 disabled={enviando}
               >
-                {enviando ? 'Enviando...' : 'Quiero mi checklist'}
+                {enviando ? 'Enviando...' : 'Empezar mi autodiagnóstico'}
               </button>
               <p className="form-privacidad">
-                Gratis · Sin spam · Descarga inmediata
+                Gratis · Sin spam · Resultado al instante
               </p>
             </div>
           ) : (
@@ -195,9 +195,9 @@ export default function Hero() {
             priority
           />
           <div className="hero-foto-badge">
-            Checklist
+            Autodiagnóstico
             <br />
-            Gratuito
+            Gratis
           </div>
         </div>
 
