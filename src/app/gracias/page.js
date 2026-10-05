@@ -41,18 +41,14 @@ export default function GraciasPage() {
       <main className="gracias-main">
         <div className="gracias-card">
           <h1 className="gracias-titulo">
-            Listo{nombre ? `, ${nombre}` : ''}. Tu checklist ya está en tu email.
+            Listo{nombre ? `, ${nombre}` : ''}. Gracias por hacer tu autodiagnóstico.
           </h1>
-          <p className="gracias-sub">
-            Revisá también spam o promociones, por las dudas.
-          </p>
-
           <div className="gracias-invitacion">
             <p className="gracias-invitacion-titulo">
-              Mientras lo respondés, te hago una invitación:
+              Antes de irte, te hago una invitación:
             </p>
             <p className="gracias-invitacion-texto">
-              Hago la <strong>Masterclass Neuroventa + IA</strong>, gratuita y en
+              Hago la <strong>Masterclass Neuroventa Digital + IA</strong>, gratuita y en
               vivo, en dos fechas: <strong>jueves 22 de octubre</strong> o{' '}
               <strong>martes 27 de octubre de 2026</strong>, a las{' '}
               {HORA_MASTERCLASS} hs (ARG). Vamos a ver por qué tu cliente duda
@@ -65,7 +61,7 @@ export default function GraciasPage() {
               rel="noopener noreferrer"
               className="gracias-btn"
             >
-              Quiero mi lugar en la masterclass
+              Reservar mi lugar gratis
             </a>
           </div>
 
