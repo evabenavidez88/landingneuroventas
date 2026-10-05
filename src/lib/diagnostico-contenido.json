@@ -1,6 +1,6 @@
 {
   "reglas": {
-    "_nota": "Cada respuesta suma: A=0, B=1, C=2 (5 preguntas por eje, máximo 10 puntos por eje y 30 en total). Perfil: 'Modo reactivo' si el puntaje total es menor a perfil_bajo; 'Canal activado' si TODOS los ejes llegan a perfil_avanzado; si no, 'En construcción'. Nivel de cada eje: bajo < corte_bajo, medio < corte_alto, alto desde corte_alto. Reparto: parte del puntaje total que aporta cada eje (suma 100%).",
+    "_nota": "Cada respuesta suma: A=0, B=1, C=2 (5 preguntas por eje, máximo 10 puntos por eje y 30 en total). Perfil: 'Canal de alto rendimiento' si el total llega a perfil_alto_rendimiento; 'Modo reactivo' si el total es menor a perfil_bajo; 'Canal activado' si TODOS los ejes llegan a perfil_avanzado; si no, 'En construcción'. Nivel de cada eje: bajo < corte_bajo (A trabajar), medio < corte_alto (En proceso), alto desde corte_alto (Fortaleza).",
     "puntos": {
       "A": 0,
       "B": 1,
@@ -9,7 +9,8 @@
     "perfil_bajo": 40,
     "perfil_avanzado": 70,
     "corte_bajo": 40,
-    "corte_alto": 70
+    "corte_alto": 70,
+    "perfil_alto_rendimiento": 95
   },
   "perfiles": {
     "A": {
@@ -29,6 +30,12 @@
       "nombre": "Canal activado",
       "etapa": "Nivel avanzado",
       "descripcion": "Tu canal vende con intención, proceso y estrategia. Está listo para el siguiente nivel: sistematizar y escalar lo que ya hacés bien."
+    },
+    "D": {
+      "id": "alto_rendimiento",
+      "nombre": "Canal de alto rendimiento",
+      "etapa": "Nivel máximo",
+      "descripcion": "Tu canal funciona con método en los tres ejes. Tu desafío ahora es sostenerlo y escalarlo: delegar, automatizar con IA y medir para seguir creciendo."
     }
   },
   "ejes": [
@@ -112,7 +119,7 @@
     }
   ],
   "proximo_paso": {
-    "_nota": "Se arma con el eje prioritario (el más bajo). 'base' para niveles bajo y medio; 'avanzado' si el perfil es Canal activado. Si el eje más fuerte es fortaleza (desde corte_alto) y no es el prioritario, se suma 'Apoyate en tu fortaleza en <eje>: <fortaleza>'.",
+    "_nota": "Se arma con el eje prioritario (el más bajo). 'base' para niveles bajo y medio; 'avanzado' si el perfil es Canal activado; 'alto_rendimiento' si el perfil es Canal de alto rendimiento. Si el eje más fuerte es fortaleza (desde corte_alto) y no es el prioritario, se suma 'Apoyate en tu fortaleza en <eje>: <fortaleza>'.",
     "orden": {
       "base": "Tu salto está en el Orden: con un proceso claro de atención vas a dejar de perder consultas que ya tenés.",
       "avanzado": "Tu próximo nivel está en el Orden: automatizá y delegá lo que ya funciona para crecer sin estar en cada conversación.",
@@ -127,6 +134,7 @@
       "base": "Tu salto está en el Seguimiento: con un protocolo simple vas a recuperar conversaciones que hoy se enfrían sin que te des cuenta.",
       "avanzado": "Tu próximo nivel está en el Seguimiento: medí tu conversión y tu recompra para saber dónde seguir optimizando.",
       "fortaleza": "ya sabés sostener el vínculo sin presionar."
-    }
+    },
+    "alto_rendimiento": "Tu próximo nivel es escalar: automatizá con IA lo que ya hacés bien, delegá lo operativo y medí tu conversión para seguir creciendo."
   }
 }

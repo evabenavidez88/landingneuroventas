@@ -118,6 +118,11 @@ main>#p-datos{max-width:none;margin:-16px -16px 0}
 .perfil p{margin:0;opacity:.95}
 .conteo{display:flex;justify-content:center;gap:8px;margin-top:18px;flex-wrap:wrap}
 .conteo span{background:#ffffff26;border-radius:99px;padding:6px 14px;font:800 13px Montserrat,sans-serif}
+.conteo p{margin:0;background:#ffffff1f;border-radius:12px;padding:10px 14px;font-size:14.5px;line-height:1.5;max-width:520px}
+.conteo p b{font-family:Montserrat,sans-serif;font-weight:800}
+.puntos-eje{font-size:14px!important;margin:0 0 8px!important}
+.puntos-eje b{font-family:Montserrat,sans-serif}
+.leyenda{font-size:12.5px;color:var(--texto-suave);margin:4px 2px 0;line-height:1.5}
 .bloque{margin-top:28px}
 .bloque>h2{font-weight:800;font-size:20px;margin:0 0 14px}
 .fila{background:#fff;border:1px solid var(--linea);border-radius:12px;padding:16px;margin-bottom:10px}
@@ -436,20 +441,29 @@ async function enviar(){
 }
 
 /* 5. Resultado */
-const NIVEL = {bajo:'A trabajar', medio:'En desarrollo', alto:'Fortaleza'};
+const NIVEL = {bajo:'A trabajar', medio:'En proceso', alto:'Fortaleza'};
+function totales(r){ const pt = r.ejes.reduce((a,e)=>a+e.puntos,0), mx = r.ejes.reduce((a,e)=>a+e.maximo,0); return {pt, mx, falta: mx-pt}; }
+function fraseTotal(r){ const t = totales(r);
+  return t.falta > 0
+    ? `Sumaste <b>${t.pt} de ${t.mx} puntos (${r.total}%)</b>. Tenés ${t.falta} ${t.falta===1?'punto':'puntos'} de mejora para tener tu canal funcionando al máximo.`
+    : `Sumaste <b>${t.pt} de ${t.mx} puntos (100%)</b>. Tu canal funciona al máximo.`; }
+function fraseEje(e){ const f = e.maximo - e.puntos;
+  return f > 0 ? `<b>${e.puntos} de ${e.maximo} puntos.</b> Tenés ${f} ${f===1?'punto':'puntos'} de mejora en este eje.` : `<b>${e.puntos} de ${e.maximo} puntos.</b> Este eje ya es tu fortaleza.`; }
+const LEYENDA = 'Cómo leer tus ejes: menos de 40% = A trabajar · 40% a 69% = En proceso · 70% o más = Fortaleza. Cada eje suma 5 preguntas (máximo 10 puntos).';
 function pintarResultado(r){
   $('#r-etapa').textContent = r.perfil.etapa;
   $('#r-perfil').textContent = r.perfil.nombre;
   $('#r-desc').textContent = r.perfil.descripcion;
-  $('#r-conteo').innerHTML = `<span>Puntaje total: ${r.total}%</span>`;
+  $('#r-conteo').innerHTML = `<p>${fraseTotal(r)}</p>`;
   $('#r-ejes').innerHTML = r.ejes.map(e => `
     <div class="fila nivel-${e.nivel} ${e.id === r.prioritario ? 'prio' : ''}">
       ${e.id === r.prioritario ? '<span class="tag-prio">Empezá por acá</span>' : ''}
-      <div class="fila-top"><div><b>${esc(e.nombre)}</b><small>${esc(e.subtitulo)} · ${NIVEL[e.nivel]} · aporta el ${e.reparto}% de tu puntaje</small></div><span class="pct">${e.porcentaje}%</span></div>
+      <div class="fila-top"><div><b>${esc(e.nombre)}</b><small>${esc(e.subtitulo)} · ${NIVEL[e.nivel]}</small></div><span class="pct">${e.porcentaje}%</span></div>
       <div class="barra-eje"><i style="width:${Math.max(4,e.porcentaje)}%"></i></div>
+      <p class="puntos-eje">${fraseEje(e)}</p>
       <p>${esc(e.texto)}</p>
       <p class="accion">→ ${esc(e.accion)}</p>
-    </div>`).join('');
+    </div>`).join('') + `<p class="leyenda">${LEYENDA}</p>`;
   $('#r-proximo').textContent = r.proximo_paso;
   $('#h-perfil').textContent = r.perfil.nombre;
   $('#h-ejes').innerHTML = r.ejes.map(e => `<div>${esc(e.nombre)}<em><i style="width:${Math.max(4,e.porcentaje)}%"></i></em><span>${e.porcentaje}%</span></div>`).join('');
@@ -484,7 +498,7 @@ function htmlReporte(r){
       <div style="text-align:right;font-size:12px;color:#555">Autodiagnóstico Neuroventa Digital<br>${esc(fecha)}</div>
     </div>
     <div style="font:900 28px Montserrat,sans-serif;margin:22px 0 4px">${esc(primerNombre(r.nombre))}, este es tu resultado</div>
-    <div style="color:#555;font-size:14px;margin-bottom:20px">Puntaje total: ${r.total}% · Aporte de cada eje a tu puntaje: Orden ${r.ejes[0].reparto}%, Foco ${r.ejes[1].reparto}%, Seguimiento ${r.ejes[2].reparto}%</div>
+    <div style="color:#333;font-size:14px;margin-bottom:18px">${fraseTotal(r)}</div>
     <div style="background:#865273;color:#fff;border-radius:14px;padding:20px 24px">
       <span style="display:inline-block;background:#f3d519;color:#0a0a0a;font:800 10px Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;border-radius:99px;padding:5px 11px">${esc(r.perfil.etapa)}</span>
       <div style="font:900 30px Montserrat,sans-serif;margin:10px 0 8px">${esc(r.perfil.nombre)}</div>
@@ -495,9 +509,11 @@ function htmlReporte(r){
       <div style="border:${e.id===r.prioritario?'2px solid #f3d519':'1px solid #e7e5df'};border-radius:12px;padding:12px 16px;margin-bottom:8px;page-break-inside:avoid">
         <div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font:800 15px Montserrat,sans-serif">${esc(e.nombre)} <span style="font:400 12px Lato,sans-serif;color:#555">· ${esc(e.subtitulo)} · ${NIVEL[e.nivel]}${e.id===r.prioritario?' · Empezá por acá':''}</span></div><div style="font:900 18px Montserrat,sans-serif">${e.porcentaje}%</div></div>
         <div style="height:7px;background:#ecebe6;border-radius:99px;margin:8px 0 10px"><div style="height:7px;width:${Math.max(4,e.porcentaje)}%;background:${e.nivel==='bajo'?'#865273':'#57bdb6'};border-radius:99px"></div></div>
+        <div style="font-size:13px;color:#333;margin-bottom:6px">${fraseEje(e)}</div>
         <div style="font-size:13.5px;line-height:1.5;margin-bottom:6px">${esc(e.texto)}</div>
         <div style="font-size:13.5px;font-weight:700;color:#2f8f89">→ ${esc(e.accion)}</div>
       </div>`).join('')}
+    <div style="font-size:11.5px;color:#666;margin-top:2px">${LEYENDA}</div>
     <div style="background:#57bdb61f;border:1px solid #57bdb659;border-radius:12px;padding:14px 18px;margin-top:14px;page-break-inside:avoid">
       <div style="font:800 14px Montserrat,sans-serif;margin-bottom:4px">Tu próximo paso</div>
       <div style="font-size:14px">${esc(r.proximo_paso)}</div>

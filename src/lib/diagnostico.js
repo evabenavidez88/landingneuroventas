@@ -72,8 +72,11 @@ export function calcularResultado(nombre, respuestas) {
     ejes.forEach((e) => { e.reparto = 0; });
   }
 
-  // Perfil: bajo si el total no llega al mínimo; avanzado si TODOS los ejes superan el corte; si no, medio.
-  const clave = total < R.perfil_bajo ? 'A' : ejes.every((e) => e.porcentaje >= R.perfil_avanzado) ? 'C' : 'B';
+  // Perfil: alto rendimiento desde el 95% del total; bajo si el total no llega al mínimo;
+  // avanzado si TODOS los ejes superan el corte; si no, medio.
+  const clave = total >= R.perfil_alto_rendimiento ? 'D'
+    : total < R.perfil_bajo ? 'A'
+    : ejes.every((e) => e.porcentaje >= R.perfil_avanzado) ? 'C' : 'B';
 
   // Eje prioritario: el de menor porcentaje (en empate: Orden > Foco > Seguimiento).
   const prioritario = ejes.reduce((min, e) => (e.porcentaje < min.porcentaje ? e : min), ejes[0]);
@@ -81,10 +84,10 @@ export function calcularResultado(nombre, respuestas) {
   // Próximo paso: según el eje prioritario; suma la fortaleza si el eje más fuerte lo es y es otro.
   const pp = contenido.proximo_paso;
   const fuerte = ejes.reduce((max, e) => (e.porcentaje > max.porcentaje ? e : max), ejes[0]);
-  let proximo_paso = pp[prioritario.id][clave === 'C' ? 'avanzado' : 'base'];
-  if (clave !== 'C' && fuerte.id !== prioritario.id && fuerte.porcentaje >= R.corte_alto) {
+  let proximo_paso = clave === 'D' ? pp.alto_rendimiento : pp[prioritario.id][clave === 'C' ? 'avanzado' : 'base'];
+  if (clave !== 'C' && clave !== 'D' && fuerte.id !== prioritario.id && fuerte.porcentaje >= R.corte_alto) {
     proximo_paso += ` Apoyate en tu fortaleza en ${fuerte.nombre}: ${pp[fuerte.id].fortaleza}`;
   }
 
-  return { nombre, perfil: contenido.perfiles[clave], conteo, total, ejes, prioritario: prioritario.id, proximo_paso };
+  return { nombre, perfil: contenido.perfiles[clave], conteo, total, puntos_total: puntosTotal, maximo_total: maximoTotal, ejes, prioritario: prioritario.id, proximo_paso };
 }
