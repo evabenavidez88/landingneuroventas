@@ -4,8 +4,16 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import * as XLSX from 'xlsx';
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip,
-  ResponsiveContainer, CartesianGrid,
+  ResponsiveContainer, CartesianGrid, PieChart, Pie, Cell,
 } from 'recharts';
+
+// Perfiles del diagnóstico, en orden fijo (del inicial al más alto) y con color fijo por perfil.
+const PERFILES = [
+  { nombre: 'Modo reactivo', color: '#B8628E' },
+  { nombre: 'En construcción', color: '#AE9112' },
+  { nombre: 'Canal activado', color: '#2FA69E' },
+  { nombre: 'Canal de alto rendimiento', color: '#8A78F0' },
+];
 
 export default function AdminPage() {
   const [key, setKey] = useState('');
@@ -95,6 +103,12 @@ export default function AdminPage() {
     return Object.entries(days).map(([fecha, cantidad]) => ({ fecha, cantidad }));
   })();
 
+  const perfilesData = PERFILES.map(p => ({
+    ...p, cantidad: leads.filter(l => l.perfil === p.nombre).length,
+  }));
+  const totalPerfiles = perfilesData.reduce((a, p) => a + p.cantidad, 0);
+  const pct = n => (totalPerfiles ? Math.round((n / totalPerfiles) * 100) : 0);
+
   const leadsFiltrados = leads.filter(l =>
     l.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
     l.email.toLowerCase().includes(busqueda.toLowerCase())
@@ -177,9 +191,10 @@ export default function AdminPage() {
         </div>
       </div>
 
-      <div style={s.chartBox}>
+      <div style={source === 'diagnostico' ? s.chartsRow : undefined}>
+      <div style={{ ...s.chartBox, ...(source === 'diagnostico' ? s.chartBoxFila : {}) }}>
         <h3 style={s.chartTitle}>Leads por día — últimos 14 días</h3>
-        <ResponsiveContainer width="100%" height={220}>
+        <ResponsiveContainer width="100%" height={source === 'diagnostico' ? 300 : 220}>
           <BarChart data={chartData} margin={{ top: 4, right: 8, left: -16, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#2a2a4a" />
             <XAxis dataKey="fecha" tick={{ fill: '#888', fontSize: 11 }} />
@@ -191,6 +206,48 @@ export default function AdminPage() {
             <Bar dataKey="cantidad" name="Leads" fill="#6c3ce1" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
+      </div>
+
+        {source === 'diagnostico' && (
+          <div style={{ ...s.chartBox, ...s.chartBoxTorta }}>
+            <h3 style={s.chartTitle}>Diagnósticos por perfil</h3>
+            {totalPerfiles === 0 ? (
+              <p style={{ color: '#666', fontSize: '0.9rem' }}>Todavía no hay diagnósticos.</p>
+            ) : (
+              <div style={s.tortaWrap}>
+                <div style={s.tortaGrafico}>
+                  <ResponsiveContainer width="100%" height={180}>
+                    <PieChart>
+                      <Pie data={perfilesData.filter(p => p.cantidad > 0)} dataKey="cantidad" nameKey="nombre"
+                        innerRadius="58%" outerRadius="95%" startAngle={90} endAngle={-270}
+                        stroke="#13132a" strokeWidth={2} isAnimationActive={false}>
+                        {perfilesData.filter(p => p.cantidad > 0).map(p => <Cell key={p.nombre} fill={p.color} />)}
+                      </Pie>
+                      <Tooltip
+                        formatter={(v, n) => [`${v} (${pct(v)}%)`, n]}
+                        contentStyle={{ background: '#16162a', border: '1px solid #6c3ce1', borderRadius: '8px' }}
+                        itemStyle={{ color: '#fff' }}
+                      />
+                    </PieChart>
+                  </ResponsiveContainer>
+                  <div style={s.tortaCentro}>
+                    <span style={s.tortaTotal}>{totalPerfiles}</span>
+                    <span style={s.tortaTotalLabel}>total</span>
+                  </div>
+                </div>
+                <ul style={s.leyenda}>
+                  {perfilesData.map(p => (
+                    <li key={p.nombre} style={s.leyendaItem}>
+                      <span style={{ ...s.leyendaMarca, background: p.color }} />
+                      <span style={s.leyendaNombre}>{p.nombre}</span>
+                      <span style={s.leyendaValor}>{p.cantidad} · {pct(p.cantidad)}%</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       <div style={s.tableBox}>
@@ -268,6 +325,19 @@ const s = {
   statNum: { display: 'block', fontSize: '2.5rem', fontWeight: 700, color: '#fff' },
   statLabel: { color: '#666', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em' },
   chartBox: { background: '#13132a', borderRadius: '12px', padding: '1.5rem', marginBottom: '1.5rem', border: '1px solid #2a2a4a' },
+  chartsRow: { display: 'flex', flexWrap: 'wrap', gap: '1.5rem', marginBottom: '1.5rem' },
+  chartBoxFila: { flex: '1.4 1 420px', marginBottom: 0, minWidth: 0 },
+  chartBoxTorta: { flex: '1 1 300px', marginBottom: 0, minWidth: 0 },
+  tortaWrap: { display: 'flex', flexDirection: 'column', gap: '1rem' },
+  tortaGrafico: { position: 'relative' },
+  tortaCentro: { position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' },
+  tortaTotal: { fontSize: '1.6rem', fontWeight: 700, color: '#fff', lineHeight: 1 },
+  tortaTotalLabel: { fontSize: '0.7rem', color: '#888', textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: '0.25rem' },
+  leyenda: { listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' },
+  leyendaItem: { display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.85rem' },
+  leyendaMarca: { width: '10px', height: '10px', borderRadius: '3px', flexShrink: 0 },
+  leyendaNombre: { color: '#ddd', flex: 1 },
+  leyendaValor: { color: '#aaa', fontVariantNumeric: 'tabular-nums' },
   chartTitle: { color: '#aaa', margin: '0 0 1.25rem', fontWeight: 500, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' },
   tableBox: { background: '#13132a', borderRadius: '12px', padding: '1.5rem', border: '1px solid #2a2a4a' },
   tableHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.75rem' },
