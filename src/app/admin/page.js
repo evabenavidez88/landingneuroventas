@@ -67,6 +67,8 @@ export default function AdminPage() {
       ? { ID: l.id, Nombre: l.nombre, Apellido: l.apellido || '', Email: l.email, WhatsApp: l.whatsapp || '', Fecha: new Date(l.fecha).toLocaleString('es-AR', { hour12: false }) }
       : source === 'diagnostico'
       ? { ID: l.id, Nombre: l.nombre, Email: l.email, Perfil: l.perfil, 'Total %': l.total_pct, 'Respuestas A': l.respuestas_a, 'Respuestas B': l.respuestas_b, 'Respuestas C': l.respuestas_c, 'Orden %': l.orden_pct, 'Foco %': l.foco_pct, 'Seguimiento %': l.seguimiento_pct, 'Empezar por': l.eje_prioritario, Respuestas: l.respuestas, Origen: l.origen, Fecha: new Date(l.fecha).toLocaleString('es-AR', { hour12: false }) }
+      : source === 'webinar'
+      ? { ID: l.id, Nombre: l.nombre, Email: l.email, Masterclass: l.grupo || 'Sin elegir', Fecha: new Date(l.fecha).toLocaleString('es-AR', { hour12: false }) }
       : { ID: l.id, Nombre: l.nombre, Email: l.email, Fecha: new Date(l.fecha).toLocaleString('es-AR', { hour12: false }) }
     );
     const ws = XLSX.utils.json_to_sheet(filas);
@@ -252,7 +254,10 @@ export default function AdminPage() {
 
       <div style={s.tableBox}>
         <div style={s.tableHeader}>
-          <span style={s.tableCount}>{leadsFiltrados.length} registros</span>
+          <span style={s.tableCount}>
+            {leadsFiltrados.length} registros
+            {source === 'webinar' && ` · 22/10: ${leads.filter(l => l.grupo === '22/10').length} · 27/10: ${leads.filter(l => l.grupo === '27/10').length} · Sin elegir: ${leads.filter(l => !l.grupo).length}`}
+          </span>
           <input
             type="text"
             placeholder="Buscar por nombre o email..."
@@ -270,6 +275,7 @@ export default function AdminPage() {
                 {source === 'formacion' && <th style={s.th}>Apellido</th>}
                 <th style={s.th}>Email</th>
                 {source === 'formacion' && <th style={s.th}>WhatsApp</th>}
+                {source === 'webinar' && <th style={s.th}>Masterclass</th>}
                 {source === 'diagnostico' && <th style={s.th}>Perfil</th>}
                 {source === 'diagnostico' && <th style={s.th}>Empezar por</th>}
                 <th style={s.th}>Fecha</th>
@@ -283,6 +289,7 @@ export default function AdminPage() {
                   {source === 'formacion' && <td style={s.td}>{l.apellido}</td>}
                   <td style={s.tdEmail}>{l.email}</td>
                   {source === 'formacion' && <td style={s.td}>{l.whatsapp || <span style={{ color: '#444' }}>—</span>}</td>}
+                  {source === 'webinar' && <td style={s.td}>{l.grupo || <span style={{ color: '#666' }}>Sin elegir</span>}</td>}
                   {source === 'diagnostico' && <td style={s.td}>{l.perfil}</td>}
                   {source === 'diagnostico' && <td style={s.td}>{l.eje_prioritario}</td>}
                   <td style={s.tdMuted}>{new Date(l.fecha).toLocaleString('es-AR', { hour12: false })}</td>
@@ -290,7 +297,7 @@ export default function AdminPage() {
               ))}
               {leadsFiltrados.length === 0 && (
                 <tr>
-                  <td colSpan={source === 'formacion' || source === 'diagnostico' ? 6 : 4} style={{ ...s.td, textAlign: 'center', color: '#555', padding: '2rem' }}>
+                  <td colSpan={source === 'formacion' || source === 'diagnostico' ? 6 : source === 'webinar' ? 5 : 4} style={{ ...s.td, textAlign: 'center', color: '#555', padding: '2rem' }}>
                     Sin resultados
                   </td>
                 </tr>
