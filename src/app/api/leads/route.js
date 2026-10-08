@@ -2,6 +2,7 @@ import { Pool } from 'pg';
 import { Resend } from 'resend';
 import { buildEmailHtml } from './emailTemplate';
 import { asegurarTabla } from '../../../lib/diagnostico';
+import { asegurarTablas, leerConfig, guardarConfig, normalizar } from '../../../lib/mails/motor';
 
 let pool = null;
 
@@ -82,6 +83,36 @@ export async function GET(request) {
     if (source === 'diagnostico') await asegurarTabla(db);
     const result = await db.query(`SELECT * FROM ${table} ORDER BY fecha DESC`);
     return Response.json(result.rows);
+  } catch (e) {
+    console.error('DB error:', e);
+    return Response.json({ error: e.message }, { status: 500 });
+  }
+}
+
+// Borra filas de prueba del Diagnóstico (solo con clave de admin).
+// Los emails borrados se suman a "Emails excluidos" de los mails automáticos:
+// así nadie de prueba recibe el recordatorio de "terminá tu diagnóstico" al quedarse sin resultado.
+export async function DELETE(request) {
+  if (!checkAuth(request)) {
+    return Response.json({ error: 'No autorizado' }, { status: 401 });
+  }
+  try {
+    const { searchParams } = new URL(request.url);
+    if (searchParams.get('source') !== 'diagnostico') {
+      return Response.json({ error: 'Solo se puede borrar en Diagnóstico' }, { status: 400 });
+    }
+    const { ids } = await request.json();
+    const lista = (Array.isArray(ids) ? ids : []).map(Number).filter(Number.isInteger);
+    if (lista.length === 0) return Response.json({ error: 'No hay filas seleccionadas' }, { status: 400 });
+    const db = getPool();
+    const borradas = (await db.query('DELETE FROM leads_diagnostico WHERE id = ANY($1::int[]) RETURNING email', [lista])).rows;
+    const emails = [...new Set(borradas.map((r) => normalizar(r.email)))];
+    if (emails.length) {
+      await asegurarTablas(db);
+      const { excluidos } = await leerConfig(db);
+      await guardarConfig(db, 'excluidos', [...new Set([...excluidos, ...emails])].join(','));
+    }
+    return Response.json({ ok: true, borradas: borradas.length, excluidos: emails });
   } catch (e) {
     console.error('DB error:', e);
     return Response.json({ error: e.message }, { status: 500 });

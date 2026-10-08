@@ -25,6 +25,32 @@ export default function AdminPage() {
   const [busqueda, setBusqueda] = useState('');
   const [source, setSource] = useState('checklist');
   const keyRef = useRef('');
+  const [sel, setSel] = useState(new Set());
+  const [borrando, setBorrando] = useState(false);
+
+  useEffect(() => { setSel(new Set()); }, [source]);
+
+  function alternar(id) {
+    setSel(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
+  }
+
+  async function borrarSeleccionados() {
+    const filas = leads.filter(l => sel.has(l.id));
+    if (!filas.length) return;
+    const detalle = filas.map(l => `#${l.id} ${l.nombre} (${l.email})`).join('\n');
+    if (!window.confirm(`Vas a borrar ${filas.length} fila(s) del Diagnóstico. No se puede deshacer.\n\n${detalle}\n\nEsos emails también quedan excluidos de los mails automáticos.`)) return;
+    setBorrando(true);
+    const res = await fetch('/api/leads?source=diagnostico', {
+      method: 'DELETE',
+      headers: { 'x-admin-key': keyRef.current, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ids: filas.map(l => l.id) }),
+    });
+    const data = await res.json().catch(() => ({}));
+    setBorrando(false);
+    if (!res.ok) { window.alert(data.error || 'No se pudo borrar'); return; }
+    setSel(new Set());
+    fetchLeads(keyRef.current, 'diagnostico');
+  }
 
   const fetchLeads = useCallback(async (adminKey, src) => {
     const param = src === 'checklist' ? '' : `?source=${src}`;
@@ -274,11 +300,17 @@ export default function AdminPage() {
             onChange={e => setBusqueda(e.target.value)}
             style={s.search}
           />
+          {source === 'diagnostico' && sel.size > 0 && (
+            <button onClick={borrarSeleccionados} disabled={borrando} style={s.btnBorrar}>
+              {borrando ? 'Borrando…' : `🗑 Borrar seleccionados (${sel.size})`}
+            </button>
+          )}
         </div>
         <div style={s.tableWrap}>
           <table style={s.table}>
             <thead>
               <tr>
+                {source === 'diagnostico' && <th style={s.th}></th>}
                 <th style={s.th}>#</th>
                 <th style={s.th}>Nombre</th>
                 {source === 'formacion' && <th style={s.th}>Apellido</th>}
@@ -293,6 +325,9 @@ export default function AdminPage() {
             <tbody>
               {leadsFiltrados.map((l, i) => (
                 <tr key={l.id} style={i % 2 === 0 ? s.trEven : s.trOdd}>
+                  {source === 'diagnostico' && (
+                    <td style={s.td}><input type="checkbox" checked={sel.has(l.id)} onChange={() => alternar(l.id)} aria-label={`Seleccionar #${l.id}`} /></td>
+                  )}
                   <td style={s.tdMuted}>{l.id}</td>
                   <td style={s.td}>{l.nombre}</td>
                   {source === 'formacion' && <td style={s.td}>{l.apellido}</td>}
@@ -306,7 +341,7 @@ export default function AdminPage() {
               ))}
               {leadsFiltrados.length === 0 && (
                 <tr>
-                  <td colSpan={source === 'formacion' || source === 'diagnostico' ? 6 : source === 'webinar' ? 5 : 4} style={{ ...s.td, textAlign: 'center', color: '#555', padding: '2rem' }}>
+                  <td colSpan={source === 'diagnostico' ? 7 : source === 'formacion' ? 6 : source === 'webinar' ? 5 : 4} style={{ ...s.td, textAlign: 'center', color: '#555', padding: '2rem' }}>
                     Sin resultados
                   </td>
                 </tr>
@@ -321,6 +356,7 @@ export default function AdminPage() {
 }
 
 const s = {
+  btnBorrar: { padding: '0.5rem 0.9rem', borderRadius: '8px', border: '1px solid #f87171', background: 'transparent', color: '#f87171', fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer', marginLeft: '0.5rem' },
   loginWrap: { minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0a0a14', fontFamily: 'system-ui, sans-serif' },
   loginBox: { background: '#13132a', padding: '2.5rem', borderRadius: '16px', width: '340px', textAlign: 'center', border: '1px solid #2a2a4a', boxShadow: '0 8px 40px rgba(0,0,0,0.5)' },
   loginLogo: { fontSize: '2rem', marginBottom: '0.5rem' },
