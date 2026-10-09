@@ -89,24 +89,25 @@ export async function GET(request) {
   }
 }
 
-// Borra filas de prueba del Diagnóstico (solo con clave de admin).
-// Los emails borrados se suman a "Emails excluidos" de los mails automáticos:
-// así nadie de prueba recibe el recordatorio de "terminá tu diagnóstico" al quedarse sin resultado.
+// Borra filas de prueba de cualquier solapa del panel (solo con clave de admin).
+// Los emails borrados se suman a "Emails excluidos" de los mails automáticos,
+// así nadie de prueba recibe recordatorios al desaparecer de una base.
+const TABLAS = { checklist: '"Leads"', webinar: 'leads_webinar', formacion: 'leads_formacion', diagnostico: 'leads_diagnostico' };
+
 export async function DELETE(request) {
   if (!checkAuth(request)) {
     return Response.json({ error: 'No autorizado' }, { status: 401 });
   }
   try {
     const { searchParams } = new URL(request.url);
-    if (searchParams.get('source') !== 'diagnostico') {
-      return Response.json({ error: 'Solo se puede borrar en Diagnóstico' }, { status: 400 });
-    }
+    const tabla = TABLAS[searchParams.get('source') || 'checklist'];
+    if (!tabla) return Response.json({ error: 'Solapa desconocida' }, { status: 400 });
     const { ids } = await request.json();
-    const lista = (Array.isArray(ids) ? ids : []).map(Number).filter(Number.isInteger);
+    const lista = (Array.isArray(ids) ? ids : []).map((x) => String(x)).filter((x) => /^\d+$/.test(x));
     if (lista.length === 0) return Response.json({ error: 'No hay filas seleccionadas' }, { status: 400 });
     const db = getPool();
-    const borradas = (await db.query('DELETE FROM leads_diagnostico WHERE id = ANY($1::int[]) RETURNING email', [lista])).rows;
-    const emails = [...new Set(borradas.map((r) => normalizar(r.email)))];
+    const borradas = (await db.query(`DELETE FROM ${tabla} WHERE id::text = ANY($1::text[]) RETURNING email`, [lista])).rows;
+    const emails = [...new Set(borradas.map((r) => normalizar(r.email)).filter(Boolean))];
     if (emails.length) {
       await asegurarTablas(db);
       const { excluidos } = await leerConfig(db);

@@ -38,9 +38,9 @@ export default function AdminPage() {
     const filas = leads.filter(l => sel.has(l.id));
     if (!filas.length) return;
     const detalle = filas.map(l => `#${l.id} ${l.nombre} (${l.email})`).join('\n');
-    if (!window.confirm(`Vas a borrar ${filas.length} fila(s) del Diagnóstico. No se puede deshacer.\n\n${detalle}\n\nEsos emails también quedan excluidos de los mails automáticos.`)) return;
+    if (!window.confirm(`Vas a borrar ${filas.length} fila(s) de ${({ checklist: 'Checklist', webinar: 'Webinar', diagnostico: 'Diagnóstico', formacion: 'Formación' })[source]}. No se puede deshacer.\n\n${detalle}\n\nEsos emails también quedan excluidos de los mails automáticos.`)) return;
     setBorrando(true);
-    const res = await fetch('/api/leads?source=diagnostico', {
+    const res = await fetch(`/api/leads?source=${source}`, {
       method: 'DELETE',
       headers: { 'x-admin-key': keyRef.current, 'Content-Type': 'application/json' },
       body: JSON.stringify({ ids: filas.map(l => l.id) }),
@@ -49,7 +49,7 @@ export default function AdminPage() {
     setBorrando(false);
     if (!res.ok) { window.alert(data.error || 'No se pudo borrar'); return; }
     setSel(new Set());
-    fetchLeads(keyRef.current, 'diagnostico');
+    fetchLeads(keyRef.current, source);
   }
 
   const fetchLeads = useCallback(async (adminKey, src) => {
@@ -300,7 +300,7 @@ export default function AdminPage() {
             onChange={e => setBusqueda(e.target.value)}
             style={s.search}
           />
-          {source === 'diagnostico' && sel.size > 0 && (
+          {sel.size > 0 && (
             <button onClick={borrarSeleccionados} disabled={borrando} style={s.btnBorrar}>
               {borrando ? 'Borrando…' : `🗑 Borrar seleccionados (${sel.size})`}
             </button>
@@ -310,7 +310,7 @@ export default function AdminPage() {
           <table style={s.table}>
             <thead>
               <tr>
-                {source === 'diagnostico' && <th style={s.th}></th>}
+                <th style={s.th}></th>
                 <th style={s.th}>#</th>
                 <th style={s.th}>Nombre</th>
                 {source === 'formacion' && <th style={s.th}>Apellido</th>}
@@ -325,9 +325,7 @@ export default function AdminPage() {
             <tbody>
               {leadsFiltrados.map((l, i) => (
                 <tr key={l.id} style={i % 2 === 0 ? s.trEven : s.trOdd}>
-                  {source === 'diagnostico' && (
-                    <td style={s.td}><input type="checkbox" checked={sel.has(l.id)} onChange={() => alternar(l.id)} aria-label={`Seleccionar #${l.id}`} /></td>
-                  )}
+                  <td style={s.td}><input type="checkbox" checked={sel.has(l.id)} onChange={() => alternar(l.id)} aria-label={`Seleccionar #${l.id}`} /></td>
                   <td style={s.tdMuted}>{l.id}</td>
                   <td style={s.td}>{l.nombre}</td>
                   {source === 'formacion' && <td style={s.td}>{l.apellido}</td>}
@@ -341,7 +339,7 @@ export default function AdminPage() {
               ))}
               {leadsFiltrados.length === 0 && (
                 <tr>
-                  <td colSpan={source === 'diagnostico' ? 7 : source === 'formacion' ? 6 : source === 'webinar' ? 5 : 4} style={{ ...s.td, textAlign: 'center', color: '#555', padding: '2rem' }}>
+                  <td colSpan={source === 'formacion' || source === 'diagnostico' ? 7 : source === 'webinar' ? 6 : 5} style={{ ...s.td, textAlign: 'center', color: '#555', padding: '2rem' }}>
                     Sin resultados
                   </td>
                 </tr>
