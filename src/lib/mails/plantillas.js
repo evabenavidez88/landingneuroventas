@@ -11,8 +11,8 @@ export const LINKS = {
   masterclass: 'https://neurowebinar.evabenavidez.com/',
   entrenamiento: 'https://neuroformacion.evabenavidez.com/',
   grupos: {
-    '22/10': 'https://chat.whatsapp.com/LSt6YbeNgli7BC4uvuDlYU',
-    '27/10': 'https://chat.whatsapp.com/DtzwvS9aFgaGbfKYjO1Efp',
+    '22/10': 'https://chat.whatsapp.com/DtzwvS9aFgaGbfKYjO1Efp',
+    '27/10': 'https://chat.whatsapp.com/LSt6YbeNgli7BC4uvuDlYU',
   },
   // Si está inscripta pero todavía no eligió grupo: la página de gracias muestra los dos.
   gruposSinElegir: 'https://neurowebinar.evabenavidez.com/gracias',
