@@ -5,6 +5,9 @@ export const SITIO = 'https://neuroventas.evabenavidez.com';
 const IMG = `${SITIO}/images/mail/`;
 const CIR = '#6d3a58';
 const AMA = '#f0c419';
+// Temas de color: ciruela (mails del autodiagnóstico) y turquesa (mails nuevos de la masterclass).
+const CIRUELA = { fondo: CIR, fuerte: CIR, claro1: '#e9d8e2', claro2: '#c9a9bd', cajaFondo: '#f7f5f6' };
+const TURQUESA = { fondo: '#57BDB6', fuerte: '#2E8C86', claro1: '#ffffff', claro2: '#e3f6f4', cajaFondo: '#eef8f7' };
 
 export const LINKS = {
   diagnostico: `${SITIO}/diagnostico`,
@@ -26,36 +29,36 @@ const chico = (t, extra = '') => `<p style="margin:0 0 8px 0;font-size:14px;colo
 const firmaEva = p('Eva', 'margin:8px 0 0 0;font-weight:700;');
 const iconoCentro = (n) => `<table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto 18px;"><tr><td>${icon(n, 64)}</td></tr></table>`;
 
-function boton(texto, href) {
-  return `<table role="presentation" cellpadding="0" cellspacing="0" style="margin:8px auto 20px;"><tr><td align="center" style="background-color:${CIR};border-radius:6px;"><a href="${esc(href)}" target="_blank" style="display:inline-block;padding:15px 34px;color:#ffffff;font-size:14px;font-weight:700;text-decoration:none;letter-spacing:0.5px;">${esc(texto.toUpperCase())}</a></td></tr></table>`;
+function boton(texto, href, color = CIR) {
+  return `<table role="presentation" cellpadding="0" cellspacing="0" style="margin:8px auto 20px;"><tr><td align="center" style="background-color:${color};border-radius:6px;"><a href="${esc(href)}" target="_blank" style="display:inline-block;padding:15px 34px;color:#ffffff;font-size:14px;font-weight:700;text-decoration:none;letter-spacing:0.5px;">${esc(texto.toUpperCase())}</a></td></tr></table>`;
 }
 
-function caja(titulo, cuerpo, ico, fondo = '#f7f5f6', borde = CIR) {
+function caja(titulo, cuerpo, ico, fondo = '#f7f5f6', borde = CIR, colorTitulo = CIR) {
   const izq = ico ? `<td width="64" style="vertical-align:top;padding:18px 0 18px 18px;">${icon(ico, 48)}</td>` : '';
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:${fondo};border-left:4px solid ${borde};border-radius:4px;margin:0 0 20px 0;"><tr>${izq}<td style="padding:18px 20px;vertical-align:top;">
-<p style="margin:0 0 10px 0;font-size:13px;color:${CIR};font-weight:700;letter-spacing:1px;text-transform:uppercase;">${titulo}</p>${cuerpo}</td></tr></table>`;
+<p style="margin:0 0 10px 0;font-size:13px;color:${colorTitulo};font-weight:700;letter-spacing:1px;text-transform:uppercase;">${titulo}</p>${cuerpo}</td></tr></table>`;
 }
 
-function marco({ titulo, preheader, kicker, h1, sub, banda, cuerpo, linkBaja, motivo = 'te registraste en el autodiagnóstico Neuroventa Digital + IA' }) {
+function marco({ titulo, preheader, kicker, h1, sub, banda, cuerpo, linkBaja, motivo = 'te registraste en el autodiagnóstico Neuroventa Digital + IA', tema = CIRUELA }) {
   return `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${esc(titulo)}</title></head>
 <body style="margin:0;padding:0;background-color:#f4f2f3;font-family:Arial,Helvetica,sans-serif;">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:#f4f2f3;">${esc(preheader)}</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f2f3;padding:24px 0;"><tr><td align="center">
 <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;max-width:600px;width:100%;border-radius:8px;overflow:hidden;">
-<tr><td style="background-color:${CIR};padding:36px 32px;text-align:center;">
-<p style="margin:0 0 4px 0;color:#e9d8e2;font-size:12px;letter-spacing:2px;text-transform:uppercase;">Eva Benavidez — Coach &amp; Consultora</p>
-<p style="margin:0 0 16px 0;color:#c9a9bd;font-size:11px;letter-spacing:2px;text-transform:uppercase;">${kicker}</p>
+<tr><td style="background-color:${tema.fondo};padding:36px 32px;text-align:center;">
+<p style="margin:0 0 4px 0;color:${tema.claro1};font-size:12px;letter-spacing:2px;text-transform:uppercase;">Eva Benavidez — Coach &amp; Consultora</p>
+<p style="margin:0 0 16px 0;color:${tema.claro2};font-size:11px;letter-spacing:2px;text-transform:uppercase;">${kicker}</p>
 <h1 style="margin:0 0 6px 0;color:#ffffff;font-size:25px;line-height:1.3;font-weight:700;">${h1}</h1>
-<p style="margin:0;color:#e9d8e2;font-size:14px;">${sub}</p></td></tr>
+<p style="margin:0;color:${tema.claro1};font-size:14px;">${sub}</p></td></tr>
 <tr><td style="background-color:${AMA};padding:12px 32px;text-align:center;"><p style="margin:0;color:#3a2a10;font-size:13px;font-weight:700;letter-spacing:0.5px;">${banda}</p></td></tr>
 <tr><td style="padding:32px;">${cuerpo}</td></tr>
 <tr><td style="background-color:#f7f5f6;padding:24px 32px;text-align:center;">
-<p style="margin:0;font-size:15px;color:${CIR};font-style:italic;">“Tu cerebro ya sabe cómo vender. Solo necesita orden, foco y dirección.”</p></td></tr>
+<p style="margin:0;font-size:15px;color:${tema.fuerte};font-style:italic;">“Tu cerebro ya sabe cómo vender. Solo necesita orden, foco y dirección.”</p></td></tr>
 <tr><td style="padding:26px 32px 10px;"><table role="presentation" cellpadding="0" cellspacing="0" align="center" style="margin:0 auto;"><tr>
 <td style="padding-right:14px;vertical-align:middle;"><img src="${IMG}firma.jpg" width="64" height="64" alt="Eva Benavidez" style="display:block;width:64px;height:64px;border-radius:50%;border:2px solid ${AMA};"></td>
 <td style="vertical-align:middle;text-align:left;"><p style="margin:0 0 2px 0;font-size:16px;color:#222222;font-weight:700;">Eva Benavidez</p>
 <p style="margin:0 0 4px 0;font-size:14px;color:#888888;">Coach &amp; Consultora</p>
-<p style="margin:0;font-size:12px;"><a href="https://evabenavidez.com" style="color:${CIR};text-decoration:none;margin-right:10px;">evabenavidez.com</a><a href="https://www.instagram.com/evabenavidez.negocios/" style="color:${CIR};text-decoration:none;">@evabenavidez.negocios</a></p></td></tr></table></td></tr>
+<p style="margin:0;font-size:12px;"><a href="https://evabenavidez.com" style="color:${tema.fuerte};text-decoration:none;margin-right:10px;">evabenavidez.com</a><a href="https://www.instagram.com/evabenavidez.negocios/" style="color:${tema.fuerte};text-decoration:none;">@evabenavidez.negocios</a></p></td></tr></table></td></tr>
 <tr><td style="padding:10px 32px 28px;text-align:center;"><p style="margin:0;font-size:11px;color:#999999;line-height:1.5;">Recibís este mail porque ${motivo}. Si no querés recibir más mails, <a href="${esc(linkBaja)}" style="color:#999999;">darte de baja</a>.</p></td></tr>
 </table></td></tr></table></body></html>`;
 }
@@ -162,7 +165,8 @@ export function mail3B(d) {
 
 // ── Llamados a la acción de la masterclass (base del autodiagnóstico que no se anotó) ──
 // Textos: Eco (20/10). I1 21/10 · I2 22/10 · I3 26/10 · I4 27/10, siempre a las 10 h.
-const recuadro = (titulo, lineas) => caja(titulo, lineas.map((l, i) => chico(l, i === lineas.length - 1 ? 'margin:0;' : '')).join(''), 'negocio', '#fdf8e1', AMA);
+const recuadro = (titulo, lineas) => caja(titulo, lineas.map((l, i) => chico(l, i === lineas.length - 1 ? 'margin:0;' : '')).join(''), 'negocio', TURQUESA.cajaFondo, TURQUESA.fondo, TURQUESA.fuerte);
+const botonT = (texto, href) => boton(texto, href, TURQUESA.fuerte);
 
 export function mailI1(d) {
   const eje = `<strong>${esc(d.eje)}</strong>`;
@@ -170,10 +174,10 @@ export function mailI1(d) {
     + p(`Hace unos días hiciste tu autodiagnóstico y te salió <strong>${esc(d.perfil)}</strong>. Tu eje para trabajar primero es ${eje}.`)
     + recuadro('Masterclass gratuita Neuroventa Digital + IA', ['<strong>Jueves 22/10 o martes 27/10 · 19 h (ARG)</strong>', 'En vivo · No se graba'])
     + p(`En una hora te muestro cómo se trabaja ${eje} dentro del chat, y cómo la IA te ayuda a ordenarlo sin perder lo humano. Elegí la fecha que mejor te quede.`)
-    + boton('Reservar mi lugar gratis', LINKS.masterclass) + firmaEva;
+    + botonT('Reservar mi lugar gratis', LINKS.masterclass) + firmaEva;
   return {
     asunto: `${d.nombre}, mañana arranca la masterclass`,
-    html: marco({ ...MASTER_CAB, titulo: 'Mañana arranca la masterclass', preheader: 'Elegí tu fecha: jueves 22 o martes 27, a las 19 h.', banda: 'TU DIAGNÓSTICO TIENE UN PRÓXIMO PASO', cuerpo, linkBaja: d.linkBaja }),
+    html: marco({ ...MASTER_CAB, titulo: 'Mañana arranca la masterclass', preheader: 'Elegí tu fecha: jueves 22 o martes 27, a las 19 h.', banda: 'TU DIAGNÓSTICO TIENE UN PRÓXIMO PASO', cuerpo, linkBaja: d.linkBaja, tema: TURQUESA }),
   };
 }
 
@@ -182,10 +186,10 @@ export function mailI2(d) {
     + p('Hoy a las 19 h es la primera fecha de la masterclass. Vamos a ver en qué momento del chat se te escapa la venta, y qué hacer para que no pase.')
     + recuadro('Hoy · jueves 22/10 · 19 h (ARG)', ['¿Hoy no llegás? <strong>Martes 27/10 · 19 h</strong>'])
     + p(`Si tu eje es <strong>${esc(d.eje)}</strong>, esta hora es para vos: lo vas a ver aplicado a las conversaciones de todos los días. Reservá tu lugar y te paso el acceso por el grupo de WhatsApp.`)
-    + boton('Reservar mi lugar gratis', LINKS.masterclass) + firmaEva;
+    + botonT('Reservar mi lugar gratis', LINKS.masterclass) + firmaEva;
   return {
     asunto: 'Hoy a las 19 h, en vivo',
-    html: marco({ ...MASTER_CAB, titulo: 'Hoy a las 19 h, en vivo', preheader: 'Y si hoy no podés, el martes 27 hay otra fecha.', banda: 'HOY ES LA PRIMERA FECHA', cuerpo, linkBaja: d.linkBaja }),
+    html: marco({ ...MASTER_CAB, titulo: 'Hoy a las 19 h, en vivo', preheader: 'Y si hoy no podés, el martes 27 hay otra fecha.', banda: 'HOY ES LA PRIMERA FECHA', cuerpo, linkBaja: d.linkBaja, tema: TURQUESA }),
   };
 }
 
@@ -194,10 +198,10 @@ export function mailI3(d) {
     + p('Una pregunta: ¿cuántas conversaciones quedaron esta semana en “lo voy a pensar”? Mañana es la última fecha de la masterclass, y quería que lo supieras.')
     + recuadro('Martes 27/10 · 19 h (ARG)', ['Gratis · En vivo · No se graba'])
     + p(`Tu diagnóstico ya te mostró por dónde empezar: <strong>${esc(d.eje)}</strong>. Mañana vemos cómo ordenarlo, paso a paso.`)
-    + boton('Reservar mi lugar gratis', LINKS.masterclass) + firmaEva;
+    + botonT('Reservar mi lugar gratis', LINKS.masterclass) + firmaEva;
   return {
     asunto: 'Mañana es la última fecha',
-    html: marco({ ...MASTER_CAB, titulo: 'Mañana es la última fecha', preheader: 'Martes 27/10 a las 19 h. Una hora, gratis y en vivo.', banda: 'UNA HORA PARA ORDENAR TU VENTA', cuerpo, linkBaja: d.linkBaja }),
+    html: marco({ ...MASTER_CAB, titulo: 'Mañana es la última fecha', preheader: 'Martes 27/10 a las 19 h. Una hora, gratis y en vivo.', banda: 'UNA HORA PARA ORDENAR TU VENTA', cuerpo, linkBaja: d.linkBaja, tema: TURQUESA }),
   };
 }
 
@@ -206,10 +210,10 @@ export function mailI4(d) {
     + p('Corto y simple: hoy a las 19 h es la última fecha de la masterclass. Si sentís que en tus chats se te escapan ventas, esta hora es para vos.')
     + recuadro('Hoy · martes 27/10 · 19 h (ARG)', ['Gratis y en vivo · No se graba'])
     + p('Y si hoy no es tu momento, está todo bien: tu autodiagnóstico sigue siendo tu punto de partida. Te espero 💜')
-    + boton('Reservar mi lugar gratis', LINKS.masterclass) + firmaEva;
+    + botonT('Reservar mi lugar gratis', LINKS.masterclass) + firmaEva;
   return {
     asunto: `${d.nombre}, hoy a las 19 h es la última`,
-    html: marco({ ...MASTER_CAB, titulo: 'Hoy a las 19 h es la última', preheader: 'Si querés venir, todavía podés reservar tu lugar.', banda: 'HOY · ÚLTIMA FECHA', cuerpo, linkBaja: d.linkBaja }),
+    html: marco({ ...MASTER_CAB, titulo: 'Hoy a las 19 h es la última', preheader: 'Si querés venir, todavía podés reservar tu lugar.', banda: 'HOY · ÚLTIMA FECHA', cuerpo, linkBaja: d.linkBaja, tema: TURQUESA }),
   };
 }
 
@@ -223,19 +227,19 @@ export function mailR(d) {
       + p('¡Hoy es el día! A las 19 h arrancamos la masterclass Neuroventa Digital + IA.')
       + recuadro('Hoy · 19 h (ARG) · La sala abre a las 18:45', ['No se graba', 'Tu link está en el grupo de WhatsApp de tu fecha'])
       + p('Un consejo: tené a mano una conversación que no cerró. Hoy la vas a mirar con otros ojos.')
-      + boton('Ir a mi grupo', LINKS.grupos[d.fecha]) + firmaEva;
+      + botonT('Ir a mi grupo', LINKS.grupos[d.fecha]) + firmaEva;
     return {
       asunto: 'Hoy a las 19 h te espero',
-      html: marco({ ...MASTER_CAB, titulo: 'Hoy a las 19 h te espero', preheader: 'Tu link de acceso está en el grupo de WhatsApp de tu fecha.', banda: 'HOY NOS VEMOS', cuerpo, linkBaja: d.linkBaja, motivo }),
+      html: marco({ ...MASTER_CAB, titulo: 'Hoy a las 19 h te espero', preheader: 'Tu link de acceso está en el grupo de WhatsApp de tu fecha.', banda: 'HOY NOS VEMOS', cuerpo, linkBaja: d.linkBaja, motivo, tema: TURQUESA }),
     };
   }
   const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('negocio')
     + p('Hoy a las 19 h es tu masterclass, y veo que todavía no elegiste tu grupo de WhatsApp. Ahí compartimos el link de acceso.')
     + recuadro('Hoy · 19 h (ARG)', ['Elegí tu grupo para recibir el link', 'No se graba'])
     + p('Es un minuto. Elegí tu grupo y nos vemos en un rato 💜')
-    + boton('Elegir mi grupo', LINKS.gruposSinElegir) + firmaEva;
+    + botonT('Elegir mi grupo', LINKS.gruposSinElegir) + firmaEva;
   return {
     asunto: 'Hoy a las 19 h te espero',
-    html: marco({ ...MASTER_CAB, titulo: 'Hoy a las 19 h te espero', preheader: 'Te falta un paso: elegir tu grupo para recibir el link.', banda: 'TE FALTA UN SOLO PASO', cuerpo, linkBaja: d.linkBaja, motivo }),
+    html: marco({ ...MASTER_CAB, titulo: 'Hoy a las 19 h te espero', preheader: 'Te falta un paso: elegir tu grupo para recibir el link.', banda: 'TE FALTA UN SOLO PASO', cuerpo, linkBaja: d.linkBaja, motivo, tema: TURQUESA }),
   };
 }
