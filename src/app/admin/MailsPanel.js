@@ -2,16 +2,16 @@
 import { useCallback, useEffect, useState } from 'react';
 
 const MAILS = [
-  { id: '1A', nombre: 'Terminá tu diagnóstico · primer aviso', cuando: '2 h después de dejar sus datos' },
-  { id: '1B', nombre: 'Terminá tu diagnóstico · segundo aviso', cuando: '12 h después del primer aviso' },
-  { id: '2', nombre: 'Tu resultado', cuando: 'Al terminar el diagnóstico' },
-  { id: '3A', nombre: 'Recordatorio masterclass 22/10', cuando: 'Martes 20/10 · 19 h' },
-  { id: 'I1', nombre: 'Masterclass: mañana, elegí tu fecha (no anotados)', cuando: 'Miércoles 21/10 · 10 h' },
-  { id: 'I2', nombre: 'Masterclass: hoy 19 h (no anotados)', cuando: 'Jueves 22/10 · 10 h' },
-  { id: 'I3', nombre: 'Masterclass: mañana última fecha (no anotados)', cuando: 'Lunes 26/10 · 10 h' },
-  { id: 'I4', nombre: 'Masterclass: hoy última fecha (no anotados)', cuando: 'Martes 27/10 · 10 h' },
-  { id: 'R22', nombre: 'Recordatorio a anotados del 22/10', cuando: 'Jueves 22/10 · 10 h' },
-  { id: 'R27', nombre: 'Recordatorio a anotados del 27/10', cuando: 'Martes 27/10 · 10 h' },
+  { id: '1A', nombre: 'Terminá tu diagnóstico · primer aviso', cuando: '2 h después de dejar sus datos', quien: 'Dejó sus datos desde el 8/10 y no terminó el diagnóstico' },
+  { id: '1B', nombre: 'Terminá tu diagnóstico · segundo aviso', cuando: '12 h después del primer aviso', quien: 'Recibió el 1A y sigue sin terminar' },
+  { id: '2', nombre: 'Tu resultado', cuando: 'Al terminar el diagnóstico', quien: 'Terminó el diagnóstico desde el 8/10' },
+  { id: '3A', nombre: 'Recordatorio masterclass 22/10', cuando: 'Martes 20/10 · 19 h (ya salió)', quien: 'Autodiagnóstico, no anotados a la masterclass' },
+  { id: 'I1', nombre: 'Masterclass: mañana, elegí tu fecha (no anotados)', cuando: 'Miércoles 21/10 · 10 h', quien: 'Autodiagnóstico, no anotados a la masterclass' },
+  { id: 'I2', nombre: 'Masterclass: hoy 19 h (no anotados)', cuando: 'Jueves 22/10 · 10 h', quien: 'Autodiagnóstico, no anotados a la masterclass' },
+  { id: 'I3', nombre: 'Masterclass: mañana última fecha (no anotados)', cuando: 'Lunes 26/10 · 10 h', quien: 'Autodiagnóstico, no anotados a la masterclass' },
+  { id: 'I4', nombre: 'Masterclass: hoy última fecha (no anotados)', cuando: 'Martes 27/10 · 10 h', quien: 'Autodiagnóstico, no anotados a la masterclass' },
+  { id: 'R22', nombre: 'Recordatorio a anotados del 22/10', cuando: 'Jueves 22/10 · 10 h', quien: 'Anotados al 22/10 + anotados sin grupo' },
+  { id: 'R27', nombre: 'Recordatorio a anotados del 27/10', cuando: 'Martes 27/10 · 10 h', quien: 'Anotados al 27/10 + anotados sin grupo' },
 ];
 
 export default function MailsPanel({ adminKey, s }) {
@@ -90,11 +90,12 @@ export default function MailsPanel({ adminKey, s }) {
         <h3 style={s.chartTitle}>Mails</h3>
         <div style={s.tableWrap}>
           <table style={s.table}>
-            <thead><tr><th style={s.th}>Mail</th><th style={s.th}>Cuándo sale</th><th style={s.th}>Enviados</th><th style={s.th}>Listos para salir</th></tr></thead>
+            <thead><tr><th style={s.th}>Mail</th><th style={s.th}>A quién</th><th style={s.th}>Cuándo sale</th><th style={s.th}>Enviados</th><th style={s.th}>Listos para salir</th></tr></thead>
             <tbody>
               {MAILS.map((m, i) => (
                 <tr key={m.id} style={i % 2 === 0 ? s.trEven : s.trOdd}>
                   <td style={s.td}><b>{m.id}</b> · {m.nombre}</td>
+                  <td style={s.tdMuted}>{m.quien}</td>
                   <td style={s.tdMuted}>{m.cuando}</td>
                   <td style={s.td}>{datos.enviados[m.id] || 0}</td>
                   <td style={s.td}>{datos.pendientes[m.id] || 0}</td>
@@ -103,6 +104,14 @@ export default function MailsPanel({ adminKey, s }) {
             </tbody>
           </table>
         </div>
+        <ul style={{ color: '#aaa', fontSize: '0.85rem', margin: '1rem 0 0', paddingLeft: '1.1rem', lineHeight: 1.6 }}>
+          <li>Cada mail sale una sola vez por persona (los emails repetidos cuentan como uno).</li>
+          <li>Nunca les llega a los excluidos, a quienes se dieron de baja ni a los casos de prueba.</li>
+          <li>Solo se envía entre las 8 y las 22 h. El sistema revisa cada 10 minutos.</li>
+          <li>I1 a I4: antes de cada envío se revisa la base del webinar; quien se anotó deja de recibirlos. Quien terminó el diagnóstico hace menos de 12 h se saltea ese mail.</li>
+          <li>R22 y R27: con grupo elegido, botón a su grupo; sin grupo, botón para elegirlo. Cuentan las inscripciones desde el 1/10.</li>
+          <li>Cada mail tiene su ventana: si no salió en su día (I2, I4, R22 y R27 hasta las 19 h), ya no sale.</li>
+        </ul>
       </div>
 
       <div style={s.tableBox}>

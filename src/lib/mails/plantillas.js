@@ -7,7 +7,7 @@ const CIR = '#6d3a58';
 const AMA = '#f0c419';
 // Temas de color: ciruela (mails del autodiagnóstico) y turquesa (mails nuevos de la masterclass).
 const CIRUELA = { fondo: CIR, fuerte: CIR, claro1: '#e9d8e2', claro2: '#c9a9bd', cajaFondo: '#f7f5f6' };
-const TURQUESA = { fondo: '#57BDB6', fuerte: '#2E8C86', claro1: '#ffffff', claro2: '#e3f6f4', cajaFondo: '#eef8f7' };
+const TURQUESA = { fondo: '#57BDB6', fuerte: '#2E8C86', claro1: '#ffffff', claro2: '#e3f6f4', cajaFondo: '#eef8f7', logo: true };
 
 export const LINKS = {
   diagnostico: `${SITIO}/diagnostico`,
@@ -46,7 +46,9 @@ function marco({ titulo, preheader, kicker, h1, sub, banda, cuerpo, linkBaja, mo
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f2f3;padding:24px 0;"><tr><td align="center">
 <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;max-width:600px;width:100%;border-radius:8px;overflow:hidden;">
 <tr><td style="background-color:${tema.fondo};padding:36px 32px;text-align:center;">
-<p style="margin:0 0 4px 0;color:${tema.claro1};font-size:12px;letter-spacing:2px;text-transform:uppercase;">Eva Benavidez — Coach &amp; Consultora</p>
+${tema.logo
+    ? `<table role="presentation" cellpadding="0" cellspacing="0" align="center" style="margin:0 auto 16px;"><tr><td style="background-color:#ffffff;border-radius:12px;padding:10px 14px;"><img src="${IMG}logo.png" width="88" height="80" alt="Eva Benavidez · Coach &amp; Consultora" style="display:block;width:88px;height:80px;border:0;"></td></tr></table>`
+    : `<p style="margin:0 0 4px 0;color:${tema.claro1};font-size:12px;letter-spacing:2px;text-transform:uppercase;">Eva Benavidez — Coach &amp; Consultora</p>`}
 <p style="margin:0 0 16px 0;color:${tema.claro2};font-size:11px;letter-spacing:2px;text-transform:uppercase;">${kicker}</p>
 <h1 style="margin:0 0 6px 0;color:#ffffff;font-size:25px;line-height:1.3;font-weight:700;">${h1}</h1>
 <p style="margin:0;color:${tema.claro1};font-size:14px;">${sub}</p></td></tr>
@@ -223,7 +225,7 @@ export function mailR(d) {
   const conGrupo = d.grupo === d.fecha;
   const motivo = 'te inscribiste en la Masterclass Neuroventa Digital + IA';
   if (conGrupo) {
-    const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('negocio')
+    const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('energia')
       + p('¡Hoy es el día! A las 19 h arrancamos la masterclass Neuroventa Digital + IA.')
       + recuadro('Hoy · 19 h (ARG) · La sala abre a las 18:45', ['No se graba', 'Tu link está en el grupo de WhatsApp de tu fecha'])
       + p('Un consejo: tené a mano una conversación que no cerró. Hoy la vas a mirar con otros ojos.')
@@ -233,7 +235,7 @@ export function mailR(d) {
       html: marco({ ...MASTER_CAB, titulo: 'Hoy a las 19 h te espero', preheader: 'Tu link de acceso está en el grupo de WhatsApp de tu fecha.', banda: 'HOY NOS VEMOS', cuerpo, linkBaja: d.linkBaja, motivo, tema: TURQUESA }),
     };
   }
-  const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('negocio')
+  const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('energia')
     + p('Hoy a las 19 h es tu masterclass, y veo que todavía no elegiste tu grupo de WhatsApp. Ahí compartimos el link de acceso.')
     + recuadro('Hoy · 19 h (ARG)', ['Elegí tu grupo para recibir el link', 'No se graba'])
     + p('Es un minuto. Elegí tu grupo y nos vemos en un rato 💜')
