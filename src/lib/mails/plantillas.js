@@ -161,70 +161,81 @@ export function mail3B(d) {
 }
 
 // ── Llamados a la acción de la masterclass (base del autodiagnóstico que no se anotó) ──
-// Textos borrador de Ale: Eco los pule. I1 21/10 · I2 22/10 · I3 26/10 · I4 27/10, siempre a las 10 h.
-const ejeCaja = (d, txt) => caja(`Tu eje para empezar: ${esc(d.eje)}`, chico(txt, 'margin:0;'), 'negocio', '#fdf8e1', AMA);
+// Textos: Eco (20/10). I1 21/10 · I2 22/10 · I3 26/10 · I4 27/10, siempre a las 10 h.
+const recuadro = (titulo, lineas) => caja(titulo, lineas.map((l, i) => chico(l, i === lineas.length - 1 ? 'margin:0;' : '')).join(''), 'negocio', '#fdf8e1', AMA);
 
 export function mailI1(d) {
+  const eje = `<strong>${esc(d.eje)}</strong>`;
   const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('alerta')
-    + p('<strong>Mañana, jueves 22/10 a las 19 h (ARG)</strong>, hago la Masterclass Neuroventa Digital + IA. Es gratis y en vivo.')
-    + ejeCaja(d, `Tu resultado fue <strong>${esc(d.perfil)}</strong>. En la masterclass vas a ver por qué tu cliente duda aunque le interese y cómo se trabaja tu eje dentro del chat, con la IA como aliada.`)
-    + p('Si mañana no podés, la repito el <strong>martes 27/10</strong> a la misma hora. Elegí la fecha que te quede mejor.')
+    + p(`Hace unos días hiciste tu autodiagnóstico y te salió <strong>${esc(d.perfil)}</strong>. Tu eje para trabajar primero es ${eje}.`)
+    + recuadro('Masterclass gratuita Neuroventa Digital + IA', ['<strong>Jueves 22/10 o martes 27/10 · 19 h (ARG)</strong>', 'En vivo · No se graba'])
+    + p(`En una hora te muestro cómo se trabaja ${eje} dentro del chat, y cómo la IA te ayuda a ordenarlo sin perder lo humano. Elegí la fecha que mejor te quede.`)
     + boton('Reservar mi lugar gratis', LINKS.masterclass) + firmaEva;
   return {
-    asunto: `${d.nombre}, mañana es la masterclass: elegí tu fecha`,
-    html: marco({ ...MASTER_CAB, titulo: 'Mañana es la masterclass', preheader: 'Jueves 22/10 o martes 27/10, a las 19 h. Gratis y en vivo.', banda: 'JUEVES 22/10 O MARTES 27/10 · 19 H (ARG)', cuerpo, linkBaja: d.linkBaja }),
+    asunto: `${d.nombre}, mañana arranca la masterclass`,
+    html: marco({ ...MASTER_CAB, titulo: 'Mañana arranca la masterclass', preheader: 'Elegí tu fecha: jueves 22 o martes 27, a las 19 h.', banda: 'TU DIAGNÓSTICO TIENE UN PRÓXIMO PASO', cuerpo, linkBaja: d.linkBaja }),
   };
 }
 
 export function mailI2(d) {
   const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('energia')
-    + p('<strong>Hoy a las 19 h (ARG)</strong> es la Masterclass Neuroventa Digital + IA. Todavía estás a tiempo de reservar tu lugar.')
-    + ejeCaja(d, 'Una hora en vivo para ver cómo trabajar tu eje en tus conversaciones por WhatsApp y redes, sin perder lo humano.')
-    + p('Si hoy no podés, el <strong>martes 27/10</strong> es la última fecha.')
+    + p('Hoy a las 19 h es la primera fecha de la masterclass. Vamos a ver en qué momento del chat se te escapa la venta, y qué hacer para que no pase.')
+    + recuadro('Hoy · jueves 22/10 · 19 h (ARG)', ['¿Hoy no llegás? <strong>Martes 27/10 · 19 h</strong>'])
+    + p(`Si tu eje es <strong>${esc(d.eje)}</strong>, esta hora es para vos: lo vas a ver aplicado a las conversaciones de todos los días. Reservá tu lugar y te paso el acceso por el grupo de WhatsApp.`)
     + boton('Reservar mi lugar gratis', LINKS.masterclass) + firmaEva;
   return {
-    asunto: 'Hoy a las 19 h: masterclass gratuita',
-    html: marco({ ...MASTER_CAB, titulo: 'Hoy a las 19 h', preheader: 'Todavía estás a tiempo. Y si hoy no podés, hay una fecha más.', banda: 'HOY · JUEVES 22/10 · 19 H (ARG)', cuerpo, linkBaja: d.linkBaja }),
+    asunto: 'Hoy a las 19 h, en vivo',
+    html: marco({ ...MASTER_CAB, titulo: 'Hoy a las 19 h, en vivo', preheader: 'Y si hoy no podés, el martes 27 hay otra fecha.', banda: 'HOY ES LA PRIMERA FECHA', cuerpo, linkBaja: d.linkBaja }),
   };
 }
 
 export function mailI3(d) {
-  const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('alerta')
-    + p('<strong>Mañana, martes 27/10 a las 19 h (ARG)</strong>, es la última fecha de la Masterclass Neuroventa Digital + IA.')
-    + ejeCaja(d, `Tu resultado fue <strong>${esc(d.perfil)}</strong>. Vas a ver cómo trabajar tu eje dentro del chat y cómo la IA te ayuda a sostenerlo.`)
-    + p('Es gratis, es en vivo y no se graba. Si querés estar, reservá tu lugar.')
+  const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('proceso')
+    + p('Una pregunta: ¿cuántas conversaciones quedaron esta semana en “lo voy a pensar”? Mañana es la última fecha de la masterclass, y quería que lo supieras.')
+    + recuadro('Martes 27/10 · 19 h (ARG)', ['Gratis · En vivo · No se graba'])
+    + p(`Tu diagnóstico ya te mostró por dónde empezar: <strong>${esc(d.eje)}</strong>. Mañana vemos cómo ordenarlo, paso a paso.`)
     + boton('Reservar mi lugar gratis', LINKS.masterclass) + firmaEva;
   return {
-    asunto: `${d.nombre}, mañana es la última fecha`,
-    html: marco({ ...MASTER_CAB, titulo: 'Mañana es la última fecha', preheader: 'Martes 27/10 a las 19 h. Gratis, en vivo y no se graba.', banda: 'ÚLTIMA FECHA · MARTES 27/10 · 19 H (ARG)', cuerpo, linkBaja: d.linkBaja }),
+    asunto: 'Mañana es la última fecha',
+    html: marco({ ...MASTER_CAB, titulo: 'Mañana es la última fecha', preheader: 'Martes 27/10 a las 19 h. Una hora, gratis y en vivo.', banda: 'UNA HORA PARA ORDENAR TU VENTA', cuerpo, linkBaja: d.linkBaja }),
   };
 }
 
 export function mailI4(d) {
-  const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('energia')
-    + p('<strong>Hoy a las 19 h (ARG)</strong> es la última fecha de la Masterclass Neuroventa Digital + IA.')
-    + ejeCaja(d, 'Una hora en vivo para pasar de responder como puedas a tener un método en tus conversaciones de venta.')
-    + p('Después de hoy no hay otra fecha. Si querés estar, todavía podés reservar tu lugar.')
+  const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('alerta')
+    + p('Corto y simple: hoy a las 19 h es la última fecha de la masterclass. Si sentís que en tus chats se te escapan ventas, esta hora es para vos.')
+    + recuadro('Hoy · martes 27/10 · 19 h (ARG)', ['Gratis y en vivo · No se graba'])
+    + p('Y si hoy no es tu momento, está todo bien: tu autodiagnóstico sigue siendo tu punto de partida. Te espero 💜')
     + boton('Reservar mi lugar gratis', LINKS.masterclass) + firmaEva;
   return {
-    asunto: 'Hoy 19 h: última fecha de la masterclass',
-    html: marco({ ...MASTER_CAB, titulo: 'Hoy es la última fecha', preheader: 'Martes 27/10 a las 19 h. Todavía podés reservar tu lugar.', banda: 'HOY · ÚLTIMA FECHA · 19 H (ARG)', cuerpo, linkBaja: d.linkBaja }),
+    asunto: `${d.nombre}, hoy a las 19 h es la última`,
+    html: marco({ ...MASTER_CAB, titulo: 'Hoy a las 19 h es la última', preheader: 'Si querés venir, todavía podés reservar tu lugar.', banda: 'HOY · ÚLTIMA FECHA', cuerpo, linkBaja: d.linkBaja }),
   };
 }
 
 // ── Recordatorio para quienes ya se anotaron (base del webinar), el día de su fecha a las 10 h ──
 // d: { nombre, fecha: '22/10' | '27/10', grupo (el elegido o null), linkBaja }
 export function mailR(d) {
-  const dia = d.fecha === '22/10' ? 'jueves 22/10' : 'martes 27/10';
   const conGrupo = d.grupo === d.fecha;
+  const motivo = 'te inscribiste en la Masterclass Neuroventa Digital + IA';
+  if (conGrupo) {
+    const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('negocio')
+      + p('¡Hoy es el día! A las 19 h arrancamos la masterclass Neuroventa Digital + IA.')
+      + recuadro('Hoy · 19 h (ARG) · La sala abre a las 18:45', ['No se graba', 'Tu link está en el grupo de WhatsApp de tu fecha'])
+      + p('Un consejo: tené a mano una conversación que no cerró. Hoy la vas a mirar con otros ojos.')
+      + boton('Ir a mi grupo', LINKS.grupos[d.fecha]) + firmaEva;
+    return {
+      asunto: 'Hoy a las 19 h te espero',
+      html: marco({ ...MASTER_CAB, titulo: 'Hoy a las 19 h te espero', preheader: 'Tu link de acceso está en el grupo de WhatsApp de tu fecha.', banda: 'HOY NOS VEMOS', cuerpo, linkBaja: d.linkBaja, motivo }),
+    };
+  }
   const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('negocio')
-    + p(`<strong>Hoy, ${dia} a las 19 h (ARG)</strong>, te espero en la Masterclass Neuroventa Digital + IA.`)
-    + caja('Cómo entrar', conGrupo
-      ? chico('El link de acceso lo comparto en el grupo de WhatsApp de tu fecha. Si todavía no entraste, sumate desde acá.', 'margin:0;')
-      : chico('El link de acceso lo comparto en el grupo de WhatsApp de cada fecha. Todavía no elegiste el tuyo: entrá y sumate al grupo de la fecha que te quede mejor.', 'margin:0;'), 'proceso', '#fdf8e1', AMA)
-    + boton(conGrupo ? 'Ir a mi grupo de WhatsApp' : 'Elegir mi grupo', conGrupo ? LINKS.grupos[d.fecha] : LINKS.gruposSinElegir) + firmaEva;
+    + p('Hoy a las 19 h es tu masterclass, y veo que todavía no elegiste tu grupo de WhatsApp. Ahí compartimos el link de acceso.')
+    + recuadro('Hoy · 19 h (ARG)', ['Elegí tu grupo para recibir el link', 'No se graba'])
+    + p('Es un minuto. Elegí tu grupo y nos vemos en un rato 💜')
+    + boton('Elegir mi grupo', LINKS.gruposSinElegir) + firmaEva;
   return {
-    asunto: `Hoy a las 19 h te espero en la masterclass`,
-    html: marco({ ...MASTER_CAB, titulo: 'Hoy a las 19 h te espero', preheader: 'El link de acceso está en el grupo de WhatsApp de tu fecha.', banda: `HOY · ${dia.toUpperCase()} · 19 H (ARG)`, cuerpo, linkBaja: d.linkBaja, motivo: 'te inscribiste en la Masterclass Neuroventa Digital + IA' }),
+    asunto: 'Hoy a las 19 h te espero',
+    html: marco({ ...MASTER_CAB, titulo: 'Hoy a las 19 h te espero', preheader: 'Te falta un paso: elegir tu grupo para recibir el link.', banda: 'TE FALTA UN SOLO PASO', cuerpo, linkBaja: d.linkBaja, motivo }),
   };
 }
