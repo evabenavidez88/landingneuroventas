@@ -36,7 +36,7 @@ function caja(titulo, cuerpo, ico, fondo = '#f7f5f6', borde = CIR) {
 <p style="margin:0 0 10px 0;font-size:13px;color:${CIR};font-weight:700;letter-spacing:1px;text-transform:uppercase;">${titulo}</p>${cuerpo}</td></tr></table>`;
 }
 
-function marco({ titulo, preheader, kicker, h1, sub, banda, cuerpo, linkBaja }) {
+function marco({ titulo, preheader, kicker, h1, sub, banda, cuerpo, linkBaja, motivo = 'te registraste en el autodiagnóstico Neuroventa Digital + IA' }) {
   return `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${esc(titulo)}</title></head>
 <body style="margin:0;padding:0;background-color:#f4f2f3;font-family:Arial,Helvetica,sans-serif;">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:#f4f2f3;">${esc(preheader)}</div>
@@ -56,7 +56,7 @@ function marco({ titulo, preheader, kicker, h1, sub, banda, cuerpo, linkBaja }) 
 <td style="vertical-align:middle;text-align:left;"><p style="margin:0 0 2px 0;font-size:16px;color:#222222;font-weight:700;">Eva Benavidez</p>
 <p style="margin:0 0 4px 0;font-size:14px;color:#888888;">Coach &amp; Consultora</p>
 <p style="margin:0;font-size:12px;"><a href="https://evabenavidez.com" style="color:${CIR};text-decoration:none;margin-right:10px;">evabenavidez.com</a><a href="https://www.instagram.com/evabenavidez.negocios/" style="color:${CIR};text-decoration:none;">@evabenavidez.negocios</a></p></td></tr></table></td></tr>
-<tr><td style="padding:10px 32px 28px;text-align:center;"><p style="margin:0;font-size:11px;color:#999999;line-height:1.5;">Recibís este mail porque te registraste en el autodiagnóstico Neuroventa Digital + IA. Si no querés recibir más mails, <a href="${esc(linkBaja)}" style="color:#999999;">darte de baja</a>.</p></td></tr>
+<tr><td style="padding:10px 32px 28px;text-align:center;"><p style="margin:0;font-size:11px;color:#999999;line-height:1.5;">Recibís este mail porque ${motivo}. Si no querés recibir más mails, <a href="${esc(linkBaja)}" style="color:#999999;">darte de baja</a>.</p></td></tr>
 </table></td></tr></table></body></html>`;
 }
 
@@ -157,5 +157,74 @@ export function mail3B(d) {
   return {
     asunto: 'Última fecha: el martes trabajamos tu eje',
     html: marco({ ...MASTER_CAB, titulo: 'Última fecha: el martes trabajamos tu eje', preheader: 'Gratis y en vivo: martes 27/10 a las 19 h. Es la última fecha.', banda: 'ÚLTIMA FECHA · MARTES 27/10 · 19 H (ARG)', cuerpo, linkBaja: d.linkBaja }),
+  };
+}
+
+// ── Llamados a la acción de la masterclass (base del autodiagnóstico que no se anotó) ──
+// Textos borrador de Ale: Eco los pule. I1 21/10 · I2 22/10 · I3 26/10 · I4 27/10, siempre a las 10 h.
+const ejeCaja = (d, txt) => caja(`Tu eje para empezar: ${esc(d.eje)}`, chico(txt, 'margin:0;'), 'negocio', '#fdf8e1', AMA);
+
+export function mailI1(d) {
+  const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('alerta')
+    + p('<strong>Mañana, jueves 22/10 a las 19 h (ARG)</strong>, hago la Masterclass Neuroventa Digital + IA. Es gratis y en vivo.')
+    + ejeCaja(d, `Tu resultado fue <strong>${esc(d.perfil)}</strong>. En la masterclass vas a ver por qué tu cliente duda aunque le interese y cómo se trabaja tu eje dentro del chat, con la IA como aliada.`)
+    + p('Si mañana no podés, la repito el <strong>martes 27/10</strong> a la misma hora. Elegí la fecha que te quede mejor.')
+    + boton('Reservar mi lugar gratis', LINKS.masterclass) + firmaEva;
+  return {
+    asunto: `${d.nombre}, mañana es la masterclass: elegí tu fecha`,
+    html: marco({ ...MASTER_CAB, titulo: 'Mañana es la masterclass', preheader: 'Jueves 22/10 o martes 27/10, a las 19 h. Gratis y en vivo.', banda: 'JUEVES 22/10 O MARTES 27/10 · 19 H (ARG)', cuerpo, linkBaja: d.linkBaja }),
+  };
+}
+
+export function mailI2(d) {
+  const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('energia')
+    + p('<strong>Hoy a las 19 h (ARG)</strong> es la Masterclass Neuroventa Digital + IA. Todavía estás a tiempo de reservar tu lugar.')
+    + ejeCaja(d, 'Una hora en vivo para ver cómo trabajar tu eje en tus conversaciones por WhatsApp y redes, sin perder lo humano.')
+    + p('Si hoy no podés, el <strong>martes 27/10</strong> es la última fecha.')
+    + boton('Reservar mi lugar gratis', LINKS.masterclass) + firmaEva;
+  return {
+    asunto: 'Hoy a las 19 h: masterclass gratuita',
+    html: marco({ ...MASTER_CAB, titulo: 'Hoy a las 19 h', preheader: 'Todavía estás a tiempo. Y si hoy no podés, hay una fecha más.', banda: 'HOY · JUEVES 22/10 · 19 H (ARG)', cuerpo, linkBaja: d.linkBaja }),
+  };
+}
+
+export function mailI3(d) {
+  const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('alerta')
+    + p('<strong>Mañana, martes 27/10 a las 19 h (ARG)</strong>, es la última fecha de la Masterclass Neuroventa Digital + IA.')
+    + ejeCaja(d, `Tu resultado fue <strong>${esc(d.perfil)}</strong>. Vas a ver cómo trabajar tu eje dentro del chat y cómo la IA te ayuda a sostenerlo.`)
+    + p('Es gratis, es en vivo y no se graba. Si querés estar, reservá tu lugar.')
+    + boton('Reservar mi lugar gratis', LINKS.masterclass) + firmaEva;
+  return {
+    asunto: `${d.nombre}, mañana es la última fecha`,
+    html: marco({ ...MASTER_CAB, titulo: 'Mañana es la última fecha', preheader: 'Martes 27/10 a las 19 h. Gratis, en vivo y no se graba.', banda: 'ÚLTIMA FECHA · MARTES 27/10 · 19 H (ARG)', cuerpo, linkBaja: d.linkBaja }),
+  };
+}
+
+export function mailI4(d) {
+  const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('energia')
+    + p('<strong>Hoy a las 19 h (ARG)</strong> es la última fecha de la Masterclass Neuroventa Digital + IA.')
+    + ejeCaja(d, 'Una hora en vivo para pasar de responder como puedas a tener un método en tus conversaciones de venta.')
+    + p('Después de hoy no hay otra fecha. Si querés estar, todavía podés reservar tu lugar.')
+    + boton('Reservar mi lugar gratis', LINKS.masterclass) + firmaEva;
+  return {
+    asunto: 'Hoy 19 h: última fecha de la masterclass',
+    html: marco({ ...MASTER_CAB, titulo: 'Hoy es la última fecha', preheader: 'Martes 27/10 a las 19 h. Todavía podés reservar tu lugar.', banda: 'HOY · ÚLTIMA FECHA · 19 H (ARG)', cuerpo, linkBaja: d.linkBaja }),
+  };
+}
+
+// ── Recordatorio para quienes ya se anotaron (base del webinar), el día de su fecha a las 10 h ──
+// d: { nombre, fecha: '22/10' | '27/10', grupo (el elegido o null), linkBaja }
+export function mailR(d) {
+  const dia = d.fecha === '22/10' ? 'jueves 22/10' : 'martes 27/10';
+  const conGrupo = d.grupo === d.fecha;
+  const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('negocio')
+    + p(`<strong>Hoy, ${dia} a las 19 h (ARG)</strong>, te espero en la Masterclass Neuroventa Digital + IA.`)
+    + caja('Cómo entrar', conGrupo
+      ? chico('El link de acceso lo comparto en el grupo de WhatsApp de tu fecha. Si todavía no entraste, sumate desde acá.', 'margin:0;')
+      : chico('El link de acceso lo comparto en el grupo de WhatsApp de cada fecha. Todavía no elegiste el tuyo: entrá y sumate al grupo de la fecha que te quede mejor.', 'margin:0;'), 'proceso', '#fdf8e1', AMA)
+    + boton(conGrupo ? 'Ir a mi grupo de WhatsApp' : 'Elegir mi grupo', conGrupo ? LINKS.grupos[d.fecha] : LINKS.gruposSinElegir) + firmaEva;
+  return {
+    asunto: `Hoy a las 19 h te espero en la masterclass`,
+    html: marco({ ...MASTER_CAB, titulo: 'Hoy a las 19 h te espero', preheader: 'El link de acceso está en el grupo de WhatsApp de tu fecha.', banda: `HOY · ${dia.toUpperCase()} · 19 H (ARG)`, cuerpo, linkBaja: d.linkBaja, motivo: 'te inscribiste en la Masterclass Neuroventa Digital + IA' }),
   };
 }

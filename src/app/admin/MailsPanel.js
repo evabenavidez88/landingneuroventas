@@ -6,7 +6,12 @@ const MAILS = [
   { id: '1B', nombre: 'Terminá tu diagnóstico · segundo aviso', cuando: '12 h después del primer aviso' },
   { id: '2', nombre: 'Tu resultado', cuando: 'Al terminar el diagnóstico' },
   { id: '3A', nombre: 'Recordatorio masterclass 22/10', cuando: 'Martes 20/10 · 19 h' },
-  { id: '3B', nombre: 'Recordatorio masterclass 27/10', cuando: 'Domingo 25/10 · 19 h' },
+  { id: 'I1', nombre: 'Masterclass: mañana, elegí tu fecha (no anotados)', cuando: 'Miércoles 21/10 · 10 h' },
+  { id: 'I2', nombre: 'Masterclass: hoy 19 h (no anotados)', cuando: 'Jueves 22/10 · 10 h' },
+  { id: 'I3', nombre: 'Masterclass: mañana última fecha (no anotados)', cuando: 'Lunes 26/10 · 10 h' },
+  { id: 'I4', nombre: 'Masterclass: hoy última fecha (no anotados)', cuando: 'Martes 27/10 · 10 h' },
+  { id: 'R22', nombre: 'Recordatorio a anotados del 22/10', cuando: 'Jueves 22/10 · 10 h' },
+  { id: 'R27', nombre: 'Recordatorio a anotados del 27/10', cuando: 'Martes 27/10 · 10 h' },
 ];
 
 export default function MailsPanel({ adminKey, s }) {
@@ -71,7 +76,7 @@ export default function MailsPanel({ adminKey, s }) {
 
       <div style={caja}>
         <h3 style={s.chartTitle}>Envío de prueba</h3>
-        <p style={{ color: '#aaa', fontSize: '0.9rem', margin: '0 0 0.75rem' }}>Manda las 8 piezas con datos de ejemplo (Ana, 47%). El asunto dice [PRUEBA]. No cuenta como envío real.</p>
+        <p style={{ color: '#aaa', fontSize: '0.9rem', margin: '0 0 0.75rem' }}>Manda las piezas nuevas de la masterclass (I1 a I4 y recordatorios a anotados) con datos de ejemplo (Ana, eje Seguimiento). El asunto dice [PRUEBA]. No cuenta como envío real.</p>
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
           <input type="email" value={emailPrueba} onChange={(e) => setEmailPrueba(e.target.value)} style={{ ...s.search, minWidth: '300px' }} />
           <button disabled={ocupado} style={btn('#6c3ce1')}

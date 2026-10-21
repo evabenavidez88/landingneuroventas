@@ -1,7 +1,7 @@
 import { createHmac } from 'crypto';
 import { Resend } from 'resend';
 import { getPool, asegurarTabla, calcularResultado } from '../diagnostico';
-import { SITIO, mail1A, mail1B, mail2, mail3A, mail3B } from './plantillas';
+import { SITIO, mail1A, mail1B, mail2, mail3A, mail3B, mailI1, mailI2, mailI3, mailI4, mailR } from './plantillas';
 
 // Motor de los mails automáticos. Corre cada 10 minutos (ver src/instrumentation.js)
 // y solo envía si el flujo está activado desde el panel.
@@ -15,9 +15,28 @@ export const CALENDARIO = {
   finAutodiagnostico: T('2026-11-03T03:00:00Z'),    // hasta 2/11 23:59 ARG
   finDosFechas: T('2026-10-22T22:00:00Z'),          // 22/10 19:00 ARG
   finMasterclass: T('2026-10-27T22:00:00Z'),        // 27/10 19:00 ARG
-  envio3A: T('2026-10-20T22:00:00Z'),               // 20/10 19:00 ARG
-  envio3B: T('2026-10-25T22:00:00Z'),               // 25/10 19:00 ARG
+  envio3A: T('2026-10-20T22:00:00Z'),               // 20/10 19:00 ARG (corre hasta que arranca I1)
+  envio3B: T('2026-10-25T22:00:00Z'),               // reemplazado por I3 (lunes 26/10): ya no se envía
+  // Llamados a la acción a la base del autodiagnóstico que no se anotó, a las 10:00 ARG.
+  envioI1: T('2026-10-21T13:00:00Z'),               // mié 21/10
+  envioI2: T('2026-10-22T13:00:00Z'),               // jue 22/10 (hasta las 19 h)
+  envioI3: T('2026-10-26T13:00:00Z'),               // lun 26/10
+  envioI4: T('2026-10-27T13:00:00Z'),               // mar 27/10 (hasta las 19 h)
+  // Inscripciones de la masterclass actual (para no escribirle a anotados de ediciones anteriores).
+  inicioMasterclass: T('2026-10-01T03:00:00Z'),
 };
+// Ventanas de envío: [desde, hasta). Fuera de la ventana, ese mail ya no sale.
+const VENTANAS = {
+  '3A': [CALENDARIO.envio3A, CALENDARIO.envioI1],
+  I1: [CALENDARIO.envioI1, CALENDARIO.envioI2],
+  I2: [CALENDARIO.envioI2, CALENDARIO.finDosFechas],
+  I3: [CALENDARIO.envioI3, CALENDARIO.envioI4],
+  I4: [CALENDARIO.envioI4, CALENDARIO.finMasterclass],
+  R22: [CALENDARIO.envioI2, CALENDARIO.finDosFechas],
+  R27: [CALENDARIO.envioI4, CALENDARIO.finMasterclass],
+};
+const enVentana = (codigo, t) => t >= VENTANAS[codigo][0] && t < VENTANAS[codigo][1];
+const ESPERA_POST_RESULTADO = 12 * 3600e3; // quien terminó el diagnóstico hace menos de 12 h ya recibió su invitación en el mail 2
 const ESPERA_1A = 2 * 3600e3;
 const ESPERA_1B = 12 * 3600e3;
 const MAX_POR_CORRIDA = 60;
@@ -115,7 +134,8 @@ export async function pendientes(db, ahora = ahoraActual()) {
   const diag = new Map();
   for (const f of (await db.query('SELECT * FROM leads_diagnostico ORDER BY fecha ASC')).rows) diag.set(normalizar(f.email), f);
   const webinar = new Map();
-  for (const f of (await db.query('SELECT email, grupo FROM leads_webinar')).rows) webinar.set(normalizar(f.email), f.grupo || null);
+  const webinarFilas = (await db.query('SELECT nombre, email, grupo, fecha FROM leads_webinar ORDER BY fecha ASC')).rows;
+  for (const f of webinarFilas) webinar.set(normalizar(f.email), f.grupo || null);
   const envio1A = new Map((await db.query("SELECT email, enviado_en FROM mail_envios WHERE mail = '1A'")).rows.map((r) => [r.email, new Date(r.enviado_en).getTime()]));
 
   const lista = [];
@@ -144,12 +164,32 @@ export async function pendientes(db, ahora = ahoraActual()) {
   }
 
   // Regla 3: toda la base de Diagnóstico que no está inscripta a la masterclass.
-  const r3 = t >= CALENDARIO.envio3A && t < CALENDARIO.finDosFechas ? '3A' : t >= CALENDARIO.envio3B && t < CALENDARIO.finMasterclass ? '3B' : null;
+  // 3A (desde el 20/10) y después los llamados a la acción I1 a I4. Se revisa la base del webinar en cada corrida.
+  const r3 = ['3A', 'I1', 'I2', 'I3', 'I4'].find((c) => enVentana(c, t));
   if (r3) {
     for (const [e, f] of diag) {
       if (webinar.has(e) || !ok(e, r3)) continue;
+      if (r3 !== '3A' && t - new Date(f.fecha).getTime() < ESPERA_POST_RESULTADO) continue;
       const d = datosResultado(f);
       lista.push({ email: e, mail: r3, datos: { nombre: d.nombre, perfil: d.perfil, eje: d.eje } });
+    }
+  }
+
+  // Regla 4: recordatorio a quienes ya se anotaron, el día de su fecha a las 10 h.
+  // Del 22/10: anotados al 22 y quienes no eligieron grupo. Del 27/10: anotados al 27 y quienes no eligieron.
+  const r4 = ['R22', 'R27'].find((c) => enVentana(c, t));
+  if (r4) {
+    const fecha = r4 === 'R22' ? '22/10' : '27/10';
+    const vistos = new Set();
+    for (const f of webinarFilas) {
+      const e = normalizar(f.email);
+      if (vistos.has(e)) continue;
+      vistos.add(e);
+      const grupo = webinar.get(e);
+      if (grupo && grupo !== fecha) continue;
+      if (!grupo && new Date(f.fecha).getTime() < CALENDARIO.inicioMasterclass) continue;
+      if (!ok(e, r4)) continue;
+      lista.push({ email: e, mail: r4, datos: { nombre: primerNombre(f.nombre), fecha, grupo } });
     }
   }
   return lista;
@@ -157,7 +197,7 @@ export async function pendientes(db, ahora = ahoraActual()) {
 
 function armar(item, ahora) {
   const d = { ...item.datos, ahora, linkBaja: linkBaja(item.email) };
-  return { '1A': mail1A, '1B': mail1B, '2': mail2, '3A': mail3A, '3B': mail3B }[item.mail](d);
+  return { '1A': mail1A, '1B': mail1B, '2': mail2, '3A': mail3A, '3B': mail3B, I1: mailI1, I2: mailI2, I3: mailI3, I4: mailI4, R22: mailR, R27: mailR }[item.mail](d);
 }
 
 let corriendo = false;
@@ -196,7 +236,7 @@ export async function correr({ forzarHorario = false } = {}) {
   }
 }
 
-// Envío de prueba: las 8 piezas con datos de ejemplo, a una sola casilla. No queda registrado.
+// Envío de prueba: las piezas vigentes con datos de ejemplo, a una sola casilla. No queda registrado.
 export const EJEMPLO = {
   nombre: 'Ana', perfil: 'En construcción', total: 47, puntos: 14, faltan: 16, orden: 60, foco: 50, seguimiento: 30, eje: 'Seguimiento',
   proximo: 'Tu salto está en el Seguimiento: con una forma simple de seguir vas a recuperar conversaciones que hoy se enfrían sin que te des cuenta.', grupo: '22/10',
@@ -204,10 +244,9 @@ export const EJEMPLO = {
 export function piezasPrueba(email) {
   const base = { ...EJEMPLO, ahora: new Date('2026-10-10T15:00:00Z'), linkBaja: linkBaja(email) };
   return [
-    ['1A', mail1A(base)], ['1B', mail1B(base)],
-    ['2-A', mail2({ ...base, variante: 'A' })], ['2-A27', mail2({ ...base, variante: 'A27' })],
-    ['2-B', mail2({ ...base, variante: 'B' })], ['2-C', mail2({ ...base, variante: 'C' })],
-    ['3A', mail3A(base)], ['3B', mail3B(base)],
+    ['I1 · 21/10', mailI1(base)], ['I2 · 22/10', mailI2(base)], ['I3 · 26/10', mailI3(base)], ['I4 · 27/10', mailI4(base)],
+    ['R22 · anotados 22/10', mailR({ ...base, fecha: '22/10', grupo: '22/10' })], ['R27 · anotados 27/10', mailR({ ...base, fecha: '27/10', grupo: '27/10' })],
+    ['R · sin grupo elegido', mailR({ ...base, fecha: '22/10', grupo: null })],
   ];
 }
 export async function enviarPrueba(email) {

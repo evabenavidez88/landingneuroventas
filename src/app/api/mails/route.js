@@ -11,7 +11,7 @@ async function estado(db) {
   const env = (await db.query('SELECT mail, COUNT(*)::int AS n FROM mail_envios GROUP BY mail')).rows;
   const bajas = (await db.query('SELECT COUNT(*)::int AS n FROM mail_bajas')).rows[0].n;
   const pend = await pendientes(db);
-  const porMail = (filas) => Object.fromEntries(['1A', '1B', '2', '3A', '3B'].map((m) => [m, 0]).concat(filas));
+  const porMail = (filas) => Object.fromEntries(['1A', '1B', '2', '3A', 'I1', 'I2', 'I3', 'I4', 'R22', 'R27'].map((m) => [m, 0]).concat(filas));
   return {
     activo: config.activo,
     excluidos: config.excluidos,
