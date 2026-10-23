@@ -13,6 +13,8 @@ export const LINKS = {
   diagnostico: `${SITIO}/diagnostico`,
   masterclass: 'https://neurowebinar.evabenavidez.com/',
   entrenamiento: 'https://neuroformacion.evabenavidez.com/',
+  // 50% OFF para quienes estuvieron en vivo en la masterclass (link exclusivo, $44.500). No va en la web.
+  pago50: 'https://mpago.la/1a24rho',
   grupos: {
     '22/10': 'https://chat.whatsapp.com/DtzwvS9aFgaGbfKYjO1Efp',
     '27/10': 'https://chat.whatsapp.com/JIALqDzrd6k94ce3bbhYzu',
@@ -243,5 +245,114 @@ export function mailR(d) {
   return {
     asunto: 'Hoy a las 19 h te espero',
     html: marco({ ...MASTER_CAB, titulo: 'Hoy a las 19 h te espero', preheader: 'Te falta un paso: elegir tu grupo para recibir el link.', banda: 'TE FALTA UN SOLO PASO', cuerpo, linkBaja: d.linkBaja, motivo, tema: TURQUESA }),
+  };
+}
+
+// ── Nutrición para el Entrenamiento (flujo aparte, solapa "Nutrición" del panel) ──
+// Textos: Eco (22/10). A = grupo masterclass 22/10 · B = grupo 27/10 · C = autodiagnóstico sin masterclass.
+const ENT_CAB = { kicker: 'Entrenamiento · Online en vivo', h1: 'Entrenamiento Neuroventa Digital + IA', sub: 'Primero orden. Después, IA.' };
+const MOTIVO_MASTER = 'te inscribiste en la Masterclass Neuroventa Digital + IA';
+const enlace = (texto, href) => `<a href="${esc(href)}" target="_blank" style="color:${TURQUESA.fuerte};font-weight:700;">${texto}</a>`;
+const marcoEnt = (o) => marco({ ...ENT_CAB, tema: TURQUESA, ...o });
+
+function sensibilizacionMaster(d) {
+  const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('alerta')
+    + p('Gracias por estar ayer en la masterclass. Si algo quedó claro es esto: no es que no sepas vender. Es que cada chat arranca de cero, y lo que funciona un día no lo podés repetir al siguiente.')
+    + recuadro('Una pregunta para esta semana', ['¿Cuántas conversaciones quedaron en “lo voy a pensar”?', '<strong>Contalas. Ese número es la venta que hoy se te escapa.</strong>'])
+    + p('Eso se ordena con método, no con más esfuerzo. Si querés ver cómo lo trabajamos en el Entrenamiento, acá está todo.')
+    + botonT('Ver el programa', LINKS.entrenamiento) + firmaEva;
+  return {
+    asunto: 'Lo que pasa después del “lo voy a pensar”',
+    html: marcoEnt({ titulo: 'Lo que pasa después del “lo voy a pensar”', preheader: 'Te dejo una pregunta para esta semana.', banda: 'GRACIAS POR ESTAR EN VIVO', cuerpo, linkBaja: d.linkBaja, motivo: MOTIVO_MASTER }),
+  };
+}
+
+function pushTibioMaster(d, hasta) {
+  const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('proceso')
+    + p('En la masterclass viste dónde se escapa la venta. En el Entrenamiento lo trabajamos sobre tu propio negocio, en 3 encuentros en vivo:')
+    + recuadro('Tu método, en tu negocio', [
+      '<strong>Día 1 · Orden:</strong> tu proceso de venta, paso a paso',
+      '<strong>Día 2 · Foco:</strong> lo que mueve la decisión de tu cliente',
+      '<strong>Día 3 · Seguimiento:</strong> sostener la conversación hasta el cierre',
+      '<strong>Martes 3, miércoles 4 y jueves 5/11 · 19 a 21 h</strong>',
+      '+ 2 clases de consulta · Grabaciones · Tu Manual de Neuroventa Digital · Kit de IA'])
+    + p(`Por haber estado en vivo tenés <strong>50% OFF hasta ${hasta} a las 20 h: $44.500 o 3 cuotas sin interés de $14.833</strong>. Y si en los primeros 15 días sentís que no es para vos, te devolvemos el 80%.`)
+    + botonT('Conocer el Entrenamiento', LINKS.entrenamiento) + firmaEva;
+  return {
+    asunto: 'De la clase a tu negocio',
+    html: marcoEnt({ titulo: 'De la clase a tu negocio', preheader: 'Así es el Entrenamiento por dentro.', banda: 'TU MÉTODO, EN TU NEGOCIO', cuerpo, linkBaja: d.linkBaja, motivo: MOTIVO_MASTER }),
+  };
+}
+
+function directoMaster(d) {
+  const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('energia')
+    + p('Directo y simple: hoy a las 20 h vence tu 50% OFF en el Entrenamiento Neuroventa Digital + IA.')
+    + recuadro('Tu precio hasta hoy a las 20 h', [
+      'Precio de lista: <s>$89.000</s>',
+      '<strong>Tu precio: $44.500 o 3 cuotas sin interés de $14.833</strong>',
+      'Empezamos el martes 3/11 · 19 h',
+      'Garantía: 15 días'])
+    + p('Activá tu lugar con tu link:', 'text-align:center;margin-bottom:4px;')
+    + botonT('Quiero inscribirme', LINKS.pago50)
+    + p(`Y si querés repasar el programa antes de decidir, está todo en ${enlace('la landing', LINKS.entrenamiento)}.`, 'text-align:center;font-size:14px;') + firmaEva;
+  return {
+    asunto: 'Hoy a las 20 h cierra tu 50%',
+    html: marcoEnt({ titulo: 'Hoy a las 20 h cierra tu 50%', preheader: '$44.500 o 3 cuotas de $14.833. Arrancamos el martes 3/11.', banda: 'HOY ES EL DÍA', cuerpo, linkBaja: d.linkBaja, motivo: MOTIVO_MASTER }),
+  };
+}
+
+export const mailA1 = (d) => sensibilizacionMaster(d);
+export const mailA2 = (d) => pushTibioMaster(d, 'mañana domingo');
+export const mailA3 = (d) => directoMaster(d);
+export const mailB1 = (d) => sensibilizacionMaster(d);
+export const mailB2 = (d) => pushTibioMaster(d, 'mañana viernes');
+export const mailB3 = (d) => directoMaster(d);
+
+export function mailC1(d) {
+  const eje = `<strong>${esc(d.eje)}</strong>`;
+  const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('claridad')
+    + p(`Cuando hiciste tu autodiagnóstico, tu eje para trabajar primero fue ${eje}. Te escribo porque ese resultado no es una etiqueta: es una pista de dónde se te escapan ventas hoy.`)
+    + recuadro('¿Cuál te pasó esta semana?', [
+      '<strong>Orden:</strong> cada chat arranca de cero.',
+      '<strong>Foco:</strong> te preguntan el precio y terminás justificando.',
+      '<strong>Seguimiento:</strong> “lo voy a pensar”… y silencio.'])
+    + p('La buena noticia: no es falta de talento, es falta de método. Y el método se entrena.')
+    + botonT('Ver cómo se entrena', LINKS.entrenamiento) + firmaEva;
+  return {
+    asunto: 'Volvamos a tu diagnóstico',
+    html: marcoEnt({ titulo: 'Volvamos a tu diagnóstico', preheader: `Tu eje ${d.eje} sigue ahí. Te cuento por qué importa.`, banda: 'TU RESULTADO TIENE ALGO PARA DECIRTE', cuerpo, linkBaja: d.linkBaja }),
+  };
+}
+
+export function mailC2(d) {
+  const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('proceso')
+    + p(`Arranca una nueva edición del Entrenamiento Neuroventa Digital + IA, y quiero contarte cómo es, por si tu eje <strong>${esc(d.eje)}</strong> te viene haciendo ruido.`)
+    + recuadro('Así es el Entrenamiento', [
+      '<strong>Día 1 · Orden · Día 2 · Foco · Día 3 · Seguimiento</strong>',
+      'Con la IA como aliada en cada encuentro',
+      'Tu Manual de Neuroventa Digital, armado para tu negocio',
+      'Grabaciones · Kit de IA · 2 clases de consulta',
+      '<strong>Martes 3, miércoles 4 y jueves 5/11 · 19 a 21 h</strong>'])
+    + p('Hasta el miércoles 28/10 tenés el precio de lanzamiento: <strong>$62.300 o 3 cuotas sin interés de $20.767</strong> (precio de lista $89.000). Con garantía de 15 días.')
+    + botonT('Conocer el Entrenamiento', LINKS.entrenamiento) + firmaEva;
+  return {
+    asunto: 'Un método para vender por chat, sin perseguir a nadie',
+    html: marcoEnt({ titulo: 'Un método para vender por chat, sin perseguir a nadie', preheader: '3 encuentros en vivo para ordenar tu venta por WhatsApp y redes.', banda: 'ESTO NO ES MAGIA, ES MÉTODO', cuerpo, linkBaja: d.linkBaja }),
+  };
+}
+
+export function mailC3(d) {
+  const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('energia')
+    + p('Te lo digo directo: hoy es el último día para sumarte al Entrenamiento Neuroventa Digital + IA con el precio de lanzamiento.')
+    + recuadro('Precio de lanzamiento', [
+      '<strong>Hoy: $62.300 o 3 cuotas sin interés de $20.767</strong>',
+      'Desde mañana: $89.000',
+      'Martes 3, miércoles 4 y jueves 5/11 · 19 a 21 h',
+      'Garantía: 15 días, devolvemos el 80%'])
+    + p(`Si tu eje <strong>${esc(d.eje)}</strong> es lo que hoy te frena, este es el momento de ordenarlo. Te espero 💜`)
+    + botonT('Quiero inscribirme', LINKS.entrenamiento) + firmaEva;
+  return {
+    asunto: 'Hoy es el último día del precio de lanzamiento',
+    html: marcoEnt({ titulo: 'Hoy es el último día del precio de lanzamiento', preheader: '$62.300 o 3 cuotas de $20.767. Desde mañana, $89.000.', banda: 'HOY · PRECIO DE LANZAMIENTO', cuerpo, linkBaja: d.linkBaja }),
   };
 }

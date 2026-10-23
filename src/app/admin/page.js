@@ -59,13 +59,13 @@ export default function AdminPage() {
   }, []);
 
   useEffect(() => {
-    if (!autenticado || source === 'mails') return;
+    if (!autenticado || source === 'mails' || source === 'nutricion') return;
     fetchLeads(keyRef.current, source);
   }, [source, autenticado, fetchLeads]);
 
   useEffect(() => {
     if (!autenticado) return;
-    if (source === 'mails') return;
+    if (source === 'mails' || source === 'nutricion') return;
     const interval = setInterval(() => fetchLeads(keyRef.current, source), 30000);
     return () => clearInterval(interval);
   }, [autenticado, source, fetchLeads]);
@@ -207,12 +207,18 @@ export default function AdminPage() {
             >
               ✉ Mails
             </button>
+            <button
+              onClick={() => setSource('nutricion')}
+              style={{ ...s.selectorBtn, ...(source === 'nutricion' ? s.selectorActive : {}) }}
+            >
+              🎓 Nutrición
+            </button>
           </div>
-          {source !== 'mails' && <button onClick={exportarExcel} style={s.btnExport}>⬇ Exportar Excel</button>}
+          {source !== 'mails' && source !== 'nutricion' && <button onClick={exportarExcel} style={s.btnExport}>⬇ Exportar Excel</button>}
         </div>
       </header>
 
-      {source === 'mails' ? <MailsPanel adminKey={keyRef.current} s={s} /> : (<>
+      {source === 'mails' ? <MailsPanel key="mails" adminKey={keyRef.current} s={s} /> : source === 'nutricion' ? <MailsPanel key="nutricion" adminKey={keyRef.current} s={s} flujo="formacion" /> : (<>
       <div style={s.statsRow}>
         <div style={s.statCard}>
           <span style={s.statNum}>{leads.length}</span>
