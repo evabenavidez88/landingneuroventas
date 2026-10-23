@@ -315,11 +315,11 @@ export function mailB3(d) {
       'Martes 3, miércoles 4 y jueves 5/11 · 19 a 21 h',
       '+ 2 clases de consulta · Grabaciones · Tu Manual de Neuroventa Digital · Kit de IA',
       'Garantía: 15 días, devolvemos el 80%'])
-    + p('Si en la masterclass viste dónde se te escapa la venta, en el Entrenamiento lo ordenamos sobre tu propio negocio.')
-    + botonT('Quiero inscribirme', LINKS.entrenamiento) + firmaEva;
+    + p('Si en la masterclass viste dónde se te escapa la venta, en el Entrenamiento lo ordenamos sobre tu propio negocio. Son los últimos días para sumarte: entrá a la landing, explorá el programa y sumate.')
+    + botonT('Descubrí más e inscribite', LINKS.entrenamiento) + firmaEva;
   return {
-    asunto: 'Empezamos el martes 3/11',
-    html: marcoEnt({ titulo: 'Empezamos el martes 3/11', preheader: '$89.000 o 3 cuotas sin interés de $29.667. Con garantía de 15 días.', banda: 'EMPEZAMOS EL MARTES 3/11', cuerpo, linkBaja: d.linkBaja, motivo: MOTIVO_MASTER }),
+    asunto: 'Últimos días para sumarte',
+    html: marcoEnt({ titulo: 'Últimos días para sumarte', preheader: 'Empezamos el martes 3/11. Explorá el programa y sumate.', banda: 'ÚLTIMOS DÍAS PARA SUMARTE', cuerpo, linkBaja: d.linkBaja, motivo: MOTIVO_MASTER }),
   };
 }
 
