@@ -20,7 +20,7 @@ const MAILS_FORMACION = [
   { id: 'A3', nombre: 'Hoy a las 20 h cierra tu 50% · link exclusivo', cuando: 'Domingo 25/10 · 10 h', quien: 'Grupo masterclass 22/10' },
   { id: 'B1', nombre: 'Lo que pasa después del “lo voy a pensar” · sensibilización', cuando: 'Miércoles 28/10 · 10 h', quien: 'Grupo masterclass 27/10' },
   { id: 'B2', nombre: 'De la clase a tu negocio · 50% OFF hasta el vie 20 h', cuando: 'Jueves 29/10 · 10 h', quien: 'Grupo masterclass 27/10' },
-  { id: 'B3', nombre: 'Hoy a las 20 h cierra tu 50% · link exclusivo', cuando: 'Viernes 30/10 · 10 h', quien: 'Grupo masterclass 27/10' },
+  { id: 'B3', nombre: 'Hoy a las 20 h cierra tu 50% · link exclusivo', cuando: 'Desactivado · no sale', quien: 'Grupo masterclass 27/10' },
   { id: 'C1', nombre: 'Volvamos a tu diagnóstico · sensibilización', cuando: 'Viernes 23/10 · 10 h', quien: 'Autodiagnóstico, no anotados a la masterclass' },
   { id: 'C2', nombre: 'Un método para vender por chat · precio de lanzamiento', cuando: 'Domingo 25/10 · 10 h', quien: 'Autodiagnóstico, no anotados a la masterclass' },
   { id: 'C3', nombre: 'Hoy es el último día del precio de lanzamiento', cuando: 'Miércoles 28/10 · 10 h', quien: 'Autodiagnóstico, no anotados a la masterclass' },
