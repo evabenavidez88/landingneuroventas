@@ -68,7 +68,7 @@ export default function MailsPanel({ adminKey, s, flujo = 'master' }) {
       <div style={caja}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
           <div>
-            <h3 style={{ ...s.chartTitle, margin: 0 }}>{esFormacion ? 'Nutrición para el Entrenamiento' : 'Flujo de mails automáticos'}</h3>
+            <h3 style={{ ...s.chartTitle, margin: 0 }}>{esFormacion ? 'Mail N+C · Nutrición y conversión al Entrenamiento' : 'Flujo de mails automáticos'}</h3>
             <p style={{ margin: '0.5rem 0 0', fontSize: '1.1rem', fontWeight: 700, color: datos.activo ? '#4ade80' : '#fbbf24' }}>
               {datos.activo ? 'Activo · revisa cada 10 minutos' : 'Pausado · no se envía nada'}
             </p>

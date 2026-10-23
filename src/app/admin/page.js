@@ -211,7 +211,7 @@ export default function AdminPage() {
               onClick={() => setSource('nutricion')}
               style={{ ...s.selectorBtn, ...(source === 'nutricion' ? s.selectorActive : {}) }}
             >
-              🎓 Nutrición
+              🎓 Mail N+C
             </button>
           </div>
           {source !== 'mails' && source !== 'nutricion' && <button onClick={exportarExcel} style={s.btnExport}>⬇ Exportar Excel</button>}

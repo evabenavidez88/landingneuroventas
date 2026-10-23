@@ -75,10 +75,11 @@ export async function asegurarTablas(db) {
   tablasListas = true;
 }
 
+// activoFormacion: el flujo Mail N+C está activo salvo que se pause desde su solapa.
 export async function leerConfig(db) {
   const r = await db.query('SELECT clave, valor FROM mail_config');
   const c = Object.fromEntries(r.rows.map((x) => [x.clave, x.valor]));
-  return { activo: c.activo === 'true', activoFormacion: c.activo_formacion === 'true', excluidos: (c.excluidos || '').split(/[\s,;]+/).map(normalizar).filter(Boolean) };
+  return { activo: c.activo === 'true', activoFormacion: c.activo_formacion !== 'false', excluidos: (c.excluidos || '').split(/[\s,;]+/).map(normalizar).filter(Boolean) };
 }
 export async function guardarConfig(db, clave, valor) {
   await db.query('INSERT INTO mail_config (clave, valor) VALUES ($1,$2) ON CONFLICT (clave) DO UPDATE SET valor = EXCLUDED.valor', [clave, valor]);
