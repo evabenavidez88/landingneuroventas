@@ -306,7 +306,22 @@ export const mailA2 = (d) => pushTibioMaster(d, 'mañana domingo');
 export const mailA3 = (d) => directoMaster(d);
 export const mailB1 = (d) => sensibilizacionMaster(d);
 export const mailB2 = (d) => pushTibioMaster(d, 'mañana viernes');
-export const mailB3 = (d) => directoMaster(d);
+// B3 (vie 30/10): precio real, sin el 50% (pedido de Eva, 22/10). Texto adaptado por Ale: a validar con Eco.
+export function mailB3(d) {
+  const cuerpo = p(`Hola <strong>${esc(d.nombre)}</strong>,`) + iconoCentro('energia')
+    + p('Directo y simple: el martes 3/11 arranca el Entrenamiento Neuroventa Digital + IA, y quería que lo supieras antes del fin de semana.')
+    + recuadro('Empezamos el martes 3/11', [
+      '<strong>$89.000 o 3 cuotas sin interés de $29.667</strong>',
+      'Martes 3, miércoles 4 y jueves 5/11 · 19 a 21 h',
+      '+ 2 clases de consulta · Grabaciones · Tu Manual de Neuroventa Digital · Kit de IA',
+      'Garantía: 15 días, devolvemos el 80%'])
+    + p('Si en la masterclass viste dónde se te escapa la venta, en el Entrenamiento lo ordenamos sobre tu propio negocio.')
+    + botonT('Quiero inscribirme', LINKS.entrenamiento) + firmaEva;
+  return {
+    asunto: 'Empezamos el martes 3/11',
+    html: marcoEnt({ titulo: 'Empezamos el martes 3/11', preheader: '$89.000 o 3 cuotas sin interés de $29.667. Con garantía de 15 días.', banda: 'EMPEZAMOS EL MARTES 3/11', cuerpo, linkBaja: d.linkBaja, motivo: MOTIVO_MASTER }),
+  };
+}
 
 export function mailC1(d) {
   const eje = `<strong>${esc(d.eje)}</strong>`;

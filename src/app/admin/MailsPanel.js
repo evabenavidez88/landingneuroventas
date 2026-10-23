@@ -20,7 +20,7 @@ const MAILS_FORMACION = [
   { id: 'A3', nombre: 'Hoy a las 20 h cierra tu 50% · link exclusivo', cuando: 'Domingo 25/10 · 10 h', quien: 'Grupo masterclass 22/10' },
   { id: 'B1', nombre: 'Lo que pasa después del “lo voy a pensar” · sensibilización', cuando: 'Miércoles 28/10 · 10 h', quien: 'Grupo masterclass 27/10' },
   { id: 'B2', nombre: 'De la clase a tu negocio · 50% OFF hasta el vie 20 h', cuando: 'Jueves 29/10 · 10 h', quien: 'Grupo masterclass 27/10' },
-  { id: 'B3', nombre: 'Hoy a las 20 h cierra tu 50% · link exclusivo', cuando: 'Desactivado · no sale', quien: 'Grupo masterclass 27/10' },
+  { id: 'B3', nombre: 'Empezamos el martes 3/11 · precio real ($89.000)', cuando: 'Viernes 30/10 · 10 h', quien: 'Grupo masterclass 27/10' },
   { id: 'C1', nombre: 'Volvamos a tu diagnóstico · sensibilización', cuando: 'Viernes 23/10 · 10 h', quien: 'Autodiagnóstico, no anotados a la masterclass' },
   { id: 'C2', nombre: 'Un método para vender por chat · precio de lanzamiento', cuando: 'Domingo 25/10 · 10 h', quien: 'Autodiagnóstico, no anotados a la masterclass' },
   { id: 'C3', nombre: 'Hoy es el último día del precio de lanzamiento', cuando: 'Miércoles 28/10 · 10 h', quien: 'Autodiagnóstico, no anotados a la masterclass' },
@@ -125,7 +125,7 @@ export default function MailsPanel({ adminKey, s, flujo = 'master' }) {
           {esFormacion ? (<>
             <li>Nunca les llega a quienes ya pagaron el Entrenamiento (se revisa antes de cada envío).</li>
             <li>A: quienes eligieron el grupo de la masterclass del 22/10 · B: grupo del 27/10 · C: hicieron el autodiagnóstico y no se anotaron a la masterclass.</li>
-            <li>A3 y B3 llevan el botón al link exclusivo del 50% OFF ($44.500). El resto lleva a la landing del Entrenamiento.</li>
+            <li>A3 lleva el botón al link exclusivo del 50% OFF ($44.500). B3 va con el precio real. El resto lleva a la landing del Entrenamiento.</li>
             <li>Cada pieza sale solo en su día, de 10 a 20 h. Si ese día no salió, ya no sale.</li>
             <li>Este flujo se activa y se pausa aparte del de la masterclass.</li>
           </>) : (<>

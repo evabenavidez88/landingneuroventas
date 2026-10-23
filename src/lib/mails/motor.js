@@ -40,8 +40,7 @@ const VENTANAS = {
 const dia = (iso) => [T(`${iso}T13:00:00Z`), T(`${iso}T23:00:00Z`)];
 Object.assign(VENTANAS, {
   A1: dia('2026-10-23'), A2: dia('2026-10-24'), A3: dia('2026-10-25'),
-  B1: dia('2026-10-28'), B2: dia('2026-10-29'),
-  B3: [0, 0], // desactivado por Eva (22/10): el viernes 30 no sale el link del 50%
+  B1: dia('2026-10-28'), B2: dia('2026-10-29'), B3: dia('2026-10-30'), // B3: precio real, sin link del 50%
   C1: dia('2026-10-23'), C2: dia('2026-10-25'), C3: dia('2026-10-28'),
 });
 export const MAILS_FORMACION = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3'];
