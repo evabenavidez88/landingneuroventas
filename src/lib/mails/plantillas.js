@@ -49,7 +49,7 @@ function marco({ titulo, preheader, kicker, h1, sub, banda, cuerpo, linkBaja, mo
 <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;max-width:600px;width:100%;border-radius:8px;overflow:hidden;">
 <tr><td style="background-color:${tema.fondo};padding:36px 32px;text-align:center;">
 ${tema.logo
-    ? `<table role="presentation" cellpadding="0" cellspacing="0" align="center" style="margin:0 auto 16px;"><tr><td style="background-color:#ffffff;border-radius:12px;padding:10px 14px;"><img src="${IMG}logo.png" width="88" height="80" alt="Eva Benavidez · Coach &amp; Consultora" style="display:block;width:88px;height:80px;border:0;"></td></tr></table>`
+    ? `<img src="${IMG}logo-badge.png" width="116" height="104" alt="Eva Benavidez · Coach &amp; Consultora" style="display:block;width:116px;height:104px;border:0;margin:0 auto 16px;">`
     : `<p style="margin:0 0 4px 0;color:${tema.claro1};font-size:12px;letter-spacing:2px;text-transform:uppercase;">Eva Benavidez — Coach &amp; Consultora</p>`}
 <p style="margin:0 0 16px 0;color:${tema.claro2};font-size:11px;letter-spacing:2px;text-transform:uppercase;">${kicker}</p>
 <h1 style="margin:0 0 6px 0;color:#ffffff;font-size:25px;line-height:1.3;font-weight:700;">${h1}</h1>
